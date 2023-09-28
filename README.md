@@ -1,13 +1,17 @@
 ## CSC207-Project
 
-### Problem Domain:
-- Social\
-A match-making system that matches users based on their Spotify playlist.
+### Problem Domain & Description:
+- Problem Domain: Social
+- A match-making system that matches users based on their Spotify playlist. Instead of matching people based on profile pictures or description, we want to make a recommendation system and match users that complement each other.
+- We plan to use MySQL for Java. We need to use JDBC (Java Database Connectivity) API allows us to access SQL databases with Java. For the Spotify matchmaking, we want to retrieve info on Spotify playlists using Spotify Wrapper API.
+### Link To API Documentation:
+https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html
+### 
 
 ### README TODO Tasks:
-- [ ] a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
-- [ ] a brief, high-level description of what kind of application your team is thinking of developing.
-- [ ] a link to the documentation for an API your team can use related to the domain.
+- [x] a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
+- [x] a brief, high-level description of what kind of application your team is thinking of developing.
+- [x] a link to the documentation for an API your team can use related to the domain.
 - [ ]  screenshot of using a tool to try out the API (like https://www.postman.com/Links to an external site. or https://hoppscotch.io/Links to an external site.Links to an external site.)
 example output of running your Java code
 - [ ] a list of any technical problems blocking progress (if any)
