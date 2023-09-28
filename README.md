@@ -1,5 +1,9 @@
 ## CSC207-Project
 
+### Problem Domain:
+- Social\
+A match-making system that matches users based on their Spotify playlist.
+
 ### README TODO Tasks:
 - [ ] a description of the problem domain your team is tentatively wanting to focus on in the project. (e.g., trivia, finance, real estate, etc…)
 - [ ] a brief, high-level description of what kind of application your team is thinking of developing.
