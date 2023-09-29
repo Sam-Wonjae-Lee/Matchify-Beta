@@ -3,7 +3,7 @@
 ### Problem Domain & Description:
 - Problem Domain: Social
 - A match-making system that matches users based on their Spotify playlist. Instead of matching people based on profile pictures or description, we want to make a recommendation system and match users that complement each other.
-- We plan to use MySQL for Java. We need to use JDBC (Java Database Connectivity) API allows us to access SQL databases with Java. For the Spotify matchmaking, we want to retrieve info on Spotify playlists using Spotify Wrapper API.
+- We plan to use MySQL to store the users' information. We need to use JDBC (Java Database Connectivity) API allows us to access SQL databases with Java. For the Spotify matchmaking, we want to retrieve info on Spotify playlists using Spotify Wrapper API.
 ### Link To API Documentation:
 https://docs.oracle.com/javase/tutorial/jdbc/basics/index.html
 ### 
