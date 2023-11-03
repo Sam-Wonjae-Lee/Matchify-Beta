@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CSC207-Project-Matchify.iml" filepath="$PROJECT_DIR$/CSC207-Project-Matchify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spotify-Wrapper.iml" filepath="$PROJECT_DIR$/Spotify-Wrapper.iml" />
     </modules>
   </component>
 </project>

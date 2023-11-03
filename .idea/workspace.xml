@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e74c07e5-cd1d-49e6-a9ea-586a8c5af5b2" name="Changes" comment="Deleted MySQL file and lib folder">
-      <change afterPath="$PROJECT_DIR$/src/entity/CloseFriend.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/Friend.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/Invite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/Playlist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/ViewSimpleTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-    </list>
+    <list default="true" id="e74c07e5-cd1d-49e6-a9ea-586a8c5af5b2" name="Changes" comment="Implemented the basic structure of entity, app, and view." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -59,6 +52,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
@@ -71,7 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1698988814311</updated>
-      <workItem from="1698988816622" duration="2840000" />
+      <workItem from="1698988816622" duration="3665000" />
     </task>
     <task id="LOCAL-00001" summary="Deleted MySQL file and lib folder">
       <option name="closed" value="true" />
@@ -81,7 +75,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698988871492</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Implemented the basic structure of entity, app, and view.">
+      <option name="closed" value="true" />
+      <created>1698992021029</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698992021029</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -100,6 +102,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted MySQL file and lib folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted MySQL file and lib folder" />
+    <MESSAGE value="Implemented the basic structure of entity, app, and view." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented the basic structure of entity, app, and view." />
   </component>
 </project>
