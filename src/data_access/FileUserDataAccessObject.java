@@ -23,13 +23,13 @@ public class FileUserDataAccessObject {
 
     public FileUserDataAccessObject(String csvPath) throws IOException {
 
-        csvFile = new File(csvpath);
+        //csvFile = new File(csvpath);
         headers.put("username", 0);
         headers.put("password", 1);
         headers.put("creation_time", 2);
 
         if (csvFile.length() == 0) {
-            save();
+            //save();
         }
     }
 
