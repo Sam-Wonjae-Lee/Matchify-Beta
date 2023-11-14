@@ -7,7 +7,22 @@ Michael Pan - Yaymichael\
 Frank Peng - Graves451 (Frunk Peng)
 
 #### TODOs:
-- [x] We are using csv file to store info
-- [ ] Set up Clean Architecture structure and finish SOLID diagram
-- [ ] Messaging system
-- [ ] Frontend (by using Java Swing)
+Andy
+- [ ] Match
+
+Sam Wonjae
+- [ ] Login
+- [ ] Logout
+- [ ] Frontend
+
+Frank
+- [ ] Send invite
+- [ ] Database
+- [ ] Playlist
+
+Michael
+- [ ] Accept Invite
+- [ ] Decline Invite
+
+David
+- [ ] View Inbox 
