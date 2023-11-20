@@ -15,6 +15,27 @@ public class FileUserDataAccessObject {
 
     private final Map<String, CommonUser> accounts = new HashMap<>();
 
+    private void save() {
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter(csvFile));
+            writer.write(String.join(",", headers.keySet()));
+            writer.newLine();
+
+            for (User user : accounts.values()) {
+                String line = String.format("%s,%s,%s",
+                        user.getName(), user.getPassword(), user.getCreationTime());
+                writer.write(line);
+                writer.newLine();
+            }
+
+            writer.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     // Add userfactory
 
     public FileUserDataAccessObject(String csvPath) throws IOException {
@@ -25,7 +46,7 @@ public class FileUserDataAccessObject {
         headers.put("creation_time", 2);
 
         if (csvFile.length() == 0) {
-            //save();
+            save();
         }
     }
 
