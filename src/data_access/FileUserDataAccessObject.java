@@ -1,10 +1,6 @@
 package data_access;
 
 import entity.User;
-import entity.Friend;
-import entity.CloseFriend;
-import entity.Invite;
-import entity.Playlist;
 
 import java.util.Map;
 import java.util.HashMap;

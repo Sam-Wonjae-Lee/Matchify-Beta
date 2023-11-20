@@ -5,7 +5,7 @@ package entity;
  * Close friends have the privilege to message between users whereas friends do not.
  */
 
-public class CloseFriend extends Friend{
+public class CloseFriend implements Friend{
 
     public void setNickname() {
 
