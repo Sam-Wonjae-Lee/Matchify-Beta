@@ -1,11 +1,11 @@
-package usecases.Match;
+package use_case.Match;
 
-import entity.User;
+import entity.CommonUser;
 
 public class MatchInputData {
     private final String userName;
 
-    public MatchInputData(User user) {
+    public MatchInputData(CommonUser user) {
         this.userName = user.getName();
     }
 }

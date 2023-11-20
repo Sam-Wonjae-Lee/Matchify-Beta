@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Playlist {
     private String url;
 
-    private User owner;
+    private CommonUser owner;
 
-    public ArrayList<User> matchOtherPlaylist() {
+    public ArrayList<CommonUser> matchOtherPlaylist() {
         throw new UnsupportedOperationException();
     }
 }

@@ -1,6 +1,6 @@
-package usecases.Match;
+package use_case.Match;
 import entity.Playlist;
-import entity.User;
+import entity.CommonUser;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ public class MatchInteractor implements MatchInputobundary{
 
     @Override
     public void execute(MatchInputData matchInputData) {
-        ArrayList<User> matchedUsers = this.playlist.matchOtherPlaylist();
+        ArrayList<CommonUser> matchedUsers = this.playlist.matchOtherPlaylist();
 
     }
 }

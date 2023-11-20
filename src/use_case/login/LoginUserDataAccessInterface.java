@@ -1,9 +1,9 @@
 package use_case.login;
 
-import entity.User;
+import entity.CommonUser;
 
 public interface LoginUserDataAccessInterface {
     boolean userExists(String key);
-    void save(User user);
-    User get(String username);
+    void save(CommonUser user);
+    CommonUser get(String username);
 }
