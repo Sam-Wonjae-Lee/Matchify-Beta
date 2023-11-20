@@ -40,17 +40,24 @@ public class User {
         this.closeFriends = new ArrayList<>();
     }
 
-    public void change_photo(String new_photo) {
+    public void ChangePhoto(String new_photo) {
         this.photo = new_photo;
     }
 
-    public void change_bio(String new_bio) {
+    public void ChangeBio(String new_bio) {
         this.bio = new_bio;
     }
 
-    public void change_playlist(Playlist new_playlist) {
+    public void ChangePlaylist(Playlist new_playlist) {
         this.spotifyPlaylist = new_playlist;
     }
+
+    public void MadeNewFriend(int userID, String name) {
+        Friend friend = new Friend(userID, name);
+        friends.add(friend);
+    }
+
+    public String getName() {return this.name;}
 //
 //    public User() {}
 
