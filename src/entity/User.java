@@ -23,6 +23,8 @@ public class User {
 
     private Invite invites;
 
+    private List<String> inbox;
+
     public void changePhoto() {}
 
     public void changeBio() {}
@@ -50,6 +52,10 @@ public class User {
 
     public void ChangePlaylist(Playlist new_playlist) {
         this.spotifyPlaylist = new_playlist;
+    }
+
+    public List<String> getInbox(){
+        return inbox;
     }
 
     public void MadeNewFriend(int userID, String name) {
