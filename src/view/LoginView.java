@@ -14,6 +14,7 @@ import java.util.concurrent.ExecutionException;
 
 public class LoginView extends JFrame{
 
+    // ClientId, ClientSecret, RedirectURI - necessary info for using API.
     private String CLIENT_ID = "9ed5f6af048844e4851425fbc416ae10";
     private String CLIENT_SECRET = "df75314d40634c9db0d1da481a2302e8";
     private String REDIRECT_URI = "http://localhost:8888/callback";
@@ -21,6 +22,8 @@ public class LoginView extends JFrame{
     private SpotifyApi spotifyApi;
 
     public LoginView() {
+
+        // JFrame window title
         super("Spotify Login");
 
         spotifyApi = new SpotifyApi.Builder()
@@ -29,10 +32,14 @@ public class LoginView extends JFrame{
                 .setRedirectUri(URI.create(REDIRECT_URI))
                 .build();
 
+        // Window will close to when clicking on X button.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Set window size
         setSize(300, 200);
+        // Set centre of screen
         setLocationRelativeTo(null);
 
+        // Button for login
         JButton loginButton = new JButton("Log in with Spotify");
         loginButton.addActionListener(new ActionListener() {
             @Override
