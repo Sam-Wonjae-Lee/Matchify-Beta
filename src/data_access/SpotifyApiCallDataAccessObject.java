@@ -1,24 +1,16 @@
 package data_access;
 
-// Spotify API
-
-import se.michaelthelin.spotify.SpotifyApi;
-import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import se.michaelthelin.spotify.model_objects.specification.Paging;
-import se.michaelthelin.spotify.model_objects.specification.PlaylistSimplified;
-import se.michaelthelin.spotify.requests.data.playlists.GetListOfUsersPlaylistsRequest;
-import org.apache.hc.core5.http.ParseException;
-
-import java.io.IOException;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionException;
+import com.google.gson.JsonObject;
 
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
+
+// JSON Array
+import org.json.JSONObject;
+
 
 public class SpotifyApiCallDataAccessObject {
 
@@ -75,15 +67,47 @@ public class SpotifyApiCallDataAccessObject {
         }
     }
 
+    public static String getUserId(String accessToken) {
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.spotify.com/v1/me"))
+                .header("Authorization", "Bearer " + accessToken)
+                .build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            JSONObject jsonResponse = new JSONObject(response.body());
+            String userId = jsonResponse.getString("id");
+
+            return userId;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+//    public static JsonArray getUserProfile(String userID) {
+//        // Client ID and Client Secret from Spotify Dashboard
+//        String clientId = "9ed5f6af048844e4851425fbc416ae10";
+//        String clientSecret = "df75314d40634c9db0d1da481a2302e8";
+//
+//
+//    }
+
     // Used for printing the access token
     public static void main(String[] args) {
         String accessToken = getAccessToken();
 
-        if (accessToken != null) {
-            System.out.println("Access Token: " + accessToken);
-        } else {
-            System.out.println("Failed to retrieve access token");
-        }
+//        if (accessToken != null) {
+//            System.out.println("Access Token: " + accessToken);
+//        } else {
+//            System.out.println("Failed to retrieve access token");
+//        }
+        String userId = getUserId(accessToken);
+        System.out.println("User ID: " + userId);
     }
 
 }
