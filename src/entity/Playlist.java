@@ -1,11 +1,13 @@
 package entity;
 
+import java.util.ArrayList;
+
 public class Playlist {
     private String url;
 
-    private User owner;
+    private CommonUser owner;
 
-    public float matchOtherPlaylist(Playlist other) {
+    public ArrayList<CommonUser> matchOtherPlaylist() {
         throw new UnsupportedOperationException();
     }
 }

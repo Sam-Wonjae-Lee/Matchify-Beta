@@ -1,7 +1,10 @@
 package entity;
 
-public interface Friend {
+public class Friend {
 
-    int userID = 0;
-    String originalName = "";
+    private int userID;
+    private String originalName;
+
+    public Friend(int userID, String name) {
+    }
 }

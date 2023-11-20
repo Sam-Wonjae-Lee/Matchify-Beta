@@ -1,6 +1,6 @@
 package data_access;
 
-import entity.User;
+import entity.CommonUser;
 
 import java.util.Map;
 import java.util.HashMap;
@@ -13,7 +13,7 @@ public class FileUserDataAccessObject {
 
     private Map<String, Integer> headers = new LinkedHashMap<>();
 
-    private final Map<String, User> accounts = new HashMap<>();
+    private final Map<String, CommonUser> accounts = new HashMap<>();
 
     // Add userfactory
 
