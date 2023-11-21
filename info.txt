@@ -1,4 +1,3 @@
 CLIENT_ID = "9ed5f6af048844e4851425fbc416ae10"
 CLIENT_SECRET = "df75314d40634c9db0d1da481a2302e8"
-redirectURI = "http://localhost:3000"
-http://localhost:8888/callback
+redirectURI = "http://localhost:8888/callback"
