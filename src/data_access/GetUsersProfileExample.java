@@ -3,7 +3,7 @@ package data_access;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.User;
-import se.michaelthelin.spotify.requests.data.users_profile.GetUsersProfileRequest;
+import se.michaelthelin.spotify.requests.data.users_profile.GetCurrentUsersProfileRequest;
 import org.apache.hc.core5.http.ParseException;
 
 import java.io.IOException;
@@ -12,18 +12,17 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionException;
 
 public class GetUsersProfileExample {
-    private static final String accessToken = "BQDpQxBR4cYQepKyNL-Fup4jIHrejKN5JiGbkqJoJwr1GDjJ1TduDS1JaDRkAlPkn84aGTsfCBj3iOZEqo3SJgK3_IG43dzMEsSbgcFPDTtUxO1CGiA";
-    private static final String userId = "user_id";
+    private static final String accessToken = "BQDAz64M91zn7-33NjxQ3vVSxq2-wm88Q9wXeMvNGbYYVfWlkk9TC3_B7u4fyf4JMCzxHpmpYt04-_BXMoXzLO__-x9rOQSYAimd_anfacgcLR-Ho78";
 
     private static final SpotifyApi spotifyApi = new SpotifyApi.Builder()
             .setAccessToken(accessToken)
             .build();
-    private static final GetUsersProfileRequest getUsersProfileRequest = spotifyApi.getUsersProfile(userId)
+    private static final GetCurrentUsersProfileRequest getCurrentUsersProfileRequest = spotifyApi.getCurrentUsersProfile()
             .build();
 
-    public static void getUsersProfile_Sync() {
+    public static void getCurrentUsersProfile_Sync() {
         try {
-            final User user = getUsersProfileRequest.execute();
+            final User user = getCurrentUsersProfileRequest.execute();
 
             System.out.println("Display name: " + user.getDisplayName());
         } catch (IOException | SpotifyWebApiException | ParseException e) {
@@ -31,9 +30,9 @@ public class GetUsersProfileExample {
         }
     }
 
-    public static void getUsersProfile_Async() {
+    public static void getCurrentUsersProfile_Async() {
         try {
-            final CompletableFuture<User> userFuture = getUsersProfileRequest.executeAsync();
+            final CompletableFuture<User> userFuture = getCurrentUsersProfileRequest.executeAsync();
 
             // Thread free to do other tasks...
 
@@ -49,7 +48,7 @@ public class GetUsersProfileExample {
     }
 
     public static void main(String[] args) {
-        getUsersProfile_Sync();
-        getUsersProfile_Async();
+        getCurrentUsersProfile_Sync();
+        getCurrentUsersProfile_Async();
     }
 }

@@ -15,12 +15,10 @@ import java.net.HttpURLConnection;
 // JSON Array
 import org.json.JSONArray;
 
-// Spotify API
-
 
 public class SpotifyApiCallDataAccessObject {
 
-    /*
+    /**
     * Get the current user's profile. In other words, get detailed profile information about the current user.
     * More info is located here: https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile
     * @return A JSONArray containing the response data for the current Spotify user.
@@ -78,52 +76,6 @@ public class SpotifyApiCallDataAccessObject {
         System.out.println(responseData);
         return responseData;
     }
-
-//    public static JSONArray getCurrentUserProfile() throws IOException {
-//
-//        String accessToken = getAccessToken();
-//
-//        // Spotify API endpoint for user profile information
-//        String apiUrl = "https://api.spotify.com/v1/me";
-//
-//        // Create a URL object with the Spotify API endpoint
-//        URL url = new URL(apiUrl);
-//
-//        // Open a connection to Spotify API
-//        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-//
-//        connection.setRequestMethod("GET");
-//
-//        connection.setRequestProperty("Authorization", "Bearer " + accessToken);
-//
-//        int responseCode = connection.getResponseCode();
-//
-//        JSONArray responseData = null;
-//
-//        if (responseCode == HttpURLConnection.HTTP_OK) {
-//            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-//            String inputLine;
-//            StringBuilder response = new StringBuilder();
-//
-//            while ((inputLine == reader.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            reader.close();
-//            connection.disconnect();
-//
-//            responseData = new JSONArray(response.toString());
-//        } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
-//            connection.disconnect();
-//
-//            System.out.println("Requested data does not exist.");
-//        } else {
-//            connection.disconnect();
-//            throw new IOException("Failed response code: " + responseCode);
-//        }
-//
-//        System.out.println(responseData);
-//        return responseData;
-//    }
 
 
     /**
@@ -225,18 +177,18 @@ public class SpotifyApiCallDataAccessObject {
 
     // Used for printing the access token
     public static void main(String[] args) {
-//        String accessToken = getAccessToken();
+        String accessToken = getAccessToken();
 
-//        if (accessToken != null) {
-//            System.out.println("Access Token: " + accessToken);
-//        } else {
-//            System.out.println("Failed to retrieve access token");
-//        }
-        try {
-            getUserProfile("BQBf1_62hJLPKeKMUxI60XhsFsJix0D79eUC7bnHwjw6XqTUzhwgjRSW8UDscY7YrsUKtexqPr1XuqRP0_Sr1yW_KtQtg1h7hOGUCZn823MzQ1m0mJA");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (accessToken != null) {
+            System.out.println("Access Token: " + accessToken);
+        } else {
+            System.out.println("Failed to retrieve access token");
         }
+//        try {
+//            getUserProfile("BQBf1_62hJLPKeKMUxI60XhsFsJix0D79eUC7bnHwjw6XqTUzhwgjRSW8UDscY7YrsUKtexqPr1XuqRP0_Sr1yW_KtQtg1h7hOGUCZn823MzQ1m0mJA");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
