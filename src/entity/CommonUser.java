@@ -17,30 +17,18 @@ public class CommonUser implements User{
     // Test if there are errors with adding CloseFriend to friends array
     private ArrayList<Friend> friends;
 
-//    private List<CloseFriend> closeFriends;
-
-    private Playlist spotifyPlaylist;
-
-    private Invite invites;
+    private int spotifyPlaylistID;
 
     private ArrayList<String> inbox;
 
-    public void changePhoto() {}
-
-    public void changeBio() {}
-
-    public void changePlaylist() {}
-
     // Two constructors needed for creating the User and for user id.
-    public CommonUser(String photo, String name, int age, Playlist spotifyPlaylist) {
+    public CommonUser(String photo, String name, int age, int playlistID) {
         this.photo = photo;
         this.age = age;
-//        this.bio = bio;
         this.name = name;
-        this.spotifyPlaylist = spotifyPlaylist;
+        this.spotifyPlaylistID = playlistID;
         this.friends = new ArrayList<>();
         this.inbox = new ArrayList<>();
-//        this.closeFriends = new ArrayList<>();
     }
 
 //    public void ChangeBio(String new_bio) {
@@ -60,10 +48,10 @@ public class CommonUser implements User{
 //        this.friends.add(friend);
 //    }
 
-    @Override
-    public void setPlaylist(Playlist playlist) {
-        this.spotifyPlaylist = playlist;
-    }
+//    @Override
+//    public void setPlaylist(Playlist playlist) {
+//        this.spotifyPlaylistID = playlist;
+//    }
 
     @Override
     public void addFriendRequest(String request) {
@@ -89,8 +77,8 @@ public class CommonUser implements User{
     }
 
     @Override
-    public Playlist getPlaylist() {
-        return spotifyPlaylist;
+    public int getPlaylist() {
+        return spotifyPlaylistID;
     }
 
     @Override

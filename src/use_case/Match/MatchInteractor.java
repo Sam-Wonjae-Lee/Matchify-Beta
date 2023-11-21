@@ -13,6 +13,5 @@ public class MatchInteractor implements MatchInputobundary{
     @Override
     public void execute(MatchInputData matchInputData) {
         ArrayList<CommonUser> matchedUsers = this.playlist.matchOtherPlaylist();
-
     }
 }
