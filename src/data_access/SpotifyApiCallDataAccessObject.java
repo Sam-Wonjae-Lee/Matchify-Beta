@@ -11,9 +11,11 @@ import java.util.Base64;
 
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.util.Scanner;
 
 // JSON Array
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class SpotifyApiCallDataAccessObject {
@@ -23,7 +25,7 @@ public class SpotifyApiCallDataAccessObject {
     * More info is located here: https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile
     * @return A JSONArray containing the response data for the current Spotify user.
     * */
-    private static JSONArray getUserProfile(String accessToken) throws IOException {
+    private static JSONObject getUserProfile(String accessToken) throws IOException {
         // Spotify API endpoint for user profile information
         String apiUrl = "https://api.spotify.com/v1/me";
 
@@ -43,7 +45,7 @@ public class SpotifyApiCallDataAccessObject {
         int responseCode = connection.getResponseCode();
 
         // Initialize a JSONArray to store response
-        JSONArray responseData = null;
+        JSONObject responseData = null;
 
         // Check if the request was successful (HTTP status code 200)
         if (responseCode == HttpURLConnection.HTTP_OK) {
@@ -61,7 +63,7 @@ public class SpotifyApiCallDataAccessObject {
 
             connection.disconnect();
 
-            responseData = new JSONArray(response.toString());
+            responseData = new JSONObject(response.toString());
 
         } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
             connection.disconnect();
@@ -87,73 +89,7 @@ public class SpotifyApiCallDataAccessObject {
      * @throws Exception if access token cannot be retrieved.
      */
 
-    public static String getAccessToken() {
-        // Client ID and Client Secret from Spotify Dashboard
-        String clientId = "9ed5f6af048844e4851425fbc416ae10";
-        String clientSecret = "df75314d40634c9db0d1da481a2302e8";
-
-        // Spotify API endpoints
-        String tokenUrl = "https://accounts.spotify.com/api/token";
-
-        // Base64 encode the client ID and client secret
-        String credentials = clientId + ":" + clientSecret;
-        String base64Credentials = Base64.getEncoder().encodeToString(credentials.getBytes());
-
-        // Build the authorization header
-        String authorizationHeader = "Basic " + base64Credentials;
-
-        // Build the request body for token retrieval
-        String requestBody = "grant_type=client_credentials";
-
-        // Create an HTTP client
-        HttpClient client = HttpClient.newHttpClient();
-
-        // Build the request
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(tokenUrl))
-                .header("Authorization", authorizationHeader)
-                .header("Content-Type", "application/x-www-form-urlencoded")
-                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                .build();
-
-        try {
-            // Send the request and get the response
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            // Parse the JSON response to extract the access token
-            String accessToken = response.body().split("\"access_token\":\"")[1].split("\"")[0];
-
-            return accessToken;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-//    public static String getUserId(String accessToken) {
-//        HttpClient client = HttpClient.newHttpClient();
-//
-//        HttpRequest request = HttpRequest.newBuilder()
-//                .uri(URI.create("https://api.spotify.com/v1/me"))
-//                .header("Authorization", "Bearer " + accessToken)
-//                .build();
-//
-//        try {
-//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-//
-//            JSONObject jsonResponse = new JSONObject(response.body());
-//            String userId = jsonResponse.getString("id");
-//
-//            return userId;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//
-//    }
-
-//    public static JSONObject getUserProfile(String userID) {
+//    public static String getAccessToken() {
 //        // Client ID and Client Secret from Spotify Dashboard
 //        String clientId = "9ed5f6af048844e4851425fbc416ae10";
 //        String clientSecret = "df75314d40634c9db0d1da481a2302e8";
@@ -161,34 +97,56 @@ public class SpotifyApiCallDataAccessObject {
 //        // Spotify API endpoints
 //        String tokenUrl = "https://accounts.spotify.com/api/token";
 //
-//        String accessToken = getAccessToken();
-//        String userId = "user_id";
+//        // Base64 encode the client ID and client secret
+//        String credentials = clientId + ":" + clientSecret;
+//        String base64Credentials = Base64.getEncoder().encodeToString(credentials.getBytes());
 //
-//        SpotifyApi spotifyApi = new SpotifyApi.Builder()
-//                .setAccessToken(accessToken)
+//        // Build the authorization header
+//        String authorizationHeader = "Basic " + base64Credentials;
+//
+//        // Build the request body for token retrieval
+//        String requestBody = "grant_type=client_credentials";
+//
+//        // Create an HTTP client
+//        HttpClient client = HttpClient.newHttpClient();
+//
+//        // Build the request
+//        HttpRequest request = HttpRequest.newBuilder()
+//                .uri(URI.create(tokenUrl))
+//                .header("Authorization", authorizationHeader)
+//                .header("Content-Type", "application/x-www-form-urlencoded")
+//                .POST(HttpRequest.BodyPublishers.ofString(requestBody))
 //                .build();
-//        GetUsersProfileRequest getUsersProfileRequest = spotifyApi.getUsersProfile(userId)
-//                .build();
 //
+//        try {
+//            // Send the request and get the response
+//            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 //
+//            // Parse the JSON response to extract the access token
+//            String accessToken = response.body().split("\"access_token\":\"")[1].split("\"")[0];
 //
+//            return accessToken;
 //
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
 //    }
+
 
     // Used for printing the access token
     public static void main(String[] args) {
-        String accessToken = getAccessToken();
+        Scanner scanner = new Scanner(System.in);
 
-        if (accessToken != null) {
-            System.out.println("Access Token: " + accessToken);
-        } else {
-            System.out.println("Failed to retrieve access token");
+        System.out.println("Enter: ");
+
+        String accessToken = scanner.nextLine();
+
+        try {
+            getUserProfile(accessToken);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-//        try {
-//            getUserProfile("BQBf1_62hJLPKeKMUxI60XhsFsJix0D79eUC7bnHwjw6XqTUzhwgjRSW8UDscY7YrsUKtexqPr1XuqRP0_Sr1yW_KtQtg1h7hOGUCZn823MzQ1m0mJA");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
     }
 
