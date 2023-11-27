@@ -1,4 +1,5 @@
 package view;
 
-public class InboxView {
+public class InboxView{
+
 }
