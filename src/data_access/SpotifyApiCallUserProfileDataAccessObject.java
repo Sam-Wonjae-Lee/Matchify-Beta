@@ -18,7 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
-public class SpotifyApiCallAccessTokenDataAccessObject implements SpotifyApiCallInterface{
+public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCallInterface{
 
     /**
     * Get the current user's profile. In other words, get detailed profile information about the current user.
