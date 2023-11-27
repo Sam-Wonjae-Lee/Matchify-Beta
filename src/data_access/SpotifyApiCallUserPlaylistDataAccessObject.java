@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-public class SpotifyApiExample {
+public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCallInterface{
 
     private static final String CLIENT_ID = "9ed5f6af048844e4851425fbc416ae10";
     private static final String CLIENT_SECRET = "df75314d40634c9db0d1da481a2302e8";
@@ -52,8 +52,8 @@ public class SpotifyApiExample {
             throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
         // Create a request to get a user's playlists
         GetListOfUsersPlaylistsRequest request = spotifyApi.getListOfUsersPlaylists(userId)
-                .limit(50) // You can adjust the limit as needed
-                .offset(0)  // You can adjust the offset as needed
+                .limit(50) // You can adjust the limit as needed (50 is the limit)
+                .offset(0)  // You can adjust the offset as needed (offset should be 0)
                 .build();
 
         // Execute the request asynchronously

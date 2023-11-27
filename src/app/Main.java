@@ -17,7 +17,7 @@ public class Main {
                 .build();
 
         // Set an access token (you may need to obtain one using the Authorization Code Flow)
-        String accessToken = "BQBF0Y2penwR1rezm4csZWJCioSQufssze4NLhsNEuLYfUhA9kgktkeGXGhHENs9G9CyJalMrcEhIWz5cpD8_YZd065PymGFLseo-j1VbkGXAfkshuY";
+        String accessToken = "BQBf1_62hJLPKeKMUxI60XhsFsJix0D79eUC7bnHwjw6XqTUzhwgjRSW8UDscY7YrsUKtexqPr1XuqRP0_Sr1yW_KtQtg1h7hOGUCZn823MzQ1m0mJA";
         spotifyApi.setAccessToken(accessToken);
 
         // Specify the track ID you want to retrieve
