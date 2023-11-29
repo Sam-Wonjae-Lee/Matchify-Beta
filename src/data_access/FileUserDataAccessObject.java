@@ -40,13 +40,31 @@ public class FileUserDataAccessObject {
 
     public FileUserDataAccessObject(String csvPath) throws IOException {
 
-        //csvFile = new File(csvpath);
+        csvFile = new File(csvpath);
         headers.put("username", 0);
         headers.put("password", 1);
         headers.put("creation_time", 2);
 
         if (csvFile.length() == 0) {
             save();
+        }
+    }
+
+    public static void main(String[] args){
+        String sample = ",";
+        String mystring;
+        try
+        {
+            BufferedReader brdrd = new BufferedReader(new FileReader("C:\\Users\\davis\\eclipse-workspace\\CSVdocuments\\commaseperated.csv"));
+            while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
+            {
+                String[] student = mystring.split(sample);//utilized to split the string
+                System.out.println("Name: " + student[0] + ",Faculty: " + student[1] + ", Registration No: " + student[2] + ", Fees Balance: " + student[3] + ", Campus:  " + student[4] +"");
+            }
+        }
+        catch (IOException e)//catches exception in the try block
+        {
+            e.printStackTrace();//Prints this throwable and its backtrace
         }
     }
 
