@@ -1,6 +1,7 @@
 package interface_adapter.inbox;
 
 public class InboxState {
+
     private String username = "";
 
     public InboxState(InboxState copy) {

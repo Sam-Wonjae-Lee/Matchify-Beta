@@ -41,5 +41,4 @@ public class InboxViewModel extends ViewModel{
         this.inboxOwner = loggedInUser;
     }
 }
-
 }
