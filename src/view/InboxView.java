@@ -1,5 +1,7 @@
 package view;
 
+public class InboxView{
+
 import interface_adapter.decline_invite.DeclineController;
 import interface_adapter.decline_invite.DeclineState;
 import interface_adapter.decline_invite.DeclineViewModel;
