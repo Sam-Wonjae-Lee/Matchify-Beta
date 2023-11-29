@@ -5,7 +5,7 @@ import entity.CommonUser;
 import java.util.ArrayList;
 
 public class MatchInteractor implements MatchInputobundary{
-    private final Playlist playlist;
+    private Playlist playlist;
     public MatchInteractor(Playlist playlist) {
         this.playlist = playlist;
     }
