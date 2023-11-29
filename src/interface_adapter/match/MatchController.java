@@ -1,8 +1,8 @@
-package interface_adapter.Match;
+package interface_adapter.match;
 
 import entity.CommonUser;
-import use_case.Match.MatchInputData;
-import use_case.Match.MatchInputobundary;
+import use_case.match.MatchInputData;
+import use_case.match.MatchInputobundary;
 
 public class MatchController {
 

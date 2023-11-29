@@ -1,10 +1,7 @@
-package interface_adapter.Match;
+package interface_adapter.match;
 
-import entity.CommonUser;
-import use_case.Match.MatchOutPutData;
-import use_case.Match.MatchOutputBoundary;
-
-import java.util.ArrayList;
+import use_case.match.MatchOutPutData;
+import use_case.match.MatchOutputBoundary;
 
 public class MatchPresenter implements MatchOutputBoundary {
     public MatchOutPutData outPutData;
