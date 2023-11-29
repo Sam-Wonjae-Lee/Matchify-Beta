@@ -1,5 +1,7 @@
 package use_case.open_inbox;
 
+import entity.User;
+
 public class OpenInboxInteractor implements OpenInboxInputBoundary{
     final OpenInboxUserDataAccessInterface userDataAccessObject;
 
@@ -12,5 +14,9 @@ public class OpenInboxInteractor implements OpenInboxInputBoundary{
 
     @Override
     public void execute(OpenInboxInputData openInboxInputData) {
+        User user = userDataAccessObject.get(openInboxInputData.getUsername());
+
+        OpenInboxOutputData openInboxOutputData = new OpenInboxOutputData(user.getName(), user.getInbox());
+        openInboxPresenter.prepareSuccessView(openInboxOutputData);
     }
 }

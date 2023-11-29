@@ -2,7 +2,6 @@ package data_access;
 
 import entity.User;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
-import use_case.signup.SignupUserDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +19,9 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
         return users.containsKey(identifier);
     }
 
-    /**
-     * @param user the data to save
-     */
     @Override
-    public void save(User user) {
-        users.put(user.getName(), user);
+    public User get(String username) {
+        return null;
     }
+
 }
