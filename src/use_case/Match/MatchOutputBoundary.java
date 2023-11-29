@@ -1,4 +1,4 @@
-package use_case.Match;
+package use_case.match;
 
 public interface MatchOutputBoundary {
     void prepareSuccessView(MatchOutPutData userList);
