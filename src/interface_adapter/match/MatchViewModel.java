@@ -1,4 +1,4 @@
-package interface_adapter.Match;
+package interface_adapter.match;
 
 import interface_adapter.ViewModel;
 

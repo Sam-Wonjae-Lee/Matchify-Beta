@@ -1,7 +1,7 @@
 package view;
 
-import interface_adapter.Match.MatchController;
-import interface_adapter.Match.MatchViewModel;
+import interface_adapter.match.MatchController;
+import interface_adapter.match.MatchViewModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
