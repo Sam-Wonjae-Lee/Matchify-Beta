@@ -69,4 +69,9 @@ public class FileUserDataAccessObject {
         }
         this.write();
     }
+
+    public ArrayList<String> get_user(Integer user_id){
+        // returns the values of the user_id, if user_id doesn't exist, return null instead.
+        return this.data_saved.get(user_id);
+    }
 }
