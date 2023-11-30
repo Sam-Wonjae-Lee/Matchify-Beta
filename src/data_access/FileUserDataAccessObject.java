@@ -1,5 +1,8 @@
 package data_access;
 
+=======
+import entity.CommonUser;
+import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -7,7 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.io.*;
 
-public class FileUserDataAccessObject {
+public class FileUserDataAccessObject implements OpenInboxUserDataAccessInterface {
 
     private final String csvFile_path = "src/csv_files/user_data.csv";
 
