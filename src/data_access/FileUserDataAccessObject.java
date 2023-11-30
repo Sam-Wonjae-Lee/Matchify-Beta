@@ -53,4 +53,20 @@ public class FileUserDataAccessObject {
             e.printStackTrace();
         }
     }
+
+    public void add_user(Integer user_id, String user_name, String photo, String age, String bio){
+        // adds the user into the database, if user_id already exists in the database, update it's values instead
+        ArrayList<String> new_arr = new ArrayList<>();
+        new_arr.add(user_name);
+        new_arr.add(photo);
+        new_arr.add(age);
+        new_arr.add(bio);
+        if(this.data_saved.containsValue(user_id)){
+            this.data_saved.replace(user_id,new_arr);
+        }
+        else {
+            this.data_saved.put(user_id,new_arr);
+        }
+        this.write();
+    }
 }
