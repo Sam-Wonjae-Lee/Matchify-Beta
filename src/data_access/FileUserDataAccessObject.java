@@ -39,4 +39,18 @@ public class FileUserDataAccessObject {
         }
         return ans;
     }
+
+    private void write(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile_path))) {
+            for (Integer key : this.data_saved.keySet()) {
+                ArrayList<String> val = this.data_saved.get(key);
+                System.out.println(val);
+                String new_str = String.valueOf(key) + "," +val.get(0) + "," + val.get(1) + ","  + val.get(2) + ","  + val.get(3);
+                writer.write(new_str);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
