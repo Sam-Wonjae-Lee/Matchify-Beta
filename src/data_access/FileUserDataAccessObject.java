@@ -1,7 +1,7 @@
 package data_access;
 
-import entity.CommonUser;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -13,60 +13,30 @@ public class FileUserDataAccessObject {
 
     private Map<String, Integer> headers = new LinkedHashMap<>();
 
-    private final Map<String, CommonUser> accounts = new HashMap<>();
 
-    private void save() {
-        BufferedWriter writer;
-        try {
-            writer = new BufferedWriter(new FileWriter(csvFile));
-            writer.write(String.join(",", headers.keySet()));
-            writer.newLine();
-
-            for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword(), user.getCreationTime());
-                writer.write(line);
-                writer.newLine();
-            }
-
-            writer.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // Add userfactory
-
-    public FileUserDataAccessObject(String csvPath) throws IOException {
-
-        csvFile = new File(csvpath);
-        headers.put("username", 0);
-        headers.put("password", 1);
-        headers.put("creation_time", 2);
-
-        if (csvFile.length() == 0) {
-            save();
-        }
-    }
-
-    public static void main(String[] args){
-        String sample = ",";
+    // read method is used for initializing the database
+    private HashMap<Integer, ArrayList<String>> read(){
+        // [user_id, user_name, photo, age, bio]
         String mystring;
+        HashMap<Integer, ArrayList<String>> ans = new HashMap<>();
         try
         {
-            BufferedReader brdrd = new BufferedReader(new FileReader("C:\\Users\\davis\\eclipse-workspace\\CSVdocuments\\commaseperated.csv"));
+            BufferedReader brdrd = new BufferedReader(new FileReader(this.csvFile_path));
             while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
             {
-                String[] student = mystring.split(sample);//utilized to split the string
-                System.out.println("Name: " + student[0] + ",Faculty: " + student[1] + ", Registration No: " + student[2] + ", Fees Balance: " + student[3] + ", Campus:  " + student[4] +"");
+                String[] users = mystring.split(sample);
+                ArrayList<String> new_arr = new ArrayList<>();
+                for(int a = 1; a <= 4; a++){
+                    new_arr.add(users[a]);
+                }
+                ans.put(Integer.parseInt(users[0]), new_arr);
+                System.out.println("ID: " + users[0] + ", Name:" + users[1] + ", Photo: " + users[2] + ", Age:" + users[3] + ", Bio:  " + users[4]);
             }
         }
         catch (IOException e)//catches exception in the try block
         {
             e.printStackTrace();//Prints this throwable and its backtrace
         }
+        return ans;
     }
-
-
 }
