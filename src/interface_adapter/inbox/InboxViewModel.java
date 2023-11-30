@@ -1,9 +1,11 @@
 package interface_adapter.inbox;
 
+import interface_adapter.ViewModel;
+
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-public class InboxViewModel extends ViewModel{
+public class InboxViewModel extends ViewModel {
     public final String TITLE_LABEL = "Inbox View";
 
     private InboxState state = new InboxState();
@@ -40,5 +42,4 @@ public class InboxViewModel extends ViewModel{
     public void setLoggedInUser(String loggedInUser) {
         this.inboxOwner = loggedInUser;
     }
-}
 }
