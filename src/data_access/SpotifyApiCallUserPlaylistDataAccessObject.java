@@ -1,5 +1,6 @@
 package data_access;
 
+import org.json.JSONObject;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.Paging;
@@ -21,8 +22,7 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter access token: ");
-        String accessToken = scanner.nextLine();
+        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
 
         System.out.println("Enter user Id: ");
         String userId = scanner.nextLine();
@@ -37,18 +37,23 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
 
         // Get the user's playlists
         try {
-            Paging<PlaylistSimplified> playlists = getUserPlaylists(spotifyApi, userId);
-            for (PlaylistSimplified playlist : playlists.getItems()) {
-                System.out.println("Playlist Name: " + playlist.getName());
-                System.out.println("Playlist ID: " + playlist.getId());
-                // Add more details as needed
-            }
+//            Paging<PlaylistSimplified> playlists = getUserPlaylists(spotifyApi, userId);
+            String playlists = getUserPlaylists(spotifyApi, userId);
+//            for (PlaylistSimplified playlist : playlists.getItems()) {
+//                System.out.println("Playlist Name: " + playlist.getName());
+//                System.out.println("Playlist ID: " + playlist.getId());
+            System.out.println(playlists);
         } catch (IOException | SpotifyWebApiException | InterruptedException | ExecutionException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
 
-    private static Paging<PlaylistSimplified> getUserPlaylists(SpotifyApi spotifyApi, String userId)
+    // TODO: Add documentation here
+    /**
+     * Get the user's playlist information.
+     * More info is located here: https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists
+     * */
+    private static String getUserPlaylists(SpotifyApi spotifyApi, String userId)
             throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
         // Create a request to get a user's playlists
         GetListOfUsersPlaylistsRequest request = spotifyApi.getListOfUsersPlaylists(userId)
@@ -58,8 +63,10 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
 
         // Execute the request asynchronously
         Future<Paging<PlaylistSimplified>> pagingFuture = request.executeAsync();
-
         // Wait for the request to complete
-        return pagingFuture.get();
+        Paging<PlaylistSimplified> playlists = pagingFuture.get();
+
+        JSONObject jsonObject = new JSONObject(playlists);
+        return jsonObject.toString();
     }
 }

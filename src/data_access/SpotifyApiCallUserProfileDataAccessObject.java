@@ -4,25 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.Base64;
-
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.util.Scanner;
 
-// JSON Array
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-// Spotify API library
-import se.michaelthelin.spotify.SpotifyApi;
-import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import se.michaelthelin.spotify.model_objects.specification.User;
-import se.michaelthelin.spotify.requests.data.users_profile.GetUsersProfileRequest;
 
 public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCallInterface{
 
@@ -33,7 +20,7 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
 
 
     /**
-    * Get the user's profile. In other words, get detailed profile information about the current user.
+    * Get the user's profile. In other words, get detailed profile information about the user.
     * More info is located here: https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile
     * @param accessToken A string containing the temporary access token.
     * @param userId A string containing the Spotify user ID.
