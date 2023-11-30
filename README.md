@@ -23,8 +23,8 @@ Sam Wonjae
 
 Frank
 - [ ] Send invite
-- [ ] Database
-- [ ] Playlist
+- [X] Database
+- [X] Playlist
 
 Michael
 - [ ] Accept Invite
