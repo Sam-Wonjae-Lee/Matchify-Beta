@@ -1,13 +1,14 @@
 package data_access;
 
 import entity.CommonUser;
+import use_case.decline_invite.DeclineUserDataAccessInterface;
 
 import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.io.*;
 
-public class FileUserDataAccessObject {
+public class FileUserDataAccessObject implements DeclineUserDataAccessInterface {
 
     private File csvFile;
 
@@ -29,5 +30,18 @@ public class FileUserDataAccessObject {
         }
     }
 
+    @Override
+    public String delete(){
+        String s = String.join("\n", accounts.keySet());
+        accounts.clear();
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter(csvFile));
+            writer.close();
 
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return s;
+    }
 }
