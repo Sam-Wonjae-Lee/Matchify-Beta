@@ -3,6 +3,7 @@ package data_access;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -17,17 +18,34 @@ import java.util.Scanner;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+// Spotify API library
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.User;
+import se.michaelthelin.spotify.requests.data.users_profile.GetUsersProfileRequest;
 
 public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCallInterface{
 
+    // ClientId, ClientSecret, RedirectURI - necessary info for using API.
+    private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
+    private static final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
+    private static final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
+
+
     /**
-    * Get the current user's profile. In other words, get detailed profile information about the current user.
+    * Get the user's profile. In other words, get detailed profile information about the current user.
     * More info is located here: https://developer.spotify.com/documentation/web-api/reference/get-current-users-profile
+    * @param accessToken A string containing the temporary access token.
+    * @param userId A string containing the Spotify user ID.
     * @return A JSONArray containing the response data for the current Spotify user.
+    * Example Response: {"images":[{"width":64,"url":"https://i.scdn.co/image/ab67757000003b821e8b5038f93e5ec850728b8d","height":64},
+    * {"width":300,"url":"https://i.scdn.co/image/ab6775700000ee851e8b5038f93e5ec850728b8d","height":300}],"followers":{"total":1,"href":null},
+    * "href":"https://api.spotify.com/v1/users/o3bv345iz36uo33gj1ncpa8yo","id":"o3bv345iz36uo33gj1ncpa8yo","display_name":"David","type":"user",
+    * "external_urls":{"spotify":"https://open.spotify.com/user/o3bv345iz36uo33gj1ncpa8yo"},"uri":"spotify:user:o3bv345iz36uo33gj1ncpa8yo"}
     * */
-    private static JSONObject getUserProfile(String accessToken) throws IOException {
-        // Spotify API endpoint for user profile information
-        String apiUrl = "https://api.spotify.com/v1/me";
+    private static JSONObject getUserProfile(String accessToken, String userId) throws IOException {
+        // Spotify API endpoint URL for user profile information
+        String apiUrl = "https://api.spotify.com/v1/users/" + userId;
 
         // Create a URL object with the Spotify API endpoint
         URL url = new URL(apiUrl);
@@ -80,19 +98,18 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
     }
 
 
-
-
-
-    // Used for printing the access token
+    // Used for printing the user profile response
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter: ");
-
+        System.out.println("Enter access token: ");
         String accessToken = scanner.nextLine();
 
+        System.out.println("Enter user Id: ");
+        String userId = scanner.nextLine();
+
         try {
-            getUserProfile(accessToken);
+            getUserProfile(accessToken, userId);
         } catch (IOException e) {
             e.printStackTrace();
         }
