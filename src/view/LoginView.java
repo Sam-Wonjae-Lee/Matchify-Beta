@@ -66,6 +66,11 @@ public class LoginView extends JFrame{
 
         String authorizationCode = JOptionPane.showInputDialog("Enter the authorization code: ");
         try {
+             /*
+             * Retrieves the access token. The access token is a string which contains the credentials and permissions that can be used to access resources.
+             * The access token is valid for 1 hour. After that time, the token expires and you need to request a new one.
+             * More info is located here: https://developer.spotify.com/documentation/web-api/concepts/access-token
+             * */
             AuthorizationCodeCredentials authorizationCodeCredentials = spotifyApi.authorizationCode(authorizationCode).build().executeAsync().get();
             System.out.println("Access Token: " + authorizationCodeCredentials.getAccessToken());
             System.out.println("Refresh Token " + authorizationCodeCredentials.getRefreshToken());
@@ -75,6 +80,14 @@ public class LoginView extends JFrame{
 
     }
 
+    /**
+     * Retrieves the access token. The access token is a string which contains the credentials and permissions that can be used to access resources.
+     * The access token is valid for 1 hour. After that time, the token expires and you need to request a new one.
+     * More info is located here: https://developer.spotify.com/documentation/web-api/concepts/access-token
+     *
+     * @return A string containing the temporary access token.
+     * @throws Exception if access token cannot be retrieved.
+     */
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new LoginView().setVisible(true);

@@ -13,7 +13,7 @@ public class DeclinePresenter implements DeclineOutputBoundary {
     public void prepareView(String lst) {
         InboxState inboxState = inboxViewModel.getState();
         inboxState.setDel(lst);
-        inboxViewModel.firePropertChanged();
+        inboxViewModel.firePropertyChanged();
     }
 
 }
