@@ -14,9 +14,9 @@ import java.util.concurrent.Future;
 
 public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCallInterface{
 
-    private static final String CLIENT_ID = "9ed5f6af048844e4851425fbc416ae10";
-    private static final String CLIENT_SECRET = "df75314d40634c9db0d1da481a2302e8";
-    private static final String REDIRECT_URI = "http://localhost:8888/callback";
+    private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
+    private static final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
+    private static final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -52,7 +52,7 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
             throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
         // Create a request to get a user's playlists
         GetListOfUsersPlaylistsRequest request = spotifyApi.getListOfUsersPlaylists(userId)
-                .limit(50) // You can adjust the limit as needed (50 is the limit)
+                .limit(50) // You can adjust the limit as needed (50 is the max limit)
                 .offset(0)  // You can adjust the offset as needed (offset should be 0)
                 .build();
 

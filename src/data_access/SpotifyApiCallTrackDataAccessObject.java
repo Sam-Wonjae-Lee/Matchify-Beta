@@ -6,6 +6,8 @@ import se.michaelthelin.spotify.requests.data.tracks.GetTrackRequest;
 
 import java.util.Scanner;
 
+// This is just test code for getting information about a Spotify track from the track ID.
+
 public class SpotifyApiCallTrackDataAccessObject implements SpotifyApiCallInterface{
     static String clientId = SpotifyApiCallInterface.CLIENT_ID;
     static String clientSecret = SpotifyApiCallInterface.CLIENT_SECRET;
@@ -20,8 +22,7 @@ public class SpotifyApiCallTrackDataAccessObject implements SpotifyApiCallInterf
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter access token: ");
-        String accessToken = scanner.nextLine();
+        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
 
         System.out.println("Enter track Id: ");
         String trackId = scanner.nextLine();

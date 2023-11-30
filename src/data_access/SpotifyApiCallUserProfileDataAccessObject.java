@@ -81,19 +81,24 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
 
             connection.disconnect();
 
+            // Define response
             responseData = new JSONObject(response.toString());
 
         } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
             connection.disconnect();
 
+            // Print error if response code not found
             System.out.println("Error 404");
         } else {
             connection.disconnect();
 
+            // Throws exception
             throw new IOException("Response Code: " + responseCode);
         }
 
+        // Prints response
         System.out.println(responseData);
+        // Returns response
         return responseData;
     }
 
@@ -102,8 +107,7 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter access token: ");
-        String accessToken = scanner.nextLine();
+        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
 
         System.out.println("Enter user Id: ");
         String userId = scanner.nextLine();
