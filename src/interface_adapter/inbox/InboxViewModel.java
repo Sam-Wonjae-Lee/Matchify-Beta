@@ -39,7 +39,7 @@ public class InboxViewModel extends ViewModel {
         return inboxOwner;
     }
 
-    public void setLoggedInUser(String loggedInUser) {
-        this.inboxOwner = loggedInUser;
+    public void setInboxOwner(String inboxOwner) {
+        this.inboxOwner = inboxOwner;
     }
 }
