@@ -9,10 +9,15 @@ import java.io.*;
 
 public class FileUserDataAccessObject {
 
-    private File csvFile;
+    private final String csvFile_path = "src/csv_files/user_data.csv";
 
-    private Map<String, Integer> headers = new LinkedHashMap<>();
+    private HashMap<Integer, ArrayList<String>> data_saved = new HashMap<>();
 
+    private final String sample = ",";
+
+    public FileUserDataAccessObject() throws IOException {
+        this.data_saved = this.read();
+    }
 
     // read method is used for initializing the database
     private HashMap<Integer, ArrayList<String>> read(){
