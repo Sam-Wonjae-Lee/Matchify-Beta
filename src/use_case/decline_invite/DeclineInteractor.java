@@ -11,5 +11,5 @@ public class DeclineInteractor {
         this.declinePresenter = declinePresenter;
     }
 
-    public void execute() { declinePresenter.prepareView(userDataAccessObject.del()); }
+    public void execute() { declinePresenter.prepareView(userDataAccessObject.delete()); }
 }
