@@ -2,10 +2,11 @@ package data_access;
 
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.io.*;
+
+// all data is stored to in the following format within the csv file
+// user_id, user_name, photo, age, bio
 
 public class FileUserDataAccessObject {
 
@@ -21,7 +22,7 @@ public class FileUserDataAccessObject {
 
     // read method is used for initializing the database
     private HashMap<Integer, ArrayList<String>> read(){
-        // [user_id, user_name, photo, age, bio]
+
         String mystring;
         HashMap<Integer, ArrayList<String>> ans = new HashMap<>();
         try
@@ -40,7 +41,7 @@ public class FileUserDataAccessObject {
         }
         catch (IOException e)//catches exception in the try block
         {
-            e.printStackTrace();//Prints this throwable and its backtrace
+            e.printStackTrace(); //Prints this throwable and its backtrace
         }
         return ans;
     }
