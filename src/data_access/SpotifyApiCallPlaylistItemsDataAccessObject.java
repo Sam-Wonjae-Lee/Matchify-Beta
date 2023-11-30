@@ -39,9 +39,14 @@ public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCa
     /**
      * Get playlist items (tracks) for a given playlist ID.
      * More info is located here: https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/
+     *
+     * @param accessToken A string containing the temporary access token.
+     * @param playlistId A string containing the Spotify user ID.
+     * @return A JSONObject containing the response data for the items of the playlist.
      */
     private static JSONObject getPlaylistItems(String accessToken, String playlistId)
             throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
+
         // Initialize the Spotify API object
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setClientId(CLIENT_ID)
