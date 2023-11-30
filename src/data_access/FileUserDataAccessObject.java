@@ -98,11 +98,6 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
         }
 
     @Override
-    public boolean existsByName(String identifier) {
-        return false;
-    }
-
-    @Override
     public User get(String username) {
         return null;
     }
