@@ -2,6 +2,7 @@ package data_access;
 
 import data_access.SpotifyApiCallUserProfileDataAccessObject;
 import data_access.SpotifyApiCallUserPlaylistDataAccessObject;
+import data_access.SpotifyApiCallPlaylistItemsDataAccessObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,6 +58,32 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     }
 
 
+    // ========== Playlist Items ==========
+
+    public static List<String> getArtistsIds(String userId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
+        List<String> artistIds = new ArrayList<>();
+
+        JSONObject response = SpotifyApiCallPlaylistItemsDataAccessObject.getPlaylistItems(accessToken, userId);
+        JSONArray itemsArray = response.getJSONArray("items");
+
+        for (int i = 0; i< itemsArray.length(); i++) {
+            JSONObject trackObject = itemsArray.getJSONObject(i);
+            JSONObject track = trackObject.getJSONObject("track");
+
+            JSONArray artistsArray = track.getJSONArray("artists");
+
+            for (int j = 0; j < artistsArray.length(); j++) {
+                JSONObject artist = artistsArray.getJSONObject(j);
+                String artistId = artist.getString("id");
+                artistIds.add(artistId);
+            }
+
+        }
+        return artistIds;
+    }
+
+
 
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
 //        String username = getUsername("31x4bcq6wdza6wx7sh6pqks7u2em");
@@ -65,8 +92,12 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
 //        String profileImage = getUserProfilePicture("31x4bcq6wdza6wx7sh6pqks7u2em");
 //        System.out.println(profileImage);
 
-        List playlistIds = getPlaylistIds("ayimkorean");
-        System.out.println(playlistIds);
+//        List playlistIds = getPlaylistIds("ayimkorean");
+//        System.out.println(playlistIds);
+
+        List artistIds = getArtistsIds("3NQSAczjoIq6UXBps2pjW8");
+        System.out.println(artistIds);
+
     }
 
 }
