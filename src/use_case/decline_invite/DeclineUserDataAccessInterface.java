@@ -1,5 +1,6 @@
 package use_case.decline_invite;
 
+import entity.User;
 public interface DeclineUserDataAccessInterface {
-    String delete();
+    void delete(String username);
 }

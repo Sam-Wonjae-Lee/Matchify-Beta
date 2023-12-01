@@ -1,15 +1,20 @@
 package use_case.decline_invite;
 
-public class DeclineInteractor {
+public class DeclineInteractor implements DeclineInputBoundary{
 
-    final DeclineUserDataAccessInterface userDataAccessObject;
-
-    final DeclineOutputBoundary declinePresenter;
+    private final DeclineUserDataAccessInterface userDataAccessObject;
+    private final DeclineOutputBoundary declinePresenter;
 
     public DeclineInteractor(DeclineUserDataAccessInterface userDataAccessObject, DeclineOutputBoundary declinePresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.declinePresenter = declinePresenter;
     }
 
-    public void execute() { declinePresenter.prepareView(userDataAccessObject.delete()); }
+    public void execute(DeclineInputData inputData) {
+        String username = inputData.getUsername();
+        userDataAccessObject.delete(username);
+
+        DeclineOutputData declineOutputData = new DeclineOutputData();
+        declinePresenter.prepareView(declineOutputData);
+    }
 }
