@@ -1,7 +1,5 @@
 package data_access;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.Paging;
@@ -13,6 +11,8 @@ import java.net.URI;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+
+import org.json.JSONObject;
 
 public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCallInterface {
 
@@ -39,9 +39,14 @@ public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCa
     /**
      * Get playlist items (tracks) for a given playlist ID.
      * More info is located here: https://developer.spotify.com/documentation/web-api/reference/playlists/get-playlists-tracks/
+     *
+     * @param accessToken A string containing the temporary access token.
+     * @param playlistId A string containing the Spotify user ID.
+     * @return A JSONObject containing the response data for the items of the playlist.
      */
     private static JSONObject getPlaylistItems(String accessToken, String playlistId)
             throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
+
         // Initialize the Spotify API object
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
                 .setClientId(CLIENT_ID)
