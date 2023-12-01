@@ -1,15 +1,14 @@
-package interface_adapter.logged_in;
+package interface_adapter.homePage;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.ViewModelManager;
-import use_case.HomePage.HomePageOutPutBoundary;
+import use_case.homePage.HomePageOutPutBoundary;
 
-public class LoggedInPresenter implements HomePageOutPutBoundary{
+public class HomePagePresenter implements HomePageOutPutBoundary{
 
-    private final LoggedInViewModel loggedInViewModel;
+    private final HomePageViewModel loggedInViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public LoggedInPresenter(LoggedInViewModel loggedInViewModel, ViewManagerModel viewManagerModel) {
+    public HomePagePresenter(HomePageViewModel loggedInViewModel, ViewManagerModel viewManagerModel) {
         this.loggedInViewModel = loggedInViewModel;
         this.viewManagerModel = viewManagerModel;
     }

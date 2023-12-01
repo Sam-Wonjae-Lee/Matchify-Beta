@@ -1,16 +1,18 @@
-package interface_adapter.logged_in;
+package interface_adapter.homePage;
 
 import interface_adapter.ViewModel;
 
 import java.beans.PropertyChangeListener;
 
-public class LoggedInViewModel extends ViewModel {
+public class HomePageViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Main";
     public static String Find_Matches_Label = "Find Matches";
-    private LoggedInState State = new LoggedInState();
+    private HomePageState State = new HomePageState();
 
 
-    public LoggedInViewModel(String viewName) {
+
+
+    public HomePageViewModel(String viewName) {
         super(viewName);
     }
 
@@ -24,7 +26,7 @@ public class LoggedInViewModel extends ViewModel {
 
     }
 
-    public LoggedInState getState() {
+    public HomePageState getState() {
         return State;
     }
 }

@@ -1,4 +1,4 @@
-package use_case.HomePage;
+package use_case.homePage;
 
 public class HomePageInteracter implements HomePageInputBoundary{
 
