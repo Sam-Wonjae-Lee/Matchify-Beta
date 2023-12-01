@@ -3,6 +3,7 @@ package data_access;
 import entity.CommonUser;
 import entity.User;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
+import use_case.match.MatchDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.io.*;
 
 
-public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface {
+public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, MatchDataAccessInterface {
 
     private final String csvFile_path = "src/csv_files/user_data.csv";
 
@@ -102,5 +103,9 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
         return null;
     }
 
+    @Override
+    public int getUserPlaylistID(CommonUser user) {
+        return 0;
+    }
 }
 
