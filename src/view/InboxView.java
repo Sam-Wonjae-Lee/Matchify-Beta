@@ -14,7 +14,7 @@ import java.beans.PropertyChangeListener;
 public class InboxView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "inbox";
 
-    JLabel username;
+    private JLabel username;
     private final InboxViewModel inboxViewModel;
     private final DeclineController declineController;
     private final AcceptController acceptController;
