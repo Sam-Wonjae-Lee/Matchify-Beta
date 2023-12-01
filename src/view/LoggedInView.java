@@ -27,9 +27,11 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 //      Profile pic replace url later with API
         ProfilePic.displayImageFrame("https://example.com/image.jpg");
+
+
         this.add(username);
         this.add(title);
-        title.add(buttons);
+        this.add(buttons);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -40,4 +42,4 @@ public class LoggedInView extends JPanel implements ActionListener, PropertyChan
     public void propertyChange(PropertyChangeEvent evt) {
 
     }
-    }
+}
