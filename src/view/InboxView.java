@@ -1,6 +1,7 @@
 package view;
 
 import interface_adapter.decline_invite.DeclineController;
+import interface_adapter.accept_invite.AcceptController;
 import interface_adapter.inbox.InboxController;
 import interface_adapter.inbox.InboxState;
 import interface_adapter.inbox.InboxViewModel;
@@ -15,34 +16,54 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
     public final String viewName = "inbox";
 
     JLabel username;
-
     private final InboxViewModel inboxViewModel;
-
     private final DeclineController declineController;
-
+    private final AcceptController acceptController;
     private final JButton decline;
+    private final JButton accept;
 
-    public InboxView(DeclineController declineController, InboxViewModel inboxViewModel) {
+    public InboxView(InboxController controller, InboxViewModel inboxViewModel, DeclineController declineController, AcceptController acceptController) {
 
-        this.declineController = declineController;
+        this.inboxController = controller;
         this.inboxViewModel = inboxViewModel;
-        this.inboxViewModel.addPropertyChangeListener(this);
+        this. declineController = declineController;
+        this.acceptController = acceptController;
+        inboxViewModel.addPropertyChangeListener(this);
+
+        JLabel username = new JLabel(inboxViewModel.USERNAME_LABEL);
 
         JPanel buttons = new JPanel();
         decline = new JButton(InboxViewModel.DECLINE_BUTTON_LABEL);
         buttons.add(decline);
+        accept = new JButton(InboxViewModel.ACCEPT_BUTTON_LABEL);
+        buttons.add(accept);
 
         decline.addActionListener(
                 new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        if (e.getSource().equals(decline)) {
-                            declineController.execute();
+                    public void actionPerformed(ActionEvent evt) {
+                        if (evt.getSource().equals(decline)) {
+                            InboxState currentState = inboxViewModel.getState();
                         }
                     }
                 }
         );
 
+        accept.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(accept)) {
+                            InboxState currentState = inboxViewModel.getState();
+
+                            acceptController.execute(
+                                    currentState.getUsername()
+                            );
+                        }
+                    }
+                }
+        );
+
+        this.add(username);
         this.add(buttons);
     }
 
