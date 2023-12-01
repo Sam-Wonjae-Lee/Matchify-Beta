@@ -1,32 +1,32 @@
 package interface_adapter.match;
 
+import interface_adapter.ViewManagerModel;
+import interface_adapter.ViewModel;
 import use_case.match.MatchOutPutData;
 import use_case.match.MatchOutputBoundary;
 
 public class MatchPresenter implements MatchOutputBoundary {
-    public MatchOutPutData outPutData;
-    public MatchViewModel matchViewModel;
-    public MatchPresenter(MatchOutPutData outPutData, MatchViewModel matchViewModel) {
-        this.outPutData = outPutData;
+    private final MatchViewModel matchViewModel;
+    private ViewManagerModel viewManagerModel;
+    public MatchPresenter(MatchViewModel matchViewModel, ViewManagerModel viewManagerModel) {
         this.matchViewModel = matchViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
-//LocalDateTime responseTime = LocalDateTime.parse(response.getCreationTime());
-//        response.setCreationTime(responseTime.format(DateTimeFormatter.ofPattern("hh:mm:ss")));
-//
-//        LoginState loginState = loginViewModel.getState();
-//        loginState.setUsername(response.getUsername());
-//        this.loginViewModel.setState(loginState);
-//        loginViewModel.firePropertyChanged();
-//
-//        viewManagerModel.setActiveView(loginViewModel.getViewName());
-//        viewManagerModel.firePropertyChanged();
+
     @Override
     public void prepareSuccessView(MatchOutPutData userList) {
-
+        MatchState matchState = matchViewModel.getState();
+        matchState.setMATCHED_USERS(userList.getuserArrayList());
+        this.matchViewModel.setState(matchState);
+        matchViewModel.firePropertyChanged();
+        this.viewManagerModel.setActiveView(matchViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override
     public void prepareFailView(String error) {
-
+        MatchState matchState = matchViewModel.getState();
+        matchState.setMATCHED_USERS_ERROR(error);
+        matchViewModel.firePropertyChanged();
     }
 }

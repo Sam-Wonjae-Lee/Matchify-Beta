@@ -4,6 +4,7 @@ import entity.CommonUser;
 import entity.User;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
+import use_case.match.MatchDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
 import java.util.ArrayList;
@@ -13,7 +14,8 @@ import java.util.LinkedHashMap;
 import java.io.*;
 
 
-public class FileUserDataAccessObject implements AcceptUserDataAccessInterface, DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface {
+public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, MatchDataAccessInterface {
+
 
     private final String csvFile_path = "src/csv_files/user_data.csv";
 
@@ -98,6 +100,10 @@ public class FileUserDataAccessObject implements AcceptUserDataAccessInterface, 
     public User get(String username) {
         return null;
     }
-
+//  TODO: implement to return userID
+    @Override
+    public int getUserPlaylistID(CommonUser user) {
+        return 0;
+    }
 }
 

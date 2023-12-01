@@ -3,9 +3,13 @@ package use_case.match;
 import entity.CommonUser;
 
 public class MatchInputData {
-    private final String userName;
+    private final CommonUser user;
 
     public MatchInputData(CommonUser user) {
-        this.userName = user.getName();
+        this.user = user;
+    }
+
+    public CommonUser getUser() {
+        return user;
     }
 }
