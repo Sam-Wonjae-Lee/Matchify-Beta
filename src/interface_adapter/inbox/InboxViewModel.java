@@ -8,6 +8,8 @@ import java.beans.PropertyChangeSupport;
 public class InboxViewModel extends ViewModel {
     public final String TITLE_LABEL = "Inbox View";
 
+    public static final String DECLINE_BUTTON_LABEL = "D";
+
     private InboxState state = new InboxState();
 
     public static final String BACK_BUTTON_LABEL = "Back";

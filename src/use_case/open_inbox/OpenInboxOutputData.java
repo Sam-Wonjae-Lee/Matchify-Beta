@@ -1,14 +1,14 @@
 package use_case.open_inbox;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class OpenInboxOutputData {
 
     private final String username;
 
-    private final ArrayList<String> inbox;
+    private final List<String> inbox;
 
-    public OpenInboxOutputData(String username, ArrayList<String> inbox) {
+    public OpenInboxOutputData(String username, List<String> inbox) {
         this.username = username;
         this.inbox = inbox;
     }
@@ -17,7 +17,7 @@ public class OpenInboxOutputData {
         return username;
     }
 
-    public ArrayList<String> getInbox(){
+    public List<String> getInbox(){
         return inbox;
     }
 
