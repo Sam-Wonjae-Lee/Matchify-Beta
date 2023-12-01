@@ -6,6 +6,10 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Base64;
 
+/*
+* SpotifyApiCallAccessTokenDataAccessObject contains the function to retrieve the temporary access token.
+* */
+
 public class SpotifyApiCallAccessTokenDataAccessObject implements SpotifyApiCallInterface {
 
     // ClientId, ClientSecret, RedirectURI - necessary info for using API.

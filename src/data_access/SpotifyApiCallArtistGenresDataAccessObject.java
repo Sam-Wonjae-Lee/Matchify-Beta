@@ -12,6 +12,10 @@ import java.net.URI;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 
+/*
+ * SpotifyApiCallArtistGenresDataAccessObject contains the function to retrieve the "get artist" response.
+ * */
+
 public class SpotifyApiCallArtistGenresDataAccessObject implements SpotifyApiCallInterface{
 
     private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
@@ -26,6 +30,11 @@ public class SpotifyApiCallArtistGenresDataAccessObject implements SpotifyApiCal
      * @param accessToken A string containing the temporary access token.
      * @param artistId A string containing the Spotify artist ID.
      * @return A JSONObject containing the response for the artist.
+     * Example Response:
+     * {"images":[{"width":640,"url":"https://i.scdn.co/image/ab6761610000e5ebadd503b411a712e277895c8a","height":640},{"width":320,"url":"https://i.scdn.co/image/ab67616100005174add503b411a712e277895c8a","height":320},
+     * {"width":160,"url":"https://i.scdn.co/image/ab6761610000f178add503b411a712e277895c8a","height":160}],"followers":{"total":22057537},"genres":["conscious hip hop","hip hop","north carolina hip hop","rap"],
+     * "popularity":84,"name":"J. Cole","id":"6l3HvQ5sa6mXTsMTB19rO5","externalUrls":{"externalUrls":{"spotify":"https://open.spotify.com/artist/6l3HvQ5sa6mXTsMTB19rO5"}},
+     * "href":"https://api.spotify.com/v1/artists/6l3HvQ5sa6mXTsMTB19rO5","type":"ARTIST","uri":"spotify:artist:6l3HvQ5sa6mXTsMTB19rO5"}
      * */
     private static JSONObject getArtistGenres(String accessToken, String artistId)
             throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException, ParseException {
