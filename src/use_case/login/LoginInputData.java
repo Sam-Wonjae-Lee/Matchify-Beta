@@ -8,7 +8,7 @@ public class LoginInputData {
         this.userId = userId;
     }
 
-    String getUsername() {
+    String getUserId() {
         return userId;
     }
 
