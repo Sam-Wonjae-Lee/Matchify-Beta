@@ -1,14 +1,16 @@
 package use_case.match;
+import entity.CommonUserFactory;
 import entity.Playlist;
 import entity.CommonUser;
+import entity.UserFactory;
 
 import java.util.ArrayList;
 
 public class MatchInteractor implements MatchInputobundary{
 //    private Playlist playlist;
-    public MatchOutputBoundary matchPresenter;
-    public MatchDataAccessInterface matchDataAccessInterface;
-    public MatchInteractor( MatchOutputBoundary matchOutputBoundary, MatchDataAccessInterface matchDataAccessInterface) {
+    MatchOutputBoundary matchPresenter;
+    MatchDataAccessInterface matchDataAccessInterface;
+    public MatchInteractor(MatchOutputBoundary matchOutputBoundary, MatchDataAccessInterface matchDataAccessInterface) {
         this.matchPresenter = matchOutputBoundary;
         this.matchDataAccessInterface = matchDataAccessInterface;
     }

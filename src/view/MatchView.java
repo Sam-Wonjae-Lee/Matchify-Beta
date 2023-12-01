@@ -1,6 +1,6 @@
 package view;
 
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchState;
 import interface_adapter.match.MatchViewModel;
@@ -17,17 +17,17 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 
     private final MatchViewModel matchViewModel;
     private final MatchController matchController;
-    private final LoggedInViewModel loggedInViewModel;
+    private final HomePageViewModel homePageViewModel;
 
 //  Buttons
     private final JButton cancel;
     private final JButton Follow;
 
 
-    public MatchView(MatchViewModel matchViewModel, MatchController matchController, LoggedInViewModel loggedInViewModel) {
+    public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel) {
         this.matchViewModel = matchViewModel;
         this.matchController = matchController;
-        this.loggedInViewModel = loggedInViewModel;
+        this.homePageViewModel = homePageViewModel;
 //      Makes matchViewModel a listener
         matchViewModel.addPropertyChangeListener(this);
 

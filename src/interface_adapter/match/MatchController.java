@@ -8,7 +8,7 @@ public class MatchController {
 
     MatchInputobundary matchUseCaseInteractor;
 
-    MatchController(MatchInputobundary matchUseCaseInteractor) {
+    public MatchController(MatchInputobundary matchUseCaseInteractor) {
         this.matchUseCaseInteractor = matchUseCaseInteractor;
     }
 
