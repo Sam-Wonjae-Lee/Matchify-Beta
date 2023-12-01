@@ -1,4 +1,4 @@
-package interface_adapter.homePage;
+package interface_adapter.home_page;
 
 import use_case.home_page.HomePageInputBoundary;
 

@@ -1,4 +1,4 @@
-package interface_adapter.homePage;
+package interface_adapter.home_page;
 
 import interface_adapter.ViewModel;
 

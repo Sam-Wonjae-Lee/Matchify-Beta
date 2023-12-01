@@ -1,6 +1,6 @@
 package view;
 
-import interface_adapter.homePage.HomePageViewModel;
+import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.match.MatchController;
 
 import javax.swing.*;
