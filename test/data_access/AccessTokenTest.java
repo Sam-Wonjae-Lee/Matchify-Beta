@@ -3,7 +3,7 @@ package data_access;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class SpotifyApiCallAccessTokenDataAccessObjectTest{
+public class AccessTokenTest{
 
     // This test checks if the retrieved temporary access token is empty
     @Test
