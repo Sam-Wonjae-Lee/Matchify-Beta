@@ -1,7 +1,5 @@
 package data_access;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import se.michaelthelin.spotify.model_objects.specification.Paging;
@@ -13,6 +11,8 @@ import java.net.URI;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+
+import org.json.JSONObject;
 
 public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCallInterface {
 
