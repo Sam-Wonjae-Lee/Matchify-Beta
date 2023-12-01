@@ -1,5 +1,7 @@
 package view;
 
+import interface_adapter.decline_invite.DeclineController;
+import interface_adapter.inbox.InboxController;
 import interface_adapter.inbox.InboxState;
 import interface_adapter.inbox.InboxViewModel;
 
@@ -16,10 +18,32 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
 
     private final InboxViewModel inboxViewModel;
 
-    public InboxView(InboxViewModel inboxViewModel) {
+    private final DeclineController declineController;
+
+    private final JButton decline;
+
+    public InboxView(DeclineController declineController, InboxViewModel inboxViewModel) {
+
+        this.declineController = declineController;
         this.inboxViewModel = inboxViewModel;
         this.inboxViewModel.addPropertyChangeListener(this);
 
+        JPanel buttons = new JPanel();
+        decline = new JButton(InboxViewModel.DECLINE_BUTTON_LABEL);
+        buttons.add(decline);
+
+        decline.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (e.getSource().equals(decline)) {
+                            declineController.execute();
+                        }
+                    }
+                }
+        );
+
+        this.add(buttons);
     }
 
     @Override
