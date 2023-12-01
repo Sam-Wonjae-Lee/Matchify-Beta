@@ -8,6 +8,8 @@ import static org.junit.Assert.*;
 
 public class OpenInboxTest {
 
+
+    //tests the correctness of output data for openInbox use case.
     @org.junit.Test
     public void testSuccess(){
         String username = "testUser";
