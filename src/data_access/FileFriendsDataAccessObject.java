@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 // TODO: add the proper implements
 public class FileFriendsDataAccessObject implements {
@@ -78,9 +77,5 @@ public class FileFriendsDataAccessObject implements {
     public HashSet<String> get_user_friends(String user_id){
         // returns a HashSet<String> of all the friends that user has.
         return this.data_saved.get(user_id);
-    }
-
-    public Set<String> get_all_users(){
-        return this.data_saved.keySet();
     }
 }
