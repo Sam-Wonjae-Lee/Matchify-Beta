@@ -1,5 +1,7 @@
 package data_access;
 
+import data_access.SpotifyApiCallUserProfileDataAccessObject;
+
 import static org.junit.Assert.*;
 
 public class SpotifyApiCallUserProfileTest {

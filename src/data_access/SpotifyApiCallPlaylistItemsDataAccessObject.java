@@ -14,6 +14,10 @@ import java.util.concurrent.Future;
 
 import org.json.JSONObject;
 
+/*
+ * SpotifyApiCallPlaylistItemsDataAccessObject contains the function to retrieve the "get playlist items" response.
+ * */
+
 public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCallInterface {
 
     private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;

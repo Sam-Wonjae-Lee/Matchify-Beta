@@ -10,6 +10,9 @@ import java.util.Scanner;
 
 import org.json.JSONObject;
 
+/*
+ * SpotifyApiCallArtistGenresDataAccessObject contains the function to retrieve the "get user's profile" response.
+ * */
 
 public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCallInterface{
 

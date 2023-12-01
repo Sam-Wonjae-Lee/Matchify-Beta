@@ -13,6 +13,10 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
+/*
+ * SpotifyApiCallArtistGenresDataAccessObject contains the function to retrieve the "get user's playlist" response.
+ * */
+
 public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCallInterface{
 
     private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
