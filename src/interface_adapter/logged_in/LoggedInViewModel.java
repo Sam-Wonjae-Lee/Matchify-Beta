@@ -5,8 +5,10 @@ import interface_adapter.ViewModel;
 import java.beans.PropertyChangeListener;
 
 public class LoggedInViewModel extends ViewModel {
-    public static final String TITLE_LABEL = "Matches";
+    public static final String TITLE_LABEL = "Main";
     public static String Find_Matches_Label = "Find Matches";
+    private LoggedInState State = new LoggedInState();
+
 
     public LoggedInViewModel(String viewName) {
         super(viewName);
@@ -20,5 +22,9 @@ public class LoggedInViewModel extends ViewModel {
     @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
 
+    }
+
+    public LoggedInState getState() {
+        return State;
     }
 }
