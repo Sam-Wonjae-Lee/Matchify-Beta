@@ -1,5 +1,7 @@
 package use_case.accept_invite;
 
+import entity.User;
+
 public interface AcceptUserDataAccessInterface {
-    String add();
+    void accept(String username);
 }
