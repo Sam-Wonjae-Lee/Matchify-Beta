@@ -1,10 +1,11 @@
 package interface_adapter.inbox;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InboxState {
 
-    public ArrayList<String> inbox = new ArrayList<>();
+    public List<String> inbox = new ArrayList<>();
     private String username = "";
 
     public InboxState(InboxState copy) {
@@ -22,11 +23,11 @@ public class InboxState {
         this.username = username;
     }
 
-    public ArrayList<String> getInbox(){
+    public List<String> getInbox(){
         return inbox;
     }
 
-    public void setInbox(ArrayList<String> lst){
+    public void setInbox(List<String> lst){
         this.inbox = lst;
     }
 }

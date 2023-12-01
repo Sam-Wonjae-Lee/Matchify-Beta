@@ -16,7 +16,7 @@ public class OpenInboxInteractor implements OpenInboxInputBoundary{
     public void execute(OpenInboxInputData openInboxInputData) {
         User user = userDataAccessObject.get(openInboxInputData.getUsername());
 
-        OpenInboxOutputData openInboxOutputData = new OpenInboxOutputData(user.getName(), user.getInbox());
+        OpenInboxOutputData openInboxOutputData = new OpenInboxOutputData(user.getUserID(), user.getInbox());
         openInboxPresenter.prepareSuccessView(openInboxOutputData);
     }
 }
