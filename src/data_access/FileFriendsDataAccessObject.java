@@ -1,13 +1,14 @@
 import java.io.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 
-// do I need to implement the SignUpUserDataAccessInterface or LoginUserDataAccessInterface?
-public class FileFriendsDataAccessObject {
+// TODO: add the proper implements
+public class FileFriendsDataAccessObject implements {
 
     private final String csvFile_path = "src/csv_files/user_friends.csv";
 
-    private HashMap<Integer, ArrayList<Integer>> data_saved = new HashMap<>();
+    private HashMap<String, HashSet<String>> data_saved = new HashMap<>();
 
     private final String sample = ",";
 
@@ -17,21 +18,18 @@ public class FileFriendsDataAccessObject {
     }
 
     // read method is used for initializing the database
-    private HashMap<Integer, ArrayList<Integer>> read(){
-        // [user_id, user_name, photo, age, bio]
+    private HashMap<String, HashSet<String>> read(){
+        // reads from the csv file, and returns it
         String mystring;
-        HashMap<Integer, ArrayList<Integer>> ans = new HashMap<>();
+        HashMap<String, HashSet<String>> ans = new HashMap<>();
         try
         {
             BufferedReader brdrd = new BufferedReader(new FileReader(this.csvFile_path));
             while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
             {
                 String[] users = mystring.split(sample);
-                ArrayList<Integer> new_arr = new ArrayList<>();
-                for(int a = 0; a < users.length; a++){
-                    new_arr.add(Integer.parseInt(users[a]));
-                }
-                ans.put(Integer.parseInt(users[0]), new_arr);
+                HashSet<String> new_arr = new HashSet<>(Arrays.asList(users));
+                ans.put(users[0], new_arr);
             }
         }
         catch (IOException e)//catches exception in the try block
@@ -42,13 +40,13 @@ public class FileFriendsDataAccessObject {
     }
 
     private void write(){
+        // writes the data_saved back into the csv file.
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile_path))) {
-            for (Integer key : this.data_saved.keySet()) {
+            for (String key : this.data_saved.keySet()) {
                 String new_str = String.valueOf(key);
                 System.out.println(this.data_saved);
-                ArrayList<Integer> val = this.data_saved.get(key);
-                for(int i = 0; i < val.size(); i++){
-                    new_str = new_str.concat(","+String.valueOf(val.get(i)));
+                for(String val : this.data_saved.get(key)){
+                    new_str = new_str.concat(","+val);
                 }
                 writer.write(new_str);
                 writer.newLine();
@@ -58,10 +56,10 @@ public class FileFriendsDataAccessObject {
         }
     }
 
-    public void add_friend(Integer user_id, Integer friend_id){
-        // adds the user into the database, if user_id already exists in the database, update it's values instead
+    public void add_friend(String user_id, String friend_id){
+        // adds the friend into user_id's friend within the database.
         if(this.data_saved.containsKey(user_id)){
-            ArrayList<Integer> new_arr = this.data_saved.get(user_id);
+            HashSet<String> new_arr = this.data_saved.get(user_id);
             if(!new_arr.contains(friend_id)){
                 // it does not contain duplicate
                 new_arr.add(friend_id);
@@ -69,15 +67,15 @@ public class FileFriendsDataAccessObject {
             }
         }
         else {
-            ArrayList<Integer> new_arr = new ArrayList<>();
+            HashSet<String> new_arr = new HashSet<>();
             new_arr.add(friend_id);
             this.data_saved.put(user_id,new_arr);
         }
         this.write();
     }
 
-    public ArrayList<Integer> get_user(Integer user_id){
-        // returns the values of the user_id, if user_id doesn't exist, return null instead.
+    public HashSet<String> get_user_friends(String user_id){
+        // returns a HashSet<String> of all the friends that user has.
         return this.data_saved.get(user_id);
     }
 }
