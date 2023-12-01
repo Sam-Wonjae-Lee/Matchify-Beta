@@ -17,6 +17,13 @@ import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface{
 
     // ========== User Profile DAO ==========
+
+    /**
+     * Returns the Spotify username from Spotify user ID.
+     * @param userId A String containing the Spotify user ID.
+     * @return A String containing the Spotify username.
+     * @throws IOException
+     * */
     public static String getUsername(String userId) throws IOException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         JSONObject userProfileResponse = SpotifyApiCallUserProfileDataAccessObject.getUserProfile(accessToken, userId);
@@ -24,6 +31,12 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
         return username;
     }
 
+    /**
+     * Returns the URL to Spotify profile picture from Spotify user ID.
+     * @param userId A String containing the Spotify user ID.
+     * @return A URL containing the Spotify profile picture.
+     * @throws IOException
+     * */
     public static String getUserProfilePicture(String userId) throws IOException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         JSONObject userProfileResponse = SpotifyApiCallUserProfileDataAccessObject.getUserProfile(accessToken, userId);
@@ -43,6 +56,12 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
 
     // ========== User Playlist DAO ==========
 
+    /**
+     * Returns list of playlist IDs from Spotify user ID.
+     * @param userId A String containing the Spotify user ID.
+     * @return A list containing the ID of each playlist that belongs to the Spotify user.
+     * @throws IOException
+     * */
     public static List<String> getPlaylistIds(String userId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         List<String> playlistIds = new ArrayList<>();
@@ -61,6 +80,12 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
 
     // ========== Playlist Items ==========
 
+    /**
+     * Returns list of artist IDs from Spotify playlist ID.
+     * @param playlistId A String containing the Spotify playlist ID.
+     * @return A list containing the ID of each artist that features in the Spotify playlist.
+     * @throws IOException
+     * */
     public static List<String> getArtistsIds(String playlistId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         List<String> artistIds = new ArrayList<>();
@@ -87,6 +112,12 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
 
     // ========== Artist Genres ==========
 
+    /**
+     * Returns list of artist IDs from Spotify playlist ID.
+     * @param artistId A String containing the Spotify artist ID.
+     * @return A list containing all the genres from the Spotify artist.
+     * @throws IOException
+     * */
     public static List<String> getGenres(String artistId) throws IOException, ParseException, ExecutionException, InterruptedException, SpotifyWebApiException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         List<String> genres = new ArrayList<>();
@@ -105,8 +136,12 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     public static void main(String[] args) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException, ParseException {
 
 
+        /*
+        * This code contains an example of returning a hashmap where the key is the genre and the value is the frequency.
+        * */
         Map<String, Integer> allGenresFrequencyMap = new HashMap<>();
 
+        // getPlaylistIds contains a Spotify user ID
         List<String> playlistIds = getPlaylistIds("31s453ebjxsfte4fzcyqkanmrlb4");
         for (String playlistId : playlistIds) {
             List<String> artistIds = getArtistsIds(playlistId);
@@ -122,6 +157,15 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
         }
         System.out.println(allGenresFrequencyMap);
 
+        /* Example Output:
+        * {heartland rock=1, japanese chillhop=4, small room=1, singer-songwriter=1, lo-fi house=1,
+        * piano rock=1, indietronica=1, pop rap=1, classic rock=1, modern alternative pop=1, mellow gold=1,
+        * lo-fi rap=20, pittsburgh rap=1, indie rock=1, soft rock=1, rap=2, post-teen pop=2, art pop=1, irish pop=1,
+        * lo-fi emo=2, neo mellow=1, modern rock=1, sad lo-fi=47, show tunes=3, lo-fi indie=3, canadian contemporary r&b=1,
+        * bubblegrunge=1, indonesian indie=1, chillhop=2, pov: indie=36, alt z=3, pop=2, rock=1, lo-fi chill=48, sad rap=3, hip hop=2,
+        * bedroom pop=18, lo-fi beats=11, pixel=1, album rock=1, indie pop=13, meme rap=4, future funk=1, canadian pop=1, aesthetic rap=1,
+        * dance pop=1, otacore=1, future bass=1, brooklyn indie=1, indie psych-pop=2, experimental pop=1, slowed and reverb=1, comic=10}
+        * */
 
     }
 
