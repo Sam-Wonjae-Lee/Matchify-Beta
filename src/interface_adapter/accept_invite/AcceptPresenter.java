@@ -7,14 +7,7 @@ import use_case.accept_invite.AcceptOutputData;
 
 public class AcceptPresenter implements AcceptOutputBoundary {
 
-    private final InboxViewModel inboxViewModel;
-
-    public AcceptPresenter(InboxViewModel inboxViewModel) { this.inboxViewModel = inboxViewModel; }
-
     @Override
-    public void prepareView(String user) {
-        InboxState inboxState = inboxViewModel.getState();
-        inboxState.setDel(user);
-        inboxViewModel.firePropertyChanged();
+    public void prepareView(AcceptOutputData acceptOutputData) {
     }
 }
