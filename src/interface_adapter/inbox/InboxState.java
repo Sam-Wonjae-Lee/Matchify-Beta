@@ -16,8 +16,6 @@ public class InboxState {
     // Because of the previous copy constructor, the default constructor must be explicit.
     public InboxState() {}
 
-    public void setDel(String username) { this.username = username; }
-
     public String getUsername() {
         return username;
     }
