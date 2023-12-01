@@ -1,7 +1,7 @@
 package interface_adapter.homePage;
 
 import interface_adapter.ViewManagerModel;
-import use_case.homePage.HomePageOutPutBoundary;
+import use_case.home_page.HomePageOutPutBoundary;
 
 public class HomePagePresenter implements HomePageOutPutBoundary{
 

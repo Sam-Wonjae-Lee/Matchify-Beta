@@ -1,6 +1,6 @@
 package interface_adapter.homePage;
 
-import use_case.homePage.HomePageInputBoundary;
+import use_case.home_page.HomePageInputBoundary;
 
 public class HomePageController {
     HomePageInputBoundary homePageInteractor;
