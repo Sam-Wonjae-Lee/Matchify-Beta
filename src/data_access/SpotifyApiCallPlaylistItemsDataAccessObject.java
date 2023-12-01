@@ -48,7 +48,7 @@ public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCa
      * @param playlistId A string containing the Spotify user ID.
      * @return A JSONObject containing the response data for the items of the playlist.
      */
-    private static JSONObject getPlaylistItems(String accessToken, String playlistId)
+    public static JSONObject getPlaylistItems(String accessToken, String playlistId)
             throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
 
         // Initialize the Spotify API object
