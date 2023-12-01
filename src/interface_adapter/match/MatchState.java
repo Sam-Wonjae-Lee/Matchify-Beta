@@ -13,6 +13,9 @@ public class MatchState {
         MATCHED_USERS_ERROR = copy.MATCHED_USERS_ERROR;
     }
 
+    public MatchState() {
+    }
+
 //  Getters
     public ArrayList<CommonUser> getMatchedUsers() {
         return MATCHED_USERS;
