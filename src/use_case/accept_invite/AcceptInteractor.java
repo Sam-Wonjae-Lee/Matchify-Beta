@@ -10,6 +10,5 @@ public class AcceptInteractor {
         this.userDataAccessObject = userDataAccessObject;
         this.acceptPresenter = acceptPresenter;
     }
-
-//    public void execute() { acceptPresenter.prepareView(userDataAccessObject.add()); }
+    public void execute() { acceptPresenter.prepareView(userDataAccessObject.add()); }
 }

@@ -76,6 +76,10 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
         }
         return s;
     }
+    public String add() {
+        return null;
+    }
+
     public void add_user (Integer user_id, String user_name, String photo, String age, String bio){
         // adds the user into the database, if user_id already exists in the database, update it's values instead
         ArrayList<String> new_arr = new ArrayList<>();
