@@ -36,7 +36,7 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
     * "href":"https://api.spotify.com/v1/users/o3bv345iz36uo33gj1ncpa8yo","id":"o3bv345iz36uo33gj1ncpa8yo","display_name":"David","type":"user",
     * "external_urls":{"spotify":"https://open.spotify.com/user/o3bv345iz36uo33gj1ncpa8yo"},"uri":"spotify:user:o3bv345iz36uo33gj1ncpa8yo"}
     */
-    private static JSONObject getUserProfile(String accessToken, String userId) throws IOException {
+    public static JSONObject getUserProfile(String accessToken, String userId) throws IOException {
         // Spotify API endpoint URL for user profile information
         String apiUrl = "https://api.spotify.com/v1/users/" + userId;
 
@@ -90,7 +90,7 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
         }
 
         // Prints response
-        System.out.println(responseData);
+//        System.out.println(responseData);
         // Returns response
         return responseData;
     }
