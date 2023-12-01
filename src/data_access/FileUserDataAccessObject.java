@@ -2,6 +2,7 @@ package data_access;
 
 import entity.CommonUser;
 import entity.User;
+import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
@@ -12,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.io.*;
 
 
-public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface {
+public class FileUserDataAccessObject implements AcceptUserDataAccessInterface, DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface {
 
     private final String csvFile_path = "src/csv_files/user_data.csv";
 
@@ -63,21 +64,13 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
     }
 
     @Override
-    public String delete() {
-        String s = String.join("\n", accounts.keySet());
-        accounts.clear();
-        BufferedWriter writer;
-        try {
-            writer = new BufferedWriter(new FileWriter(csvFile_path));
-            writer.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return s;
+    public void accept(String username) {
+        //add user to friend list
     }
-    public String add() {
-        return null;
+
+    @Override
+    public void delete(String username) {
+        //remove user from sent request list
     }
 
     public void add_user (Integer user_id, String user_name, String photo, String age, String bio){
