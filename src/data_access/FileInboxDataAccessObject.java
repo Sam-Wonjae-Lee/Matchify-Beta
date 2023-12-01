@@ -4,10 +4,7 @@ import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 // do I need to implement the SignUpUserDataAccessInterface or LoginUserDataAccessInterface?
 public class FileInboxDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface {
@@ -60,7 +57,7 @@ public class FileInboxDataAccessObject implements DeclineUserDataAccessInterface
         }
     }
 
-    public void add_friend(String user_id, String friend_id){
+    public void add_friend_request(String user_id, String friend_id){
         // adds the user into the database, if user_id already exists in the database, update it's values instead
         if(this.data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.data_saved.get(user_id);
@@ -78,7 +75,7 @@ public class FileInboxDataAccessObject implements DeclineUserDataAccessInterface
         this.write();
     }
 
-    public void remove_friend(String user_id, String friend_id){
+    public void remove_friend_request(String user_id, String friend_id){
         // removes the friend from the database, if user_id already exists in the database.
         if(this.data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.data_saved.get(user_id);
@@ -91,8 +88,12 @@ public class FileInboxDataAccessObject implements DeclineUserDataAccessInterface
         this.write();
     }
 
-    public HashSet<String> get_user(String user_id){
+    public HashSet<String> get_user_inbox(String user_id){
         // returns the values of the user_id, if user_id doesn't exist, return null instead.
         return this.data_saved.get(user_id);
+    }
+
+    public Set<String> get_all_users(){
+        return this.data_saved.keySet();
     }
 }
