@@ -11,7 +11,7 @@ public class AcceptController {
         this.acceptInteractor = acceptInteractor;
     }
 
-    public void execute(Integer user_id, Integer friend_id) {
+    public void execute( String user_id,  String friend_id) {
         AcceptInputData acceptInputData = new AcceptInputData(user_id, friend_id);
         acceptInteractor.execute(acceptInputData);
     }

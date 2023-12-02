@@ -11,8 +11,8 @@ public class AcceptInteractor {
     }
 
     public void execute(AcceptInputData inputData) {
-        Integer user_id = inputData.getUserId();
-        Integer friend_id = inputData.getFriendId();
+         String user_id = inputData.getUserId();
+         String friend_id = inputData.getFriendId();
         userDataAccessObject.add_friend(user_id, friend_id);
 
         AcceptOutputData outputData = new AcceptOutputData();

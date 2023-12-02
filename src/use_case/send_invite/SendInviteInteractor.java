@@ -2,11 +2,11 @@ package use_case.send_invite;
 
 public class SendInviteInteractor implements SendInviteInputBoundary{
 
-    final SendInviteDataAccessInterface userDataAccessObject;
+    final SendInviteUserDataAccessInterface userDataAccessObject;
 
     final SendInviteOutputBoundary userPresenter;
 
-    public SendInviteInteractor(SendInviteDataAccessInterface userDataAccessObject,
+    public SendInviteInteractor(SendInviteUserDataAccessInterface userDataAccessObject,
                                 SendInviteOutputBoundary userPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.userPresenter = userPresenter;

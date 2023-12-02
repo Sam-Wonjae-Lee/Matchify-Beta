@@ -12,7 +12,7 @@ public class DeclineInteractor implements DeclineInputBoundary{
 
     public void execute(DeclineInputData inputData) {
         String username = inputData.getUsername();
-        userDataAccessObject.delete(username);
+        userDataAccessObject.deleteInvite(username);
 
         DeclineOutputData declineOutputData = new DeclineOutputData();
         declinePresenter.prepareView(declineOutputData);
