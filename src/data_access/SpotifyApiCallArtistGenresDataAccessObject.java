@@ -57,19 +57,5 @@ public class SpotifyApiCallArtistGenresDataAccessObject implements SpotifyApiCal
 
     }
 
-    /* This is example code */
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
-//
-//        System.out.println("Enter Artist ID: ");
-//        String artistId = scanner.nextLine();
-//        try {
-//            JSONObject artistJson = getArtistGenres(accessToken, artistId);
-//            System.out.println(artistJson);
-//        } catch (IOException | SpotifyWebApiException | ParseException | ExecutionException | InterruptedException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//
-//    }
+
 }
