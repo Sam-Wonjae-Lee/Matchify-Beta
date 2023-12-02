@@ -78,9 +78,17 @@ public class MatchInteractor implements MatchInputboundary{
         Collections.sort(sorted_keys);
 
         List<User> matchedUsers = new ArrayList<User>();
+//      This for loop adds users to List from Hashmap
         for (int keys : sorted_keys) {
+//          does not add user to list if the user is the Client
             if (!client_user.equals(ans.get(keys))) {
-                matchedUsers.add(ans.get(keys));
+//              adds to list until length is 3
+                if (matchedUsers.size() != 3) {
+                    matchedUsers.add(ans.get(keys));
+                }
+                else {
+                    break;
+                }
             }
         }
         // collection should now be sorted and idk what to do from here.
