@@ -1,8 +1,5 @@
 package entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CommonUser implements User{
     private final String userID;
     private final FriendsList friends;
