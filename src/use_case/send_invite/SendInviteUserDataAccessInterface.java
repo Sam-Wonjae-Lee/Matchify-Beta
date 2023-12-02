@@ -2,7 +2,7 @@ package use_case.send_invite;
 
 import entity.User;
 
-public interface SendInviteDataAccessInterface {
+public interface SendInviteUserDataAccessInterface {
 
     void addToInbox(String inviteID, String userID);
 

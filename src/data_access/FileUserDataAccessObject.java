@@ -1,22 +1,32 @@
 package data_access;
 
 import entity.*;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import use_case.accept_invite.AcceptUserDataAccessInterface;
+import use_case.decline_invite.DeclineUserDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
+import use_case.match.MatchDataAccessInterface;
+import use_case.open_inbox.OpenInboxUserDataAccessInterface;
+import use_case.send_invite.SendInviteUserDataAccessInterface;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
-public class FileUserDataAccessObject {
+public class FileUserDataAccessObject implements SendInviteUserDataAccessInterface, DeclineUserDataAccessInterface,
+        AcceptUserDataAccessInterface, LoginUserDataAccessInterface,
+        MatchDataAccessInterface, OpenInboxUserDataAccessInterface {
     private final String friends_csvFile_path = "src/csv_files/user_friends.csv";
     private final String inbox_csvFile_path = "src/csv_files/user_inbox.csv";
 
-    private HashMap<String, HashSet<String>> friend_data_saved = new HashMap<>();
-    private HashMap<String, HashSet<String>> inbox_data_saved = new HashMap<>();
+    private final Map<String, HashSet<String>> friend_data_saved = new HashMap<>();
+    private final Map<String, HashSet<String>> inbox_data_saved = new HashMap<>();
 
-    private HashMap<String, CommonUser> data_saved = new HashMap<>();
+    private final Map<String, User> accounts = new HashMap<>();
 
     private final String sample = ",";
 
-    private CommonUserFactory userFactory;
+    private UserFactory userFactory;
 
     public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
@@ -31,8 +41,8 @@ public class FileUserDataAccessObject {
             for(String user_id : inbox_data.get(key)){
                 inbox.add_invite(user_id);
             }
-            CommonUser user = this.userFactory.create(key, friendsList, inbox);
-            this.data_saved.put(key, user);
+            User user = this.userFactory.create(key, friendsList, inbox);
+            this.accounts.put(key, user);
         }
     }
 
@@ -75,11 +85,11 @@ public class FileUserDataAccessObject {
         }
     }
 
-    public void add_friend(String user_id, String friend_id){
+    private void add_to_friendList(String user_id, String friend_id){
         // adds the friend into user_id's friend within the database.
         if(this.friend_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.friend_data_saved.get(user_id);
-            this.data_saved.get(user_id).getFriends().add_friend(friend_id);
+            this.accounts.get(user_id).getFriends().add_friend(friend_id);
             new_arr.add(friend_id);
             this.friend_data_saved.replace(user_id,new_arr);
         }
@@ -89,15 +99,6 @@ public class FileUserDataAccessObject {
             this.friend_data_saved.put(user_id,new_arr);
         }
         this.write_friend();
-    }
-
-    public HashSet<String> get_friends(String user_id){
-        // returns a HashSet<String> of all the friends that user has.
-        return this.friend_data_saved.get(user_id);
-    }
-
-    public Set<String> get_all_users(){
-        return this.friend_data_saved.keySet();
     }
 
     private HashMap<String, HashSet<String>> read_inbox(){
@@ -136,13 +137,13 @@ public class FileUserDataAccessObject {
         }
     }
 
-    public void add_friend_request(String user_id, String friend_id){
+    private void add_friend_request(String user_id, String friend_id){
         // adds the user into the database, if user_id already exists in the database, update it's values instead
         if(this.inbox_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.inbox_data_saved.get(user_id);
             new_arr.add(friend_id);
             this.inbox_data_saved.replace(user_id,new_arr);
-            this.data_saved.get(user_id).getInbox().add_invite(friend_id);
+            this.accounts.get(user_id).getInbox().add_invite(friend_id);
         }
         else {
             HashSet<String> new_arr = new HashSet<>();
@@ -152,23 +153,59 @@ public class FileUserDataAccessObject {
         this.write_inbox();
     }
 
-    public void remove_friend_request(String user_id, String friend_id){
+    private void remove_friend_request(String user_id, String friend_id){
         // removes the friend from the database, if user_id already exists in the database.
         if(this.inbox_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.inbox_data_saved.get(user_id);
-            this.data_saved.get(user_id).getInbox().remove_invite(friend_id);
+            this.accounts.get(user_id).getInbox().remove_invite(friend_id);
             new_arr.remove(friend_id);
             this.inbox_data_saved.replace(user_id,new_arr);
         }
         this.write_inbox();
     }
 
-    public HashSet<String> get_user_inbox(String user_id){
-        // returns the values of the user_id, if user_id doesn't exist, return null instead.
-        return this.inbox_data_saved.get(user_id);
+    @Override
+    public void add_friend(String user_id, String friend_id) {
+
     }
 
-    public boolean has_user(String user_id) {
-        return this.friend_data_saved.containsKey(user_id);
+    @Override
+    public void deleteInvite(String username) {
+
+    }
+
+    @Override
+    public boolean userExists(String userId) {
+        return false;
+    }
+
+    @Override
+    public void save(User user) {
+
+    }
+
+    @Override
+    public String getUsername(String userId) {
+        return null;
+    }
+
+    @Override
+    public List<String> getUserPlaylistID(String user) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+        return null;
+    }
+
+    @Override
+    public User get(String username) {
+        return null;
+    }
+
+    @Override
+    public void addToInbox(String inviteID, String userID) {
+
+    }
+
+    @Override
+    public User getUser(String userID) {
+        return null;
     }
 }
