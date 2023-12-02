@@ -77,6 +77,32 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
+        Invite_2.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent followButton) {
+//                        check if the button was pushed
+                        if (followButton.getSource().equals(Invite_2)) {
+//                            ADD SEND INVITE CONTROLLER HERE
+//                            UPDATE MATCH VIEW
+                        }
+                    }
+                }
+        );
+
+        Invite_3.addActionListener(
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent followButton) {
+//                        check if the button was pushed
+                        if (followButton.getSource().equals(Invite_3)) {
+//                            ADD SEND INVITE CONTROLLER HERE
+//                            UPDATE MATCH VIEW
+                        }
+                    }
+                }
+        );
+
         Back.addActionListener(
 
                 new ActionListener() {
