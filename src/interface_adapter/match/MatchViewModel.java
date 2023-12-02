@@ -6,7 +6,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class MatchViewModel extends ViewModel {
-    public static final String FOLLOW_BUTTON_LABEL = "Follow";
+    public static final String INVITE_BUTTON_LABEL1 = "Invite";
+    public static final String INVITE_BUTTON_LABEL2 = "Invite";
+    public static final String INVITE_BUTTON_LABEL3 = "Invite";
     public static final String TITLE_LABEL = "Matches";
     public static final String BACK_BUTTON_LABEL = "Back";
     private MatchState state = new MatchState();
