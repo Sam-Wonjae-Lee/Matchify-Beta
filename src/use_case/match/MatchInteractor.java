@@ -1,14 +1,7 @@
 package use_case.match;
-import entity.CommonUser;
 import entity.User;
-import org.apache.hc.core5.http.ParseException;
-import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 
-import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-
-import static data_access.SpotifyApiCallGetInfoDataAccessObject.*;
 
 public class MatchInteractor implements MatchInputboundary{
     public MatchOutputBoundary matchPresenter;
@@ -64,7 +57,7 @@ public class MatchInteractor implements MatchInputboundary{
 
     @Override
     public void execute(MatchInputData matchInputData) {
-        CommonUser client_user = matchSpotifyAccessInterface.getUser(matchInputData.getUserID());
+        User client_user = matchUserAccessInterface.getUser(matchInputData.getUserID());
         Map<String, Integer> client_map = this.map_playlist(client_user);
         HashMap<Integer, User> ans = new HashMap<>();
         for(User user: this.matchUserAccessInterface.get_all_users()){
@@ -72,12 +65,12 @@ public class MatchInteractor implements MatchInputboundary{
             int score = this.compare_other_playlist(client_map, user_map);
             ans.put(score,user);
         }
-//                [0,4,5,6]
-//        {0:frank,4:david}
+
         List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
         Collections.sort(sorted_keys);
 
-        List<User> matchedUsers = new ArrayList<User>();
+        List<User> matchedUsers = new ArrayList<>();
+
 //      This for loop adds users to List from Hashmap
         for (int keys : sorted_keys) {
 //          does not add user to list if the user is the Client
@@ -91,8 +84,6 @@ public class MatchInteractor implements MatchInputboundary{
                 }
             }
         }
-        // collection should now be sorted and idk what to do from here.
-
 
         if (matchedUsers.isEmpty()) {
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
