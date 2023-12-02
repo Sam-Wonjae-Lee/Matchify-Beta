@@ -55,6 +55,17 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
                 }
         );
 
+//      Inbox Button
+        Inbox.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent inboxButton) {
+                        if (inboxButton.getSource().equals(Inbox)) {
+//                          TODO: Open InboxView
+                        }
+                    }
+                }
+        );
 
         this.add(username);
         this.add(title);
