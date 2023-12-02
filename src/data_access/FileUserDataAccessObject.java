@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.io.*;
 
 
-public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, MatchDataAccessInterface {
+public class FileUserDataAccessObject implements OpenInboxUserDataAccessInterface, MatchDataAccessInterface {
 
 
     private final String csvFile_path = "src/csv_files/user_data.csv";
@@ -63,16 +63,6 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void accept(String username) {
-        //add user to friend list
-    }
-
-    @Override
-    public void delete(String username) {
-        //remove user from sent request list
     }
 
     public void add_user (Integer user_id, String user_name, String photo, String age, String bio){

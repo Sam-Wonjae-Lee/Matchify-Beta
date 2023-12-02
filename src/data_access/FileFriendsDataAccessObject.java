@@ -1,9 +1,11 @@
+import use_case.accept_invite.AcceptUserDataAccessInterface;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 // do I need to implement the SignUpUserDataAccessInterface or LoginUserDataAccessInterface?
-public class FileFriendsDataAccessObject {
+public class FileFriendsDataAccessObject implements AcceptUserDataAccessInterface {
 
     private final String csvFile_path = "src/csv_files/user_friends.csv";
 
