@@ -3,16 +3,17 @@ package use_case.match;
 import entity.CommonUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MatchOutPutData {
     boolean useCaseFailed;
-    final ArrayList<CommonUser> userArrayList;
+    final List<String> userArrayList;
 
-    public MatchOutPutData(boolean useCaseFailed, ArrayList<CommonUser> userArrayList) {
+    public MatchOutPutData(boolean useCaseFailed, List<String> userArrayList) {
         this.useCaseFailed = useCaseFailed;
         this.userArrayList = userArrayList;
     }
-    public ArrayList<CommonUser> getuserArrayList() {
+    public List<String> getuserArrayList() {
         return userArrayList;
     }
 }

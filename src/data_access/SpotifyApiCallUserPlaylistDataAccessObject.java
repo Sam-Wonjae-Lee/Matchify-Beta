@@ -23,23 +23,6 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
     private static final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
     private static final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
-
-        System.out.println("Enter user Id: ");
-        String userId = scanner.nextLine();
-
-        // Get the user's playlists
-        try {
-            JSONObject playlists = getUserPlaylists(accessToken, userId);
-            System.out.println(playlists);
-        } catch (IOException | SpotifyWebApiException | InterruptedException | ExecutionException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-
 
     /**
      * Get the user's playlist information. This consists information from the playlist like images, playlist id, etc.
@@ -76,4 +59,23 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
 
         return responseData;
     }
+
+    /* This is example code */
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
+//
+//        System.out.println("Enter user Id: ");
+//        String userId = scanner.nextLine();
+//
+//        // Get the user's playlists
+//        try {
+//            JSONObject playlists = getUserPlaylists(accessToken, userId);
+//            System.out.println(playlists);
+//        } catch (IOException | SpotifyWebApiException | InterruptedException | ExecutionException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
+//    }
+
 }

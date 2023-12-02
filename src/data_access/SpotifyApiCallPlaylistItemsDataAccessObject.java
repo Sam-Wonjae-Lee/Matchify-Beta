@@ -24,21 +24,6 @@ public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCa
     private static final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
     private static final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
-
-        System.out.println("Enter Playlist ID: ");
-        String playlistId = scanner.nextLine();
-
-        try {
-            JSONObject playlistItems = getPlaylistItems(accessToken, playlistId);
-            System.out.println(playlistItems);
-        } catch (IOException | SpotifyWebApiException | InterruptedException | ExecutionException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
 
     /**
      * Get playlist items (tracks) for a given playlist ID.
@@ -76,4 +61,22 @@ public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCa
 
         return playlistItemsJson;
     }
+
+    /* This is example code */
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
+//
+//        System.out.println("Enter Playlist ID: ");
+//        String playlistId = scanner.nextLine();
+//
+//        try {
+//            JSONObject playlistItems = getPlaylistItems(accessToken, playlistId);
+//            System.out.println(playlistItems);
+//        } catch (IOException | SpotifyWebApiException | InterruptedException | ExecutionException e) {
+//            System.out.println("Error: " + e.getMessage());
+//        }
+//    }
+
 }

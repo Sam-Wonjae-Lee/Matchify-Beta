@@ -2,6 +2,7 @@ package data_access;
 
 import entity.CommonUser;
 import entity.User;
+import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.match.MatchDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
@@ -10,6 +11,7 @@ import use_case.send_invite.SendInviteDataAccessInterface;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.io.*;
+
 
 
 public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface,
@@ -63,24 +65,6 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
         }
     }
 
-    @Override
-    public String delete() {
-        String s = String.join("\n", accounts.keySet());
-        accounts.clear();
-        BufferedWriter writer;
-        try {
-            writer = new BufferedWriter(new FileWriter(csvFile_path));
-            writer.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return s;
-    }
-    public String add() {
-        return null;
-    }
-
     public void add_user (Integer user_id, String user_name, String photo, String age, String bio){
         // adds the user into the database, if user_id already exists in the database, update it's values instead
         ArrayList<String> new_arr = new ArrayList<>();
@@ -107,19 +91,17 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
         return null;
     }
     //  TODO: implement to return userID
-    @Override
-    public int getUserPlaylistID(CommonUser user) {
-        return 0;
-    }
-    //TODO: implement to get playlist of the user
 
     @Override
     public void addToInbox(String inviteID, String userID) {}
+    // TODO: implement to add inviteID's invite to userID's inbox
 
     @Override
     public User getUser(String userID) {
         return null;
     }
-    // TODO: implement to add inviteID's invite to userID's inbox
+    //  TODO: implement to return userID
+
+
 }
 
