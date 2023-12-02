@@ -1,5 +1,7 @@
 package use_case.match;
 
+import entity.CommonUser;
+
 import java.util.List;
 
 public interface MatchSpotifyAccessInterface {
@@ -8,4 +10,6 @@ public interface MatchSpotifyAccessInterface {
     List<String> getPlaylistIds(String s);
 
     List<String> getArtistsIds(String playlistId);
+
+    CommonUser getUser(String userID);
 }

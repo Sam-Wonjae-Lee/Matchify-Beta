@@ -64,7 +64,7 @@ public class MatchInteractor implements MatchInputboundary{
 
     @Override
     public void execute(MatchInputData matchInputData) {
-        CommonUser client_user = matchInputData.getUser();
+        CommonUser client_user = matchSpotifyAccessInterface.getUser(matchInputData.getUserID());
         Map<String, Integer> client_map = this.map_playlist(client_user);
         HashMap<Integer, User> ans = new HashMap<>();
         for(User user: this.matchUserAccessInterface.get_all_users()){
@@ -72,20 +72,27 @@ public class MatchInteractor implements MatchInputboundary{
             int score = this.compare_other_playlist(client_map, user_map);
             ans.put(score,user);
         }
+//                [0,4,5,6]
+//        {0:frank,4:david}
         List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
         Collections.sort(sorted_keys);
+
+        List<User> matchedUsers = new ArrayList<User>();
+        for (int keys : sorted_keys) {
+            if (!client_user.equals(ans.get(keys))) {
+                matchedUsers.add(ans.get(keys));
+            }
+        }
         // collection should now be sorted and idk what to do from here.
 
-//        ArrayList<CommonUser> matchedUsers =
-//        TODO: Find a way to turn playlistID into Array playlist.
-//
-//                matchDataAccessInterface.getUserPlaylistID(matchInputData.getUser()).matchOtherPlaylist();
-//        if (matchedUsers.isEmpty()) {
-//            matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
-//        }
-//        else {
-//            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers);
-//            matchPresenter.prepareSuccessView(matchOutPutData);
-//        }
+
+        if (matchedUsers.isEmpty()) {
+            matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
+        }
+        else {
+            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers);
+            matchPresenter.prepareSuccessView(matchOutPutData);
+        }
+
     }
 }

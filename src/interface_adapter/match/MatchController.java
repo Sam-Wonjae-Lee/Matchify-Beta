@@ -12,8 +12,8 @@ public class MatchController {
         this.matchUseCaseInteractor = matchUseCaseInteractor;
     }
 
-    public void execute(CommonUser user) {
-        MatchInputData matchInputData = new MatchInputData(user);
+    public void execute(String userID) {
+        MatchInputData matchInputData = new MatchInputData(userID);
         this.matchUseCaseInteractor.execute(matchInputData);
     }
 

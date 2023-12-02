@@ -17,10 +17,10 @@ import java.io.IOException;
 
 public class MatchFactory {
 
-    public static MatchView create(ViewManagerModel viewManagerModel, MatchViewModel matchViewModel, HomePageViewModel homePageViewModel, MatchUserAccessInterface matchUserAccessInterface) throws IOException {
+    public static MatchView create(ViewManagerModel viewManagerModel, MatchViewModel matchViewModel, HomePageViewModel homePageViewModel, MatchUserAccessInterface matchUserAccessInterface, MatchSpotifyAccessInterface matchSpotifyAccessInterface) throws IOException {
 
-        MatchController matchController = createMatchController(viewManagerModel, matchViewModel, matchUserAccessInterface);
         HomePageController homePageController = createHomePageController(viewManagerModel, homePageViewModel);
+        MatchController matchController = createMatchController(viewManagerModel, matchViewModel, matchUserAccessInterface, matchSpotifyAccessInterface);
         return new MatchView(matchViewModel, matchController, homePageViewModel, homePageController);
     }
     private static MatchController createMatchController(ViewManagerModel viewManagerModel, MatchViewModel matchViewModel, MatchUserAccessInterface matchUserAccessInterface, MatchSpotifyAccessInterface matchSpotifyAccessInterface) {
