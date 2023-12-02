@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+import entity.CommonUser;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -62,10 +63,8 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     /**
      * Returns list of playlist IDs from Spotify user ID.
      * @param userId A String containing the Spotify user ID.
-     * @return A list containing the ID of each playlist that belongs to the Spotify user.
-     * @throws IOException
-     * */
-    public static List<String> getPlaylistIds(String userId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+     * @return A list containing the ID of each playlist that belongs to the Spotify user. */
+    public List<String> getPlaylistIds(String userId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         List<String> playlistIds = new ArrayList<>();
 
@@ -112,6 +111,11 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
         return artistIds;
     }
 
+    @Override
+    public CommonUser getUser(String userID) {
+        return null;
+    }
+
 
     // ========== Artist Genres ==========
 
@@ -135,19 +139,20 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
         return genres;
     }
 
-
     @Override
     public boolean userExists(String userId) {
         return false;
     }
 
     @Override
-    public String getName(String userID) {
-        return null;
+    public String getName(String userID) throws IOException {
+        return getUsername(userID);
     }
 
     @Override
     public String getProfilePicture(String userID) {
-        return null;
+        return getProfilePicture(userID);
     }
+
+
 }

@@ -25,7 +25,7 @@ public class SpotifyApiCallAccessTokenDataAccessObject implements SpotifyApiCall
      * @return A string containing the temporary access token.
      * @throws Exception if access token cannot be retrieved.
      */
-    public static String getAccessToken() {
+    public String getAccessToken() {
         // Client ID and Client Secret from Spotify Dashboard
         String clientId = SpotifyApiCallInterface.CLIENT_ID;
         String clientSecret = SpotifyApiCallInterface.CLIENT_SECRET;

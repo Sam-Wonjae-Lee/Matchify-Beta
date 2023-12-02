@@ -17,9 +17,11 @@ import org.json.JSONObject;
 public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCallInterface{
 
     // ClientId, ClientSecret, RedirectURI - necessary info for using API.
-    private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
-    private static final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
-    private static final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
+    private final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
+    private final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
+    private final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
+
+
 
 
     /**
@@ -36,7 +38,7 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
     * "href":"https://api.spotify.com/v1/users/o3bv345iz36uo33gj1ncpa8yo","id":"o3bv345iz36uo33gj1ncpa8yo","display_name":"David","type":"user",
     * "external_urls":{"spotify":"https://open.spotify.com/user/o3bv345iz36uo33gj1ncpa8yo"},"uri":"spotify:user:o3bv345iz36uo33gj1ncpa8yo"}
     */
-    public static JSONObject getUserProfile(String accessToken, String userId) throws IOException {
+    public JSONObject getUserProfile(String accessToken, String userId) throws IOException {
         // Spotify API endpoint URL for user profile information
         String apiUrl = "https://api.spotify.com/v1/users/" + userId;
 
