@@ -5,15 +5,15 @@ import entity.User;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.match.MatchDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
+import use_case.send_invite.SendInviteDataAccessInterface;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.io.*;
 
 
-public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, MatchDataAccessInterface {
+public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface,
+        MatchDataAccessInterface, SendInviteDataAccessInterface {
 
     private final String csvFile_path = "src/csv_files/user_data.csv";
 
@@ -106,10 +106,20 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
     public User get(String username) {
         return null;
     }
-//  TODO: implement to return userID
+    //  TODO: implement to return userID
     @Override
     public int getUserPlaylistID(CommonUser user) {
         return 0;
     }
+    //TODO: implement to get playlist of the user
+
+    @Override
+    public void addToInbox(String inviteID, String userID) {}
+
+    @Override
+    public User getUser(String userID) {
+        return null;
+    }
+    // TODO: implement to add inviteID's invite to userID's inbox
 }
 

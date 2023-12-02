@@ -1,8 +1,12 @@
+package use_case;
+
 import data_access.InMemoryUserDataAccessObject;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.inbox.InboxViewModel;
 import interface_adapter.open_inbox.OpenInboxPresenter;
 import use_case.open_inbox.*;
+
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -22,7 +26,6 @@ public class OpenInboxTest {
         OpenInboxOutputBoundary successPresenter = new OpenInboxPresenter(inboxViewModel, viewManagerModel){
             @Override
             public void prepareSuccessView(OpenInboxOutputData user){
-
                 assertEquals(userRepository.get("testUser").getInbox(), user.getInbox());
                 assertEquals("testUser", user.getUsername());
             }
