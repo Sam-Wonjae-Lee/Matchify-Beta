@@ -1,5 +1,6 @@
 package view;
 
+import entity.User;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.match.MatchController;
@@ -12,18 +13,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 public class MatchView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Matches";
 
     private final HomePageViewModel homePageViewModel;
     private final HomePageController homePageController;
+    private final MatchViewModel matchViewModel;
+    private final MatchController matchController;
 
 //  Buttons
     private final JButton Back;
-    private final JButton Follow;
+    private final JButton Invite_1;
+    private final JButton Invite_2;
+    private final JButton Invite_3;
 
-  
+
     public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController) {
         this.matchViewModel = matchViewModel;
         this.matchController = matchController;
@@ -40,20 +46,30 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //      This is a collection of buttons
         JPanel buttons = new JPanel();
 
-//      Follow Button
-        Follow = new JButton(MatchViewModel.FOLLOW_BUTTON_LABEL);
-        buttons.add(Follow);
+//      Invite Buttons
+        Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL1);
+        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL2);
+        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL3);
+
+        buttons.add(Invite_1);
 
 //      Back Button
         Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
         buttons.add(Back);
 
-        Follow.addActionListener(
+//      Matched Users
+        List<User> listUsers = matchViewModel.getState().getMatchedUsers();
+        User matched_user1 = listUsers.get(0);
+        User matched_user2 = listUsers.get(1);
+        User matched_user3 = listUsers.get(2);
+
+
+        Invite_1.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent followButton) {
 //                        check if the button was pushed
-                        if (followButton.getSource().equals(Follow)) {
+                        if (followButton.getSource().equals(Invite_1)) {
 //                            ADD SEND INVITE CONTROLLER HERE
 //                            UPDATE MATCH VIEW
                         }
