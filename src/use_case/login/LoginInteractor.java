@@ -40,7 +40,7 @@ public class LoginInteractor implements LoginInputBoundary{
                 User user = userFactory.create(name, lst, inbox);
                 userDataAccessObject.save(user);
             }
-            User user = userDataAccessObject.get(userId);
+            User user = userDataAccessObject.getUser(userId);
             LoginOutputData outputData = new LoginOutputData(userId, name, pfp, user.getFriendList(), false);
             loginPresenter.prepareSuccessView(outputData);
         }
