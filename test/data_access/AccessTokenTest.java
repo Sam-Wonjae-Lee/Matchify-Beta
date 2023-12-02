@@ -9,7 +9,7 @@ public class AccessTokenTest{
     @Test
     public void testAccessTokenNotEmptyString() {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
-//        System.out.println(accessToken);
+        System.out.println("Access Token: " + accessToken);
         assertFalse("The access token should not be empty", accessToken.isEmpty());
     }
 

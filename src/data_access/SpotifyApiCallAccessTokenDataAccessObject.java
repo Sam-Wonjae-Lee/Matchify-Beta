@@ -71,15 +71,16 @@ public class SpotifyApiCallAccessTokenDataAccessObject implements SpotifyApiCall
 
     }
 
-    public static void main(String[] args) {
-        String accessToken = getAccessToken();
-
-        if (accessToken != null) {
-            System.out.println("Access Token: " + accessToken);
-        } else {
-            System.out.println("Failed to retrieve access token.");
-        }
-
-    }
+    /* This is example code */
+//    public static void main(String[] args) {
+//        String accessToken = getAccessToken();
+//
+//        if (accessToken != null) {
+//            System.out.println("Access Token: " + accessToken);
+//        } else {
+//            System.out.println("Failed to retrieve access token.");
+//        }
+//
+//    }
 
 }
