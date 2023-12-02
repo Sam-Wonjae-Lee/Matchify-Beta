@@ -5,7 +5,7 @@ import use_case.home_page.HomePageInputBoundary;
 public class HomePageController {
     HomePageInputBoundary homePageInteractor;
 
-    HomePageController(HomePageInputBoundary homePageInputBoundary) {
+    public HomePageController(HomePageInputBoundary homePageInputBoundary) {
         this.homePageInteractor = homePageInputBoundary;
     }
 

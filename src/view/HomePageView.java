@@ -18,6 +18,8 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
     private MatchController matchController;
     JLabel username;
     private final JButton Find_Matches;
+    private final JButton Inbox;
+    private final JButton Friends_List;
     public HomePageView(HomePageViewModel homeInViewModel, MatchController matchController) {
         this.loggedInViewModel = homeInViewModel;
         this.matchController = matchController;
@@ -28,9 +30,14 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
 //      Find matches button
         Find_Matches = new JButton(HomePageViewModel.Find_Matches_Label);
         buttons.add(Find_Matches);
+        Inbox = new JButton(HomePageViewModel.Inbox_Label);
+        buttons.add(Inbox);
+        Friends_List = new JButton(HomePageViewModel.Friend_List_Label);
+        buttons.add(Friends_List);
 //      Title
         JLabel title = new JLabel();
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+
 //      Profile pic replace url later with API
         ProfilePic.displayImageFrame("https://example.com/image.jpg");
 
