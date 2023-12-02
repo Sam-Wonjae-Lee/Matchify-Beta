@@ -12,32 +12,32 @@ public class SpotifyApiCallTrackDataAccessObject implements SpotifyApiCallInterf
     static String clientId = SpotifyApiCallInterface.CLIENT_ID;
     static String clientSecret = SpotifyApiCallInterface.CLIENT_SECRET;
 
-    public static void main(String[] args) {
-
-        // Create a Spotify API instance
-        SpotifyApi spotifyApi = new SpotifyApi.Builder()
-                .setClientId(clientId)
-                .setClientSecret(clientSecret)
-                .build();
-
-        Scanner scanner = new Scanner(System.in);
-
-        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
-
-        System.out.println("Enter track Id: ");
-        String trackId = scanner.nextLine();
-
-        spotifyApi.setAccessToken(accessToken);
-
-        GetTrackRequest trackRequest = spotifyApi.getTrack(trackId).build();
-        try {
-            Track track = trackRequest.execute();
-            System.out.println("Track Name: " + track.getName());
-            System.out.println("Artist: " + track.getArtists()[0].getName());
-            System.out.println("Album: " + track.getAlbum().getName());
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
+//    public static void main(String[] args) {
+//
+//        // Create a Spotify API instance
+//        SpotifyApi spotifyApi = new SpotifyApi.Builder()
+//                .setClientId(clientId)
+//                .setClientSecret(clientSecret)
+//                .build();
+//
+//        Scanner scanner = new Scanner(System.in);
+//
+//        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
+//
+//        System.out.println("Enter track Id: ");
+//        String trackId = scanner.nextLine();
+//
+//        spotifyApi.setAccessToken(accessToken);
+//
+//        GetTrackRequest trackRequest = spotifyApi.getTrack(trackId).build();
+//        try {
+//            Track track = trackRequest.execute();
+//            System.out.println("Track Name: " + track.getName());
+//            System.out.println("Artist: " + track.getArtists()[0].getName());
+//            System.out.println("Album: " + track.getAlbum().getName());
+//        } catch (Exception e) {
+//            System.err.println("Error: " + e.getMessage());
+//        }
+//    }
 
 }

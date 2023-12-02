@@ -2,13 +2,20 @@ package use_case.accept_invite;
 
 public class AcceptInteractor {
 
-    final AcceptUserDataAccessInterface userDataAccessObject;
-
-    final AcceptOutputBoundary acceptPresenter;
+    private final AcceptUserDataAccessInterface userDataAccessObject;
+    private final AcceptOutputBoundary acceptPresenter;
 
     public AcceptInteractor(AcceptUserDataAccessInterface userDataAccessObject, AcceptOutputBoundary acceptPresenter) {
         this.userDataAccessObject = userDataAccessObject;
         this.acceptPresenter = acceptPresenter;
     }
-    public void execute() { acceptPresenter.prepareView(userDataAccessObject.add()); }
+
+    public void execute(AcceptInputData inputData) {
+        Integer user_id = inputData.getUserId();
+        Integer friend_id = inputData.getFriendId();
+        userDataAccessObject.add_friend(user_id, friend_id);
+
+        AcceptOutputData outputData = new AcceptOutputData();
+        acceptPresenter.prepareView(outputData);
+    }
 }
