@@ -1,9 +1,12 @@
 package view;
 
+import entity.Playlist;
 import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.inbox.InboxState;
 import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchState;
+import interface_adapter.open_inbox.OpenInboxController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,13 +19,15 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
     public final String viewName = "logged in";
     private final HomePageViewModel loggedInViewModel;
     private MatchController matchController;
+    private OpenInboxController openInboxController;
     JLabel username;
     private final JButton Find_Matches;
     private final JButton Inbox;
     private final JButton Friends_List;
-    public HomePageView(HomePageViewModel homeInViewModel, MatchController matchController) {
+    public HomePageView(HomePageViewModel homeInViewModel, MatchController matchController, OpenInboxController openInboxController) {
         this.loggedInViewModel = homeInViewModel;
         this.matchController = matchController;
+        this.openInboxController = openInboxController;
 
         JPanel buttons = new JPanel();
 //      username title
@@ -61,7 +66,8 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
                     @Override
                     public void actionPerformed(ActionEvent inboxButton) {
                         if (inboxButton.getSource().equals(Inbox)) {
-//                          TODO: Open InboxView
+                            HomePageState homePageState = homeInViewModel.getState();
+                            openInboxController.execute(homePageState.getUserName());
                         }
                     }
                 }
