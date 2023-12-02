@@ -6,51 +6,65 @@ import interface_adapter.inbox.InboxState;
 import interface_adapter.inbox.InboxViewModel;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.List;
 
 public class InboxView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "inbox";
-
-    private JLabel username;
     private final InboxViewModel inboxViewModel;
+
+    private final JButton[] accept;
+
+    private final JButton[] decline;
     private final DeclineController declineController;
     private final AcceptController acceptController;
 
     public InboxView(InboxViewModel inboxViewModel, DeclineController declineController, AcceptController acceptController) {
 
-        this.inboxViewModel = inboxViewModel;
         this.declineController = declineController;
         this.acceptController = acceptController;
-        inboxViewModel.addPropertyChangeListener(this);
+        this.inboxViewModel = inboxViewModel;
+        this.inboxViewModel.addPropertyChangeListener(this);
 
-        for (String username : inboxViewModel.getState().getInbox()) {
-            String user_id = inboxViewModel.getState().getUser_id(username);
-            String friend_id = inboxViewModel.getState().getFriend_id(username);
-            JButton decline = new JButton("D");
-            decline.addActionListener(
+        JLabel title = new JLabel(inboxViewModel.getState().getUsername() + " 's Inbox");
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        List<String> inbox = inboxViewModel.getState().getInbox();
+        accept = new JButton[inbox.size()];
+        decline = new JButton[inbox.size()];
+
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(title);
+
+        //makes a accept and decline button for every user and adds to the view.
+        for(int i = 0; i < accept.length; i++){
+            String inviter_id = inbox.get(i);
+            accept[i] = new JButton(InboxViewModel.ACCEPT_BUTTON_LABEL);
+            decline[i] = new JButton(InboxViewModel.DECLINE_BUTTON_LABEL);
+            JPanel invite = new JPanel();
+            invite.add(new JLabel(inbox.get(i)));
+            invite.add(accept[i]);
+            invite.add(decline[i]);
+            accept[i].addActionListener(
                     new ActionListener() {
-                        @Override
                         public void actionPerformed(ActionEvent evt) {
-                            declineController.execute(username);
+                            InboxState currState = inboxViewModel.getState();
+                            acceptController.execute(currState.getUser_id(), inviter_id);
                         }
                     }
             );
-            this.add(decline);
-
-            JButton accept = new JButton("A");
-            accept.addActionListener(
+            decline[i].addActionListener(
                     new ActionListener() {
-                        @Override
                         public void actionPerformed(ActionEvent evt) {
-                            acceptController.execute(user_id, friend_id);
-
+                            InboxState currState = inboxViewModel.getState();
+                            declineController.execute(currState.getUser_id(), inviter_id);
                         }
                     }
             );
-            this.add(accept);
+            this.add(invite);
         }
     }
 
@@ -62,6 +76,5 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         InboxState state = (InboxState) evt.getNewValue();
-        username.setText(state.getUsername());
     }
 }

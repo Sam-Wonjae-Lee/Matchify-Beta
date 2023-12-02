@@ -10,13 +10,10 @@ public class InboxState {
 
     private String user_id = null;
 
-    private String friend_id = null;
-
     public InboxState(InboxState copy) {
         username = copy.username;
         inbox = copy.inbox;
         user_id = copy.user_id;
-        friend_id = copy.friend_id;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -26,10 +23,11 @@ public class InboxState {
         return username;
     }
 
-    public String getUser_id(String username) { return user_id; }
+    public String getUser_id() { return user_id; }
 
-    public String getFriend_id(String username) { return friend_id; }
-
+    public void setUser_id(String id){
+        this.user_id = id;
+    }
     public void setUsername(String username) {
         this.username = username;
     }

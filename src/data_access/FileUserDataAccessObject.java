@@ -170,8 +170,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     }
 
     @Override
-    public void deleteInvite(String username) {
-
+    public void deleteInvite(String username, String inviter) {
     }
 
     @Override
