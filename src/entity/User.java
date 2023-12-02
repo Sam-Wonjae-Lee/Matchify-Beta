@@ -7,7 +7,7 @@ public interface User {
 
     String getUserID();
 
-    List<String> getFriends();
+    FriendsList getFriends();
 
-    List<String> getInbox();
+    Inbox getInbox();
 }
