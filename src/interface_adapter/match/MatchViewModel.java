@@ -11,8 +11,8 @@ public class MatchViewModel extends ViewModel {
     public static final String BACK_BUTTON_LABEL = "Back";
     private MatchState state = new MatchState();
 
-    public MatchViewModel(String viewName) {
-        super(viewName);
+    public MatchViewModel() {
+        super("matches");
     }
 
     private final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
