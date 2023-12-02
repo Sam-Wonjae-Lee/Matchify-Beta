@@ -23,11 +23,11 @@ public class MatchFactory {
         HomePageController homePageController = createHomePageController(viewManagerModel, homePageViewModel);
         return new MatchView(matchViewModel, matchController, homePageViewModel, homePageController);
     }
-    private static MatchController createMatchController(ViewManagerModel viewManagerModel, MatchViewModel matchViewModel, MatchUserAccessInterface matchUserAccessInterface) {
+    private static MatchController createMatchController(ViewManagerModel viewManagerModel, MatchViewModel matchViewModel, MatchUserAccessInterface matchUserAccessInterface, MatchSpotifyAccessInterface matchSpotifyAccessInterface) {
 
         MatchOutputBoundary presenter = new MatchPresenter(matchViewModel, viewManagerModel);
 
-        MatchInputobundary userMatchInteracter = new MatchInteractor(presenter, matchUserAccessInterface);
+        MatchInputboundary userMatchInteracter = new MatchInteractor(presenter, matchUserAccessInterface, matchSpotifyAccessInterface);
 
         return new MatchController(userMatchInteracter);
     }

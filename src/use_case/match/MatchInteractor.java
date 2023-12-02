@@ -1,16 +1,16 @@
 package use_case.match;
+import entity.CommonUser;
+import entity.User;
 import org.apache.hc.core5.http.ParseException;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import static data_access.SpotifyApiCallGetInfoDataAccessObject.*;
 
-public class MatchInteractor implements MatchInputobundary{
+public class MatchInteractor implements MatchInputboundary{
     public MatchOutputBoundary matchPresenter;
     public MatchUserAccessInterface matchUserAccessInterface;
 
@@ -22,10 +22,31 @@ public class MatchInteractor implements MatchInputobundary{
         this.matchSpotifyAccessInterface = matchSpotifyAccessInterface;
     }
 
-    @Override
-    public void execute(MatchInputData matchInputData) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException, ParseException {
-        CommonUser user = matchInputData.getUser();
-        List<String> playlistIds = this.matchSpotifyAccessInterface.getPlaylistIds("31s453ebjxsfte4fzcyqkanmrlb4");
+    public int compare_other_playlist(Map<String, Integer> map1, Map<String, Integer> map2){
+        Integer ans = 0;
+        HashSet<String> hashSet = new HashSet<>();
+        for(String key: map1.keySet()){
+            hashSet.add(key);
+        }
+        for(String key: map2.keySet()){
+            hashSet.add(key);
+        }
+        System.out.println(hashSet);
+        for(String key: hashSet){
+            if(map1.containsKey(key) && map2.containsKey(key)){
+                ans += Math.max(map1.get(key),map2.get(key)) - Math.min(map1.get(key),map2.get(key));
+            }
+            else if (map1.containsKey(key)){
+                ans += map1.get(key);
+            }
+            else{
+                ans += map2.get(key);
+            }
+        }
+        return ans;
+    }
+    public Map<String, Integer> map_playlist(User user){
+        List<String> playlistIds = this.matchSpotifyAccessInterface.getPlaylistIds(user.getUserID());
         Map<String, Integer> allGenresFrequencyMap = new HashMap<>();
         for (String playlistId : playlistIds) {
             List<String> artistIds = this.matchSpotifyAccessInterface.getArtistsIds(playlistId);
@@ -38,6 +59,23 @@ public class MatchInteractor implements MatchInputobundary{
                 }
             }
         }
+        return allGenresFrequencyMap;
+    }
+
+    @Override
+    public void execute(MatchInputData matchInputData) {
+        CommonUser client_user = matchInputData.getUser();
+        Map<String, Integer> client_map = this.map_playlist(client_user);
+        HashMap<Integer, User> ans = new HashMap<>();
+        for(User user: this.matchUserAccessInterface.get_all_users()){
+            Map<String, Integer> user_map = this.map_playlist(user);
+            int score = this.compare_other_playlist(client_map, user_map);
+            ans.put(score,user);
+        }
+        List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
+        Collections.sort(sorted_keys);
+        // collection should now be sorted and idk what to do from here.
+
 //        ArrayList<CommonUser> matchedUsers =
 //        TODO: Find a way to turn playlistID into Array playlist.
 //
