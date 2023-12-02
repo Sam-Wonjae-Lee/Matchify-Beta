@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 
 public class ArtistGenresTest {
 
-
+    // This test checks if the retrieved list of genres is the correct type (List<String>).
     @Test
     public void testArtistGenresType() throws IOException, ParseException, ExecutionException, InterruptedException, SpotifyWebApiException {
         // Artist ID for J.Cole
