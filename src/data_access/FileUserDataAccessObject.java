@@ -164,8 +164,8 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         this.write_inbox();
     }
 
-    public Set<String> get_all_users(){
-        return this.accounts.keySet();
+    public Collection<User> get_all_users(){
+        return this.accounts.values();
     }
 
     @Override
