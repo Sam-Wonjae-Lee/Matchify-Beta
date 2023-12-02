@@ -31,7 +31,7 @@ public class FileUserDataAccessObject {
             for(String user_id : inbox_data.get(key)){
                 inbox.add_invite(user_id);
             }
-            CommonUser user = (CommonUser) this.userFactory.create(key, friendsList, inbox);
+            CommonUser user = this.userFactory.create(key, friendsList, inbox);
             this.data_saved.put(key, user);
         }
     }
