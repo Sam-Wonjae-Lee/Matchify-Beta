@@ -13,7 +13,7 @@ import java.util.LinkedHashMap;
 import java.io.*;
 
 
-public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, MatchDataAccessInterface {
+public class FileUserDataAccessObject implements DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface {
 
     private final String csvFile_path = "src/csv_files/user_data.csv";
 
@@ -107,9 +107,6 @@ public class FileUserDataAccessObject implements DeclineUserDataAccessInterface,
         return null;
     }
 //  TODO: implement to return userID
-    @Override
-    public int getUserPlaylistID(CommonUser user) {
-        return 0;
-    }
+
 }
 

@@ -1,6 +1,7 @@
-package entity;
+package app;
 
 import interface_adapter.ViewManagerModel;
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchPresenter;
@@ -16,6 +17,8 @@ public class MatchFactory {
     public static MatchView create(ViewManagerModel viewManagerModel, MatchViewModel matchViewModel, HomePageViewModel homePageViewModel, MatchDataAccessInterface matchDataAccessInterface) throws IOException {
 
         MatchController matchController = createMatchController(viewManagerModel, matchViewModel, matchDataAccessInterface);
+//        HomePageFactory homePageFactory = new HomePageFactory();
+//        HomePageController homePageController =
         return new MatchView(matchViewModel, matchController, homePageViewModel);
     }
     private static MatchController createMatchController(ViewManagerModel viewManagerModel, MatchViewModel matchViewModel, MatchDataAccessInterface matchDataAccessInterface) {

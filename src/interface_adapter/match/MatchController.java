@@ -12,7 +12,7 @@ public class MatchController {
         this.matchUseCaseInteractor = matchUseCaseInteractor;
     }
 
-    public void execute(CommonUser user) {
+    public void execute(String user) {
         MatchInputData matchInputData = new MatchInputData(user);
         this.matchUseCaseInteractor.execute(matchInputData);
     }

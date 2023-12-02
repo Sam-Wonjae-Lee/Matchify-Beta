@@ -3,9 +3,10 @@ package interface_adapter.match;
 import entity.CommonUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MatchState {
-    private ArrayList<CommonUser> MATCHED_USERS;
+    private List<String> MATCHED_USERS;
     private String MATCHED_USERS_ERROR = null;
 
     public MatchState(MatchState copy) {
@@ -17,7 +18,7 @@ public class MatchState {
     }
 
 //  Getters
-    public ArrayList<CommonUser> getMatchedUsers() {
+    public List<String> getMatchedUsers() {
         return MATCHED_USERS;
     }
 
@@ -26,7 +27,7 @@ public class MatchState {
     }
 
 //  Setters
-    public void setMATCHED_USERS(ArrayList<CommonUser> matchedUsers) {
+    public void setMATCHED_USERS(List<String> matchedUsers) {
         MATCHED_USERS = matchedUsers;
     }
 
