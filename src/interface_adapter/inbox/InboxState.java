@@ -8,9 +8,15 @@ public class InboxState {
     public List<String> inbox = new ArrayList<>();
     private String username = "";
 
+    private Integer user_id = null;
+
+    private Integer friend_id = null;
+
     public InboxState(InboxState copy) {
         username = copy.username;
         inbox = copy.inbox;
+        user_id = copy.user_id;
+        friend_id = copy.friend_id;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -19,6 +25,10 @@ public class InboxState {
     public String getUsername() {
         return username;
     }
+
+    public Integer getUser_id(String username) { return user_id; }
+
+    public Integer getFriend_id(String username) { return friend_id; }
 
     public void setUsername(String username) {
         this.username = username;
