@@ -96,21 +96,4 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
     }
 
 
-    /* This is example code */
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//
-//        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
-//
-//        System.out.println("Enter user Id: ");
-//        String userId = scanner.nextLine();
-//
-//        try {
-//            getUserProfile(accessToken, userId);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-
 }
