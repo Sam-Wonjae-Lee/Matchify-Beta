@@ -1,10 +1,9 @@
 package data_access;
 
+import entity.*;
+
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class FileUserDataAccessObject {
     private final String friends_csvFile_path = "src/csv_files/user_friends.csv";
@@ -13,11 +12,28 @@ public class FileUserDataAccessObject {
     private HashMap<String, HashSet<String>> friend_data_saved = new HashMap<>();
     private HashMap<String, HashSet<String>> inbox_data_saved = new HashMap<>();
 
+    private HashMap<String, CommonUser> data_saved = new HashMap<>();
+
     private final String sample = ",";
 
-    public FileUserDataAccessObject() throws IOException {
-        this.friend_data_saved = this.read_friend();
-        this.inbox_data_saved = this.read_inbox();
+    private CommonUserFactory userFactory;
+
+    public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
+        this.userFactory = userFactory;
+        HashMap<String, HashSet<String>> friend_data = this.read_friend();
+        HashMap<String, HashSet<String>> inbox_data = this.read_inbox();
+        for(String key : friend_data.keySet()){
+            FriendsList friendsList = new FriendsList();
+            for(String user_id : friend_data.get(key)){
+                friendsList.add_friend(user_id);
+            }
+            Inbox inbox = new Inbox();
+            for(String user_id : inbox_data.get(key)){
+                inbox.add_invite(user_id);
+            }
+            CommonUser user = new this.userFactory.create(key, friendsList, inbox);
+            this.data_saved.put(key, user);
+        }
     }
 
     // read method is used for initializing the database
@@ -44,9 +60,9 @@ public class FileUserDataAccessObject {
 
     private void write_friend(){
         // writes the friend_data_saved back into the csv file.
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile_path))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.friends_csvFile_path))) {
             for (String key : this.friend_data_saved.keySet()) {
-                String new_str = String.valueOf(key);
+                String new_str = key;
                 System.out.println(this.friend_data_saved);
                 for(String val : this.friend_data_saved.get(key)){
                     new_str = new_str.concat(","+val);
@@ -63,11 +79,9 @@ public class FileUserDataAccessObject {
         // adds the friend into user_id's friend within the database.
         if(this.friend_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.friend_data_saved.get(user_id);
-            if(!new_arr.contains(friend_id)){
-                // it does not contain duplicate
-                new_arr.add(friend_id);
-                this.friend_data_saved.replace(user_id,new_arr);
-            }
+            this.data_saved.get(user_id).getFriends().add_friend(friend_id);
+            new_arr.add(friend_id);
+            this.friend_data_saved.replace(user_id,new_arr);
         }
         else {
             HashSet<String> new_arr = new HashSet<>();
@@ -91,7 +105,7 @@ public class FileUserDataAccessObject {
         HashMap<String, HashSet<String>> ans = new HashMap<>();
         try
         {
-            BufferedReader brdrd = new BufferedReader(new FileReader(this.csvFile_path));
+            BufferedReader brdrd = new BufferedReader(new FileReader(this.inbox_csvFile_path));
             while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
             {
                 String[] users = mystring.split(sample);
@@ -126,14 +140,12 @@ public class FileUserDataAccessObject {
         // adds the user into the database, if user_id already exists in the database, update it's values instead
         if(this.inbox_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.inbox_data_saved.get(user_id);
-            if(!new_arr.contains(friend_id)){
-                // it does not contain duplicate
-                new_arr.add(friend_id);
-                this.inbox_data_saved.replace(user_id,new_arr);
-            }
+            new_arr.add(friend_id);
+            this.inbox_data_saved.replace(user_id,new_arr);
+            this.data_saved.get(user_id).getInbox().add_invite(friend_id);
         }
         else {
-            HashSet<String> new_arr = new HashSet<String>();
+            HashSet<String> new_arr = new HashSet<>();
             new_arr.add(friend_id);
             this.inbox_data_saved.put(user_id,new_arr);
         }
@@ -144,11 +156,9 @@ public class FileUserDataAccessObject {
         // removes the friend from the database, if user_id already exists in the database.
         if(this.inbox_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.inbox_data_saved.get(user_id);
-            if(new_arr.contains(friend_id)){
-                // if it's in user_id's friends
-                new_arr.remove(friend_id);
-                this.inbox_data_saved.replace(user_id,new_arr);
-            }
+            this.data_saved.get(user_id).getInbox().remove_invite(friend_id);
+            new_arr.remove(friend_id);
+            this.inbox_data_saved.replace(user_id,new_arr);
         }
         this.write_inbox();
     }
