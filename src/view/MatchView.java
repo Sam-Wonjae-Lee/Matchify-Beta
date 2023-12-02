@@ -16,8 +16,6 @@ import java.beans.PropertyChangeListener;
 public class MatchView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "Matches";
 
-    private final MatchViewModel matchViewModel;
-    private final MatchController matchController;
     private final HomePageViewModel homePageViewModel;
     private final HomePageController homePageController;
 
@@ -25,12 +23,13 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
     private final JButton Back;
     private final JButton Follow;
 
-
+  
     public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController) {
         this.matchViewModel = matchViewModel;
         this.matchController = matchController;
         this.homePageViewModel = homePageViewModel;
         this.homePageController = homePageController;
+
 //      Makes matchViewModel a listener
         matchViewModel.addPropertyChangeListener(this);
 
