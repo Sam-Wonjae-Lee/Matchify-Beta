@@ -1,6 +1,7 @@
 package view;
 
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.home_page.HomePageController;
+import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchState;
 import interface_adapter.match.MatchViewModel;
@@ -17,17 +18,19 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 
     private final MatchViewModel matchViewModel;
     private final MatchController matchController;
-    private final LoggedInViewModel loggedInViewModel;
+    private final HomePageViewModel homePageViewModel;
+    private final HomePageController homePageController;
 
 //  Buttons
-    private final JButton cancel;
+    private final JButton Back;
     private final JButton Follow;
 
 
-    public MatchView(MatchViewModel matchViewModel, MatchController matchController, LoggedInViewModel loggedInViewModel) {
+    public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController) {
         this.matchViewModel = matchViewModel;
         this.matchController = matchController;
-        this.loggedInViewModel = loggedInViewModel;
+        this.homePageViewModel = homePageViewModel;
+        this.homePageController = homePageController;
 //      Makes matchViewModel a listener
         matchViewModel.addPropertyChangeListener(this);
 
@@ -42,30 +45,31 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
         Follow = new JButton(MatchViewModel.FOLLOW_BUTTON_LABEL);
         buttons.add(Follow);
 
-//      Cancel Button
-        cancel = new JButton(MatchViewModel.CANCEL_BUTTON_LABEL);
-        buttons.add(cancel);
+//      Back Button
+        Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
+        buttons.add(Back);
 
         Follow.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 new ActionListener() {
                     public void actionPerformed(ActionEvent followButton) {
-//                        check if the button that was pushed
+//                        check if the button was pushed
                         if (followButton.getSource().equals(Follow)) {
-//                            ADD INVITE CONTROLLER HERE
+//                            ADD SEND INVITE CONTROLLER HERE
 //                            UPDATE MATCH VIEW
                         }
                     }
                 }
         );
 
-        cancel.addActionListener(
+        Back.addActionListener(
 
                 new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent cancelButton) {
-                        if (cancelButton.getSource().equals(cancel)) {
-//                            USE OTHER CONTROLLER TO BRING BACK TO LoggedInView
+                    public void actionPerformed(ActionEvent backButton) {
+                        if (backButton.getSource().equals(Back)) {
+//                          USE OTHER CONTROLLER TO BRING BACK TO LoggedInView
+                            homePageController.execute();
                         }
                     }
                 }

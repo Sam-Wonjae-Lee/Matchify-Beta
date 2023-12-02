@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.io.*;
 
 
+
 public class FileUserDataAccessObject implements OpenInboxUserDataAccessInterface, MatchDataAccessInterface {
 
 
@@ -86,14 +87,7 @@ public class FileUserDataAccessObject implements OpenInboxUserDataAccessInterfac
 
         }
 
-    @Override
-    public User get(String username) {
-        return null;
-    }
 //  TODO: implement to return userID
-    @Override
-    public int getUserPlaylistID(CommonUser user) {
-        return 0;
-    }
+
 }
 

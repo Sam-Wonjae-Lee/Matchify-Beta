@@ -1,7 +1,9 @@
 package view;
 
+import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.match.MatchController;
+import interface_adapter.match.MatchState;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,8 +18,8 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
     private MatchController matchController;
     JLabel username;
     private final JButton Find_Matches;
-    public HomePageView(HomePageViewModel loggedInViewModel, MatchController matchController) {
-        this.loggedInViewModel = loggedInViewModel;
+    public HomePageView(HomePageViewModel homeInViewModel, MatchController matchController) {
+        this.loggedInViewModel = homeInViewModel;
         this.matchController = matchController;
 
         JPanel buttons = new JPanel();
@@ -38,8 +40,9 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
                     @Override
                     public void actionPerformed(ActionEvent findMatchesButton) {
                         if (findMatchesButton.getSource().equals(Find_Matches)) {
+                            HomePageState homePageState = homeInViewModel.getState();
 //                          Put the user that pressed match in the parameter
-                            matchController.execute();
+                            matchController.execute(homePageState.getUserID());
                         }
                     }
                 }
