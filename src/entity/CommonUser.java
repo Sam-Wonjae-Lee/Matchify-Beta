@@ -5,11 +5,11 @@ import java.util.List;
 
 public class CommonUser implements User{
     private final String userID;
-    private final List<String> friends;
-    private final List<String> inbox;
+    private final FriendsList friends;
+    private final Inbox inbox;
 
     // Two constructors needed for creating the User and for user id.
-    public CommonUser(String userID, List<String> friends, List<String> inbox) {
+    public CommonUser(String userID, FriendsList friends, Inbox inbox) {
         this.userID = userID;
         this.friends = friends;
         this.inbox = inbox;
@@ -19,11 +19,11 @@ public class CommonUser implements User{
         return userID;
     }
 
-    public List<String> getFriends(){
+    public FriendsList getFriends(){
         return friends;
     }
 
-    public List<String> getInbox(){
+    public Inbox getInbox(){
         return inbox;
     }
 }
