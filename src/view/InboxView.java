@@ -34,7 +34,7 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent evt) {
-                            declineController.execute(username);
+                            declineController.execute(username,friend_id);
                         }
                     }
             );
