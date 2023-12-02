@@ -18,7 +18,7 @@ Frank Peng - Graves451 (Frunk Peng)
 The Spotify Web API provides a variety of ways for developers to interact with Spotify's streaming service, like receiving information about users, playlists, and artists. Our group uses the API to retrieve the music taste of users using their Spotify user ID. \
 This is process for our implementation:
 Retrieve user ID -> Get user's playlist IDs -> Get artist IDs from playlist ID -> Get genres from artist ID \
-We use the genres from each user to determine if they match based on the similarities.\
+We use the genres from each user to determine if they match based on the similarities.
 
 For more information about the Spotify API, please visit [source](https://developer.spotify.com/documentation/web-api) and [Java Wrapper source](https://github.com/spotify-web-api-java/spotify-web-api-java)
 
@@ -44,20 +44,28 @@ For more information about the Spotify API, please visit [source](https://develo
 ### Interface Adapter
 Accept Invite:
 - AcceptController, AcceptPresenter by **Michael Pan**
+  
 Decline Invite:
 - DeclineController, DeclinePresenter by **Michael Pan**
+  
 Home Page:
 - HomePageController, HomePagePresenter, HomePageState, HomePageViewModel by **Andy Ren**
+  
 Inbox:
 - InboxState, InboxViewModel by **David Li**
+  
 Login:
 - LoginController, LoginPresenter, LoginState, LoginViewModel by **Wonjae Lee**
+  
 Match:
 - MatchController, MatchPresenter, MatchState, MatchViewModel by **Andy Ren**
+  
 Open Inbox:
 - OpenInboxController, OpenInboxPresenter by **David Li**
+  
 Send Invite:
 - SendInviteController, SendInvitePresenter by **David Li**
+  
 View:
 - ViewManagerModel by **David Li**
 - ViewModel by **Andy Ren**
@@ -65,16 +73,22 @@ View:
 ### Use Case
 Accept Invite:
 - AcceptInputBoundary, AcceptInputData, AcceptInteractor, AcceptOutputBoundary, AcceptOutputData, AcceptUserDataAccessInterface by **Michael Pan**
+  
 Decline Invite:
 - DeclineInputBoundary, DeclineInputData, DeclineInteractor, DeclineOutputBoundary, DeclineOutputData, DeclineUserDataAccessInterface by **Michael Pan**
+  
 Home Page:
 - HomePageInputBoundary, HomePageInputData, HomePageInteractor, HomePageOutputBoundary, HomePageOutputData by **Andy Ren**
+
 Login:
 - LoginInputBoundary, LoginInputData, LoginInteractor, LoginOutputBoundary, LoginOutputData, LoginUserDataAccessInterface by **Wonjae Lee**
+  
 Match:
 - MatchInputBoundary, MatchInputData, MatchInteractor, MatchOutputBoundary, MatchOutputData, MatchUserDataAccessInterface by **Andy Ren**
+  
 Open Inbox:
 - OpenInboxInputBoundary, OpenInboxInputData, OpenInboxInteractor, OpenInboxOutputBoundary, OpenInboxOutputData, OpenInboxUserDataAccessInterface by **David Li**
+  
 Send Invite:
 - SendInviteInputBoundary, SendInviteInputData, SendInviteInteractor, SendInviteOutputBoundary, SendInviteOutputData, SendInviteUserDataAccessInterface by **David Li**
 
