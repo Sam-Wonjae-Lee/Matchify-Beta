@@ -10,6 +10,4 @@ public interface MatchSpotifyAccessInterface {
     List<String> getPlaylistIds(String s);
 
     List<String> getArtistsIds(String playlistId);
-
-    CommonUser getUser(String userID);
 }
