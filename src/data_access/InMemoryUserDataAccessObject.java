@@ -12,11 +12,6 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
     private final Map<String, User> users = new HashMap<>();
 
     @Override
-    public User get(String username) {
-        return null;
-    }
-
-    @Override
     public void addToInbox(String inviteID, String userID) {
 
     }
