@@ -89,7 +89,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         // adds the friend into user_id's friend within the database.
         if(this.friend_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.friend_data_saved.get(user_id);
-            this.accounts.get(user_id).getFriends().add_friend(friend_id);
+            this.accounts.get(user_id).getFriendList().add_friend(friend_id);
             new_arr.add(friend_id);
             this.friend_data_saved.replace(user_id,new_arr);
         }
@@ -182,11 +182,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     @Override
     public void save(User user) {
 
-    }
-
-    @Override
-    public String getUsername(String userId) {
-        return null;
     }
 
     @Override

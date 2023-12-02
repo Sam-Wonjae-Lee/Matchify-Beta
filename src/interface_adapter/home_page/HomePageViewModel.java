@@ -10,20 +10,19 @@ public class HomePageViewModel extends ViewModel {
     public static final String Find_Matches_Label = "Find Matches";
     public static final String Inbox_Label = "Inbox";
     public static final String Friend_List_Label = "Friend's List";
-    private HomePageState State = new HomePageState();
+    private HomePageState state = new HomePageState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-
-
-
-
-
     public HomePageViewModel(String viewName) {
         super(viewName);
     }
 
+    public void setState(HomePageState state){
+        this.state = state;
+    }
+
     @Override
     public void firePropertyChanged() {
-        support.firePropertyChange("state", null, this.State);
+        support.firePropertyChange("state", null, this.state);
     }
 
     @Override
@@ -32,6 +31,6 @@ public class HomePageViewModel extends ViewModel {
     }
 
     public HomePageState getState() {
-        return State;
+        return state;
     }
 }

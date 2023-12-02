@@ -1,16 +1,24 @@
 package use_case.login;
 
+import entity.FriendsList;
+import entity.Inbox;
+
 public class LoginOutputData {
 
-    private final String userId;
-    private String username;
-    private String profilePictureUrl;
+    private final String userID;
+    private final String username;
+
+    private final String pfp;
+
+    private final FriendsList friendsList;
+
     private boolean useCaseFailed;
 
-    public LoginOutputData(String userId, String username, String profilePictureUrl, boolean useCaseFailed) {
-        this.userId = userId;
+    public LoginOutputData(String userId, String username, String pfp, FriendsList friendsList, boolean useCaseFailed) {
+        this.userID = userId;
         this.username = username;
-        this.profilePictureUrl = profilePictureUrl;
+        this.pfp = pfp;
+        this.friendsList = friendsList;
         this.useCaseFailed = useCaseFailed;
     }
 
@@ -18,8 +26,15 @@ public class LoginOutputData {
         return username;
     }
 
-    public String getProfilePictureUrl() {
-        return profilePictureUrl;
+    public String getUserID(){
+        return userID;
     }
 
+    public String getPfp(){
+        return pfp;
+    }
+
+    public FriendsList getFriendsList(){
+        return friendsList;
+    }
 }

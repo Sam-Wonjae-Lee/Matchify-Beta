@@ -2,12 +2,13 @@ package use_case.login;
 
 import entity.User;
 
-public interface LoginUserDataAccessInterface {
+public interface LoginSpotifyAPIDataAccessInterface {
     boolean userExists(String userId);
 
     // If user doesn't exist in csv file, we save it.
     // Otherwise, we don't
-    void save(User user);
+    String getName(String userID);
 
-    User get(String userID);
+    String getProfilePicture(String userID);
+
 }
