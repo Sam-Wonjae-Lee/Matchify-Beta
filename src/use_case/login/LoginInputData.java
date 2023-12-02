@@ -2,14 +2,15 @@ package use_case.login;
 
 public class LoginInputData {
 
-    private final String userId;
+    final private String userID;
 
-    public LoginInputData(String userId) {
-        this.userId = userId;
+    public LoginInputData(String userID) {
+        this.userID = userID;
     }
 
-    String getUserId() {
-        return userId;
+    String getUserID() {
+        return userID;
     }
+
 
 }
