@@ -1,10 +1,5 @@
 package data_access;
 
-import data_access.SpotifyApiCallUserProfileDataAccessObject;
-import data_access.SpotifyApiCallUserPlaylistDataAccessObject;
-import data_access.SpotifyApiCallPlaylistItemsDataAccessObject;
-import data_access.SpotifyApiCallArtistGenresDataAccessObject;
-
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -13,9 +8,9 @@ import org.apache.hc.core5.http.ParseException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
-import use_case.match.MatchDataAccessInterface;
+import use_case.match.MatchSpotifyAccessInterface;
 
-public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface {
+public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, MatchSpotifyAccessInterface {
 
     // ========== User Profile DAO ==========
 
