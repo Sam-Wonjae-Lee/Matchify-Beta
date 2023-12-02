@@ -8,9 +8,9 @@ public class InboxState {
     public List<String> inbox = new ArrayList<>();
     private String username = "";
 
-    private Integer user_id = null;
+    private String user_id = null;
 
-    private Integer friend_id = null;
+    private String friend_id = null;
 
     public InboxState(InboxState copy) {
         username = copy.username;
@@ -26,9 +26,9 @@ public class InboxState {
         return username;
     }
 
-    public Integer getUser_id(String username) { return user_id; }
+    public String getUser_id(String username) { return user_id; }
 
-    public Integer getFriend_id(String username) { return friend_id; }
+    public String getFriend_id(String username) { return friend_id; }
 
     public void setUsername(String username) {
         this.username = username;
