@@ -8,8 +8,8 @@ public class HomePagePresenter implements HomePageOutPutBoundary{
     private final HomePageViewModel loggedInViewModel;
     private ViewManagerModel viewManagerModel;
 
-    public HomePagePresenter(HomePageViewModel loggedInViewModel, ViewManagerModel viewManagerModel) {
-        this.loggedInViewModel = loggedInViewModel;
+    public HomePagePresenter(HomePageViewModel homePageViewModel, ViewManagerModel viewManagerModel) {
+        this.loggedInViewModel = homePageViewModel;
         this.viewManagerModel = viewManagerModel;
     }
 
