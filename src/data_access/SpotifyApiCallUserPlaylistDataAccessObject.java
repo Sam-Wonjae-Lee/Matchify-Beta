@@ -60,22 +60,6 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
         return responseData;
     }
 
-    /* This is example code */
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//
-//        String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
-//
-//        System.out.println("Enter user Id: ");
-//        String userId = scanner.nextLine();
-//
-//        // Get the user's playlists
-//        try {
-//            JSONObject playlists = getUserPlaylists(accessToken, userId);
-//            System.out.println(playlists);
-//        } catch (IOException | SpotifyWebApiException | InterruptedException | ExecutionException e) {
-//            System.out.println("Error: " + e.getMessage());
-//        }
-//    }
+
 
 }
