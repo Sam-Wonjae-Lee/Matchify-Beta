@@ -14,10 +14,10 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
-import use_case.match.MatchDataAccessInterface;
+import use_case.match.MatchSpotifyAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
-public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface{
+public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface{
 
     // ========== User Profile DAO ==========
 

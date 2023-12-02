@@ -8,8 +8,8 @@ public class DeclineController {
     private final DeclineInteractor declineInteractor;
 
     public DeclineController(DeclineInteractor declineInteractor) { this.declineInteractor= declineInteractor; }
-    public void execute(String username) {
-        DeclineInputData declineInputData = new DeclineInputData(username);
+    public void execute(String username, String friend_id) {
+        DeclineInputData declineInputData = new DeclineInputData(username, friend_id);
         declineInteractor.execute(declineInputData);
     }
 }
