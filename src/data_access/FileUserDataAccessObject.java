@@ -5,7 +5,7 @@ import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
-import use_case.match.MatchDataAccessInterface;
+import use_case.match.MatchUserAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
 
@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 
 public class FileUserDataAccessObject implements SendInviteUserDataAccessInterface, DeclineUserDataAccessInterface,
         AcceptUserDataAccessInterface, LoginUserDataAccessInterface,
-        MatchDataAccessInterface, OpenInboxUserDataAccessInterface {
+        MatchUserAccessInterface, OpenInboxUserDataAccessInterface {
     private final String friends_csvFile_path = "src/csv_files/user_friends.csv";
     private final String inbox_csvFile_path = "src/csv_files/user_inbox.csv";
 
@@ -162,6 +162,10 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             this.inbox_data_saved.replace(user_id,new_arr);
         }
         this.write_inbox();
+    }
+
+    public Collection<User> get_all_users(){
+        return this.accounts.values();
     }
 
     @Override
