@@ -1,25 +1,21 @@
 package entity;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FriendsList {
-    private HashSet<String> user_ids;
-
-    public FriendsList(){
-        // initialize FriendsList
-        this.user_ids = new HashSet<String>();
-    }
+    private final List<String> friends = new ArrayList<>();
 
     public void add_friend(String user_id){
-        this.user_ids.add(user_id);
+        this.friends.add(user_id);
     }
 
     public void remove_friend(String user_id){
         // removes invite from inbox
-        this.user_ids.remove(user_id);
+        this.friends.remove(user_id);
     }
 
-    public HashSet<String> get_friends(){
-        return this.user_ids;
+    public List<String> get_friends(){
+        return this.friends;
     }
 }

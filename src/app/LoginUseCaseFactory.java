@@ -3,14 +3,11 @@ package app;
 import entity.CommonUserFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
-import use_case.login.LoginInputBoundary;
-import use_case.login.LoginOutputBoundary;
-import use_case.login.LoginInteractor;
-import use_case.login.LoginUserDataAccessInterface;
+import use_case.login.*;
 import view.LoginView;
 
 import javax.swing.*;
@@ -24,11 +21,13 @@ public class LoginUseCaseFactory {
     public static LoginView create(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            LoggedInViewModel loggedInViewModel,
-            LoginUserDataAccessInterface userDataAccessObject) {
+            HomePageViewModel homePageViewModel,
+            LoginUserDataAccessInterface userDataAccessObject,
+            LoginSpotifyAPIDataAccessInterface spotifyAPIDataAccessInterface) {
 
         try {
-            LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, loggedInViewModel, userDataAccessObject);
+            LoginController loginController = createLoginUseCase(viewManagerModel, loginViewModel, homePageViewModel,
+                    userDataAccessObject, spotifyAPIDataAccessInterface);
             return new LoginView(loginViewModel, loginController);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
@@ -40,16 +39,17 @@ public class LoginUseCaseFactory {
     private static LoginController createLoginUseCase(
             ViewManagerModel viewManagerModel,
             LoginViewModel loginViewModel,
-            LoggedInViewModel loggedInViewModel,
-            LoginUserDataAccessInterface userDataAccessObject) throws IOException {
+            HomePageViewModel homePageViewModel,
+            LoginUserDataAccessInterface userDataAccessObject,
+            LoginSpotifyAPIDataAccessInterface spotifyAPIDataAccessObject) throws IOException {
 
         // Notice how we pass this method's parameters to the Presenter.
-        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, loggedInViewModel, loginViewModel);
+        LoginOutputBoundary loginOutputBoundary = new LoginPresenter(viewManagerModel, homePageViewModel, loginViewModel);
 
         UserFactory userFactory = new CommonUserFactory();
 
         LoginInputBoundary loginInteractor = new LoginInteractor(
-                userDataAccessObject, loginOutputBoundary);
+                userDataAccessObject, spotifyAPIDataAccessObject, loginOutputBoundary, userFactory);
 
         return new LoginController(loginInteractor);
     }

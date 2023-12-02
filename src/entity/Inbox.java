@@ -1,25 +1,22 @@
 package entity;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Inbox {
 
-    private HashSet<String> user_ids;
-
-    public Inbox(){
-        this.user_ids = new HashSet<String>();
-    }
+    private final List<String> invites = new ArrayList<>();
 
     public void add_invite(String user_id){
-        this.user_ids.add(user_id);
+        this.invites.add(user_id);
     }
 
     public void remove_invite(String user_id){
         // removes invite from inbox
-        this.user_ids.remove(user_id);
+        this.invites.remove(user_id);
     }
 
-    public HashSet<String> get_invites(){
-        return this.user_ids;
+    public List<String> get_invites(){
+        return this.invites;
     }
 }

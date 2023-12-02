@@ -1,6 +1,7 @@
 package interface_adapter.login;
 
 //import interface_adapter.logged_in.LoggedInState;
+import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.ViewManagerModel;
 import use_case.login.LoginOutputBoundary;
@@ -24,13 +25,24 @@ public class LoginPresenter implements LoginOutputBoundary{
     @Override
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the home page view.
+        HomePageState state = homePageViewModel.getState();
+        state.setUserID(response.getUserID());
+        state.setUserName(response.getUsername());
+        state.setPfp(response.getPfp());
+        state.setFriendlist(response.getFriendsList().get_friends());
+        this.homePageViewModel.setState(state);
+        this.homePageViewModel.firePropertyChanged();
 
+        this.viewManagerModel.setActiveView(homePageViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
 
     @Override
     public void prepareFailView(String error) {
-
+        LoginState loginState = loginViewModel.getState();
+        loginState.setUsernameError(error);
+        loginViewModel.firePropertyChanged();
     }
 
 }

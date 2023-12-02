@@ -27,8 +27,8 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
         inboxViewModel.addPropertyChangeListener(this);
 
         for (String username : inboxViewModel.getState().getInbox()) {
-            Integer user_id = inboxViewModel.getState().getUser_id(username);
-            Integer friend_id = inboxViewModel.getState().getFriend_id(username);
+            String user_id = inboxViewModel.getState().getUser_id(username);
+            String friend_id = inboxViewModel.getState().getFriend_id(username);
             JButton decline = new JButton("D");
             decline.addActionListener(
                     new ActionListener() {
