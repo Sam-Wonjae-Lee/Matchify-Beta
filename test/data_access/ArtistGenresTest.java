@@ -14,11 +14,13 @@ public class ArtistGenresTest {
 
     // This test checks if the retrieved list of genres is the correct type (List<String>).
     @Test
-    public void testArtistGenresType() throws IOException, ParseException, ExecutionException, InterruptedException, SpotifyWebApiException {
+    public void testArtistGenresType() throws IOException, ParseException, SpotifyWebApiException {
+        SpotifyApiCallGetInfoDataAccessObject dataAccessObject = new SpotifyApiCallGetInfoDataAccessObject();
+
         // Artist ID for J.Cole
         String artistId = "6l3HvQ5sa6mXTsMTB19rO5";
 
-        List<String> genres = SpotifyApiCallGetInfoDataAccessObject.getGenres(artistId);
+        List<String> genres = dataAccessObject.getGenres(artistId);
 
         for (String genre : genres) {
             System.out.println("Genre: " + genre);

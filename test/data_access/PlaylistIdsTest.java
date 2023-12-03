@@ -13,11 +13,13 @@ public class PlaylistIdsTest {
 
     // This test checks if the retrieved list of playlist Ids is the correct type (List<String>).
     @Test
-    public void testPlaylistIdsType() throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+    public void testPlaylistIdsType() throws ExecutionException, InterruptedException {
+        SpotifyApiCallGetInfoDataAccessObject dataAccessObject = new SpotifyApiCallGetInfoDataAccessObject();
+
         // User ID that is used as an example in documentation: https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists
         String userId = "smedjan";
 
-        List<String> playlistIds = SpotifyApiCallGetInfoDataAccessObject.getPlaylistIds(userId);
+        List<String> playlistIds = dataAccessObject.getPlaylistIds(userId);
 
         for (String playlistId : playlistIds) {
             System.out.println("Playlist ID: " + playlistId);
