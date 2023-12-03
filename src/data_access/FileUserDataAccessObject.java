@@ -35,6 +35,8 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
         HashMap<String, HashSet<String>> inbox_data = this.read_inbox();
+        System.out.println("friend: " + friend_data.keySet());
+        System.out.println("inbox: " + inbox_data.keySet());
         for(String key : friend_data.keySet()){
             FriendsList friendsList = new FriendsList();
             for(String user_id : friend_data.get(key)){
@@ -46,6 +48,11 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             }
             User user = this.userFactory.create(key, friendsList, inbox);
             this.accounts.put(key, user);
+            this.inbox_data_saved.put(key,inbox_data.get(key));
+            this.friend_data_saved.put(key,friend_data.get(key));
+            System.out.println("key:" + key);
+            System.out.println(this.inbox_data_saved);
+            System.out.println(this.friend_data_saved);
         }
     }
 
@@ -60,9 +67,13 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
             {
                 String[] users = mystring.split(sample);
-                HashSet<String> new_arr = new HashSet<>(Arrays.asList(users));
+                HashSet<String> new_arr = new HashSet<>();
+                for(int i = 1; i < users.length; i++){
+                    new_arr.add(users[i]);
+                }
                 ans.put(users[0], new_arr);
             }
+            return ans;
         }
         catch (IOException e)//catches exception in the try block
         {
@@ -76,7 +87,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.friends_csvFile_path))) {
             for (String key : this.friend_data_saved.keySet()) {
                 String new_str = key;
-                System.out.println(this.friend_data_saved);
                 for(String val : this.friend_data_saved.get(key)){
                     new_str = new_str.concat(","+val);
                 }
@@ -113,7 +123,10 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
             {
                 String[] users = mystring.split(sample);
-                HashSet<String> new_arr = new HashSet<String>(Arrays.asList(users));
+                HashSet<String> new_arr = new HashSet<>();
+                for(int i = 1; i < users.length; i++){
+                    new_arr.add(users[i]);
+                }
                 ans.put(users[0], new_arr);
             }
         }
@@ -128,7 +141,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(inbox_csvFile_path))) {
             for (String key : this.inbox_data_saved.keySet()) {
                 String new_str = String.valueOf(key);
-                System.out.println(this.inbox_data_saved);
                 for(String val : this.inbox_data_saved.get(key)){
                     new_str = new_str.concat(","+val);
                 }
@@ -188,7 +200,16 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
 
     @Override
     public void save(User user) {
-        this.accounts.put(user.getUserID(),user);
+        System.out.println("friend keyset: " + friend_data_saved.keySet());
+        System.out.println("inbox keyset: " + inbox_data_saved.keySet());
+        System.out.println("accounts keyset: " + accounts.keySet());
+        String user_id = user.getUserID();
+        this.accounts.put(user_id,user);
+        HashSet<String> empty = new HashSet<>();
+        empty.add("user1");
+        empty.add("user2");
+        this.friend_data_saved.put(user_id, empty);
+        this.inbox_data_saved.put(user_id, empty);
         this.write_inbox();
         this.write_friend();
     }
