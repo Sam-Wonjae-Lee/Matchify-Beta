@@ -15,7 +15,7 @@ public class ArtistGenresTest {
 
     // This test checks if the retrieved list of genres is the correct type (List<String>).
     @Test
-    public void testArtistGenresType() throws IOException, ParseException, SpotifyWebApiException {
+    public void testArtistGenresType() {
 
         // Artist ID for J.Cole
         String artistId = "6l3HvQ5sa6mXTsMTB19rO5";
