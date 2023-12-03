@@ -20,9 +20,9 @@ import org.json.JSONObject;
 
 public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCallInterface {
 
-    private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
-    private static final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
-    private static final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
+    private final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
+    private final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
+    private final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
 
 
     /**
@@ -33,8 +33,8 @@ public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCa
      * @param playlistId A string containing the Spotify user ID.
      * @return A JSONObject containing the response data for the items of the playlist.
      */
-    public static JSONObject getPlaylistItems(String accessToken, String playlistId)
-            throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
+    public JSONObject getPlaylistItems(String accessToken, String playlistId)
+            throws InterruptedException, ExecutionException {
 
         // Initialize the Spotify API object
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
