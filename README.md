@@ -8,7 +8,7 @@ Wonjae Lee - Sam-Wonjae-Lee (Wonjae Lee)\
 Andy Ren - 1172097\
 David Li - dvdli123 (Jiaming Li)\
 Michael Pan - Yaymichael\
-Frank Peng - Graves451 (Frunk Peng)
+Frank Peng - Graves451 (Frank Peng)
 
 [Google Doc Notes](https://docs.google.com/document/d/1fccZgwsFML7ln8LYjmQiHKzzh7x_m6ANvomALBYI5uc/edit)
 
