@@ -4,7 +4,9 @@ import entity.User;
 
 public interface SendInviteUserDataAccessInterface {
 
-    void addToInbox(String inviteID, String userID);
+    void add_friend(String inviteID, String userID);
 
     User getUser(String userID);
+
+    void addToInbox(String userID, String invitedUserID);
 }
