@@ -11,13 +11,21 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
 
     private final Map<String, User> users = new HashMap<>();
 
-    @Override
-    public void addToInbox(String inviteID, String userID) {
 
+    @Override
+    public void add_friend(String inviteID, String userID) {
+        // TODO: PLZ CHECK NAMING CONVENTION
+        users.get(inviteID).getFriendList().add_friend(userID);
     }
 
     @Override
     public User getUser(String userID) {
         return users.get(userID);
+    }
+
+    @Override
+    public void addToInbox(String userID, String invitedUserID) {
+        // TODO: PLZ CHECK NAMING CONVENTION
+        users.get(userID).getInbox().add_invite(invitedUserID);
     }
 }
