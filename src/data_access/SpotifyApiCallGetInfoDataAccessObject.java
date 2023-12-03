@@ -143,7 +143,7 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     }
 
     @Override
-    public String getName(String userID) { return this.getName(userID)};
+    public String getName(String userID) { return this.getName(userID);};
 
     @Override
     public String getProfilePicture(String userID) {
