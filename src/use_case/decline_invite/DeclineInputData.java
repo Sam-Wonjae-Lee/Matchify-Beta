@@ -1,16 +1,17 @@
 package use_case.decline_invite;
 
 public class DeclineInputData {
-    final private String user_id;
 
-    final private String inviter_id;
-    public DeclineInputData(String userId, String inviterId) {
-        user_id = userId;
-        inviter_id = inviterId;}
-    String getUser_id(){
-        return user_id;
+    final private String username;
+    final private String friend_id;
+    public DeclineInputData(String username, String friend_id) {
+        this.username = username;
+        this.friend_id = friend_id;
     }
-    String getInviter_id(){
-        return inviter_id;
+    String getUsername() { return username; }
+
+    String getFriend_id(){
+        return this.friend_id;
     }
+
 }

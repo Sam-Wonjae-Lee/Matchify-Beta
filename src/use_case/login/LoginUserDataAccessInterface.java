@@ -9,5 +9,5 @@ public interface LoginUserDataAccessInterface {
     // Otherwise, we don't
     void save(User user);
 
-    User get(String userID);
+    User getUser(String userID);
 }

@@ -9,15 +9,15 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+import entity.CommonUser;
 import org.apache.hc.core5.http.ParseException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
-import use_case.match.MatchDataAccessInterface;
-import use_case.open_inbox.OpenInboxUserDataAccessInterface;
+import use_case.match.MatchSpotifyAccessInterface;
 
-public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface{
+public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface{
 
     // ========== User Profile DAO ==========
 
@@ -138,13 +138,11 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
 
     @Override
     public boolean userExists(String userId) {
-        return false;
+        return this.
     }
 
     @Override
-    public String getName(String userID) {
-        return null;
-    }
+    public String getName(String userID) { return this.getName(userID)};
 
     @Override
     public String getProfilePicture(String userID) {

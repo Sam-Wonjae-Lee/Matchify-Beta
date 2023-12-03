@@ -12,8 +12,8 @@ public class HomePageViewModel extends ViewModel {
     public static final String Friend_List_Label = "Friend's List";
     private HomePageState state = new HomePageState();
     private final PropertyChangeSupport support = new PropertyChangeSupport(this);
-    public HomePageViewModel(String viewName) {
-        super(viewName);
+    public HomePageViewModel() {
+        super("home page");
     }
 
     public void setState(HomePageState state){

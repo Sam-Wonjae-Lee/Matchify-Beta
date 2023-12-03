@@ -1,23 +1,19 @@
 package interface_adapter.match;
 
 import entity.CommonUser;
-import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.match.MatchInputData;
-import use_case.match.MatchInputobundary;
-
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
+import use_case.match.MatchInputboundary;
 
 public class MatchController {
 
-    MatchInputobundary matchUseCaseInteractor;
+    final MatchInputboundary matchUseCaseInteractor;
 
-    public MatchController(MatchInputobundary matchUseCaseInteractor) {
+    public MatchController(MatchInputboundary matchUseCaseInteractor) {
         this.matchUseCaseInteractor = matchUseCaseInteractor;
     }
 
-    public void execute(String user) {
-        MatchInputData matchInputData = new MatchInputData(user);
+    public void execute(String userID) {
+        MatchInputData matchInputData = new MatchInputData(userID);
         this.matchUseCaseInteractor.execute(matchInputData);
     }
 

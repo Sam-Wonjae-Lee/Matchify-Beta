@@ -5,7 +5,7 @@ import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
-import use_case.match.MatchDataAccessInterface;
+import use_case.match.MatchUserAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
 
@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 
 public class FileUserDataAccessObject implements SendInviteUserDataAccessInterface, DeclineUserDataAccessInterface,
         AcceptUserDataAccessInterface, LoginUserDataAccessInterface,
-        MatchDataAccessInterface, OpenInboxUserDataAccessInterface {
+        MatchUserAccessInterface, OpenInboxUserDataAccessInterface {
     private final String friends_csvFile_path = "src/csv_files/user_friends.csv";
     private final String inbox_csvFile_path = "src/csv_files/user_inbox.csv";
 
@@ -166,40 +166,37 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
 
     @Override
     public void add_friend(String user_id, String friend_id) {
-
+        User user = this.accounts.get(user_id);
+        user.getFriendList().add_friend(friend_id);
+        this.add_to_friendList(user_id, friend_id);
     }
 
     @Override
-    public void deleteInvite(String username, String inviter) {
+    public void deleteInvite(String user_id, String friend_id) {
+        User user = this.accounts.get(user_id);
+        user.getInbox().remove_invite(friend_id);
+        this.remove_friend_request(user_id,friend_id);
     }
 
     @Override
-    public boolean userExists(String userId) {
-        return false;
+    public boolean userExists(String user_id) {
+        return this.accounts.containsKey(user_id);
     }
 
     @Override
     public void save(User user) {
-
+        this.accounts.put(user.getUserID(),user);
+        this.write_inbox();
+        this.write_friend();
     }
 
     @Override
-    public List<String> getUserPlaylistID(String user) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
-        return null;
-    }
-
-    @Override
-    public User get(String username) {
-        return null;
-    }
-
-    @Override
-    public void addToInbox(String inviteID, String userID) {
-
+    public void addToInbox(String inviter_id, String receiver_id) {
+        this.add_friend_request(receiver_id, inviter_id);
     }
 
     @Override
     public User getUser(String userID) {
-        return null;
+        return this.accounts.get(userID);
     }
 }
