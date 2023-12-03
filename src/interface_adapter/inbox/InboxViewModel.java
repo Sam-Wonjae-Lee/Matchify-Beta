@@ -7,16 +7,13 @@ import java.beans.PropertyChangeSupport;
 
 public class InboxViewModel extends ViewModel {
     public final String TITLE_LABEL = "Inbox View";
-
-    public static final String DECLINE_BUTTON_LABEL = "D";
-
+    public static final String ACCEPT_BUTTON_LABEL = "Accept";
+    public static final String DECLINE_BUTTON_LABEL = "Decline";
+    public static final String BACK_BUTTON_LABEL = "Back";
     private InboxState state = new InboxState();
 
-    public static final String BACK_BUTTON_LABEL = "Back";
-    private String inboxOwner;
-
     public InboxViewModel() {
-        super("Inbox");
+        super("inbox");
     }
 
     public void setState(InboxState state) {
@@ -35,13 +32,5 @@ public class InboxViewModel extends ViewModel {
 
     public InboxState getState() {
         return state;
-    }
-
-    public String getInboxOwner() {
-        return inboxOwner;
-    }
-
-    public void setInboxOwner(String inboxOwner) {
-        this.inboxOwner = inboxOwner;
     }
 }
