@@ -31,6 +31,7 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
 
         JPanel buttons = new JPanel();
 //      username title
+//      TODO: fix this username thing later
         username = new JLabel();
 //      Find matches button
         Find_Matches = new JButton(HomePageViewModel.Find_Matches_Label);
@@ -40,7 +41,7 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
         Friends_List = new JButton(HomePageViewModel.Friend_List_Label);
         buttons.add(Friends_List);
 //      Title
-        JLabel title = new JLabel();
+        JLabel title = new JLabel(homeInViewModel.getViewName());
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 //      Profile pic replace url later with API
