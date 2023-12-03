@@ -13,9 +13,6 @@ public class MatchViewModel extends ViewModel {
     public static final String TITLE_LABEL = "Matches";
     public static final String BACK_BUTTON_LABEL = "Back";
     private MatchState state = new MatchState();
-    public final String USER_NAME_LABEL_1 = this.state.getUSERNAMES().get(0);
-    public final String USER_NAME_LABEL_2 = this.state.getUSERNAMES().get(1);
-    public final String USER_NAME_LABEL_3 = this.state.getUSERNAMES().get(2);
 
 
     public MatchViewModel() {

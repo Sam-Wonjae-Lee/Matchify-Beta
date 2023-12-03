@@ -28,38 +28,18 @@ public class InboxFactory {
     private InboxFactory() {}
 
     public static InboxView create(
-            ViewManagerModel viewManagerModel,
-            InboxViewModel inboxViewModel,
-            AcceptUserDataAccessInterface acceptUserDataAccessInterface,
-            DeclineUserDataAccessInterface declineUserDataAccessInterface) {
+        ViewManagerModel viewManagerModel,
+        InboxViewModel inboxViewModel,
+        AcceptUserDataAccessInterface acceptUserDataAccessInterface,
+        DeclineUserDataAccessInterface declineUserDataAccessInterface) {
 
-        try {
-            OpenInboxController openInboxController = createOpenInboxUseCase(viewManagerModel, inboxViewModel, acceptUserDataAccessInterface, declineUserDataAccessInterface);
-            AcceptPresenter acceptPresenter = new AcceptPresenter();
-            AcceptInteractor acceptInteractor = new AcceptInteractor(acceptUserDataAccessInterface, acceptPresenter);
-            AcceptController acceptController = new AcceptController(acceptInteractor);
-            DeclinePresenter declinePresenter = new DeclinePresenter();
-            DeclineInteractor declineInteractor = new DeclineInteractor(declineUserDataAccessInterface, declinePresenter);
-            DeclineController declineController = new DeclineController(declineInteractor);
-            return new InboxView(inboxViewModel, declineController, acceptController);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
-
-        return null;
-    }
-
-    private static OpenInboxController createOpenInboxUseCase(
-            ViewManagerModel viewManagerModel,
-            InboxViewModel inboxViewModel,
-            AcceptUserDataAccessInterface acceptUserDataAccessInterface,
-            DeclineUserDataAccessInterface declineUserDataAccessInterface) throws IOException {
-        OpenInboxOutputBoundary openInboxOutputBoundary = new OpenInboxPresenter(inboxViewModel, viewManagerModel);
-
-        OpenInboxInputBoundary openInboxInputBoundary = new OpenInboxInteractor(
-                acceptUserDataAccessInterface, openInboxOutputBoundary);
-
-        return new OpenInboxController(openInboxInputBoundary);
+        AcceptPresenter acceptPresenter = new AcceptPresenter();
+        AcceptInteractor acceptInteractor = new AcceptInteractor(acceptUserDataAccessInterface, acceptPresenter);
+        AcceptController acceptController = new AcceptController(acceptInteractor);
+        DeclinePresenter declinePresenter = new DeclinePresenter();
+        DeclineInteractor declineInteractor = new DeclineInteractor(declineUserDataAccessInterface, declinePresenter);
+        DeclineController declineController = new DeclineController(declineInteractor);
+        return new InboxView(inboxViewModel, declineController, acceptController);
     }
 
 }

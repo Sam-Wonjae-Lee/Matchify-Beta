@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchState {
-    private List<String> MATCHED_USERSNAMES;
+    private List<String> MATCHED_USERSNAMES = new ArrayList<>();
     private String MATCHED_USERS_ERROR = null;
     private String CLIENT_USERID;
     private List<String> MATCHED_USERSID;
