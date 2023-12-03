@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import entity.Playlist;
 import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
@@ -16,75 +17,68 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class HomePageView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "logged in";
-    private final HomePageViewModel loggedInViewModel;
+    public final String viewName = "main page";
+    private final HomePageViewModel homePageViewModel;
     private MatchController matchController;
     private OpenInboxController openInboxController;
-    JLabel username;
-    private final JButton Find_Matches;
-    private final JButton Inbox;
-    private final JButton Friends_List;
-    public HomePageView(HomePageViewModel homeInViewModel, MatchController matchController, OpenInboxController openInboxController) {
-        this.loggedInViewModel = homeInViewModel;
+    private final JButton match;
+    private final JButton inbox;
+
+    public HomePageView(HomePageViewModel homePageViewModel,
+                        MatchController matchController,
+                        OpenInboxController openInboxController) {
+        this.homePageViewModel = homePageViewModel;
         this.matchController = matchController;
         this.openInboxController = openInboxController;
+        homePageViewModel.addPropertyChangeListener(this);
+
+
+        JLabel title = new JLabel(HomePageViewModel.TITLE_LABEL + homePageViewModel.getState().getUserName());
+
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        List<String> friendsList = homePageViewModel.getState().getFriendlist();
 
         JPanel buttons = new JPanel();
-//      username title
-//      TODO: fix this username thing later
-        username = new JLabel();
-//      Find matches button
-        Find_Matches = new JButton(HomePageViewModel.Find_Matches_Label);
-        buttons.add(Find_Matches);
-        Inbox = new JButton(HomePageViewModel.Inbox_Label);
-        buttons.add(Inbox);
-        Friends_List = new JButton(HomePageViewModel.Friend_List_Label);
-        buttons.add(Friends_List);
-//      Title
-        JLabel title = new JLabel(homeInViewModel.getViewName());
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        match = new JButton(HomePageViewModel.MATCH_BUTTON_LABEL);
+        buttons.add(match);
+        inbox = new JButton(HomePageViewModel.INBOX_BUTTON_LABEL);
+        buttons.add(inbox);
 
-//      Profile pic replace url later with API
-        ProfilePic.displayImageFrame("https://example.com/image.jpg");
+        JPanel friends = new JPanel();
+        for (String friend_id: friendsList){
+            friends.add(new JLabel(friend_id));
+        }
 
-//      Match button listener
-        Find_Matches.addActionListener(
+        match.addActionListener(
                 new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent findMatchesButton) {
-                        if (findMatchesButton.getSource().equals(Find_Matches)) {
-                            HomePageState homePageState = homeInViewModel.getState();
-//                          Put the user that pressed match in the parameter
-                            matchController.execute(homePageState.getUserID());
-                        }
+                    public void actionPerformed(ActionEvent e) {
+                        HomePageState state = homePageViewModel.getState();
+                        matchController.execute(state.getUserID());
                     }
                 }
         );
 
-//      Inbox Button
-        Inbox.addActionListener(
+        inbox.addActionListener(
                 new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent inboxButton) {
-                        if (inboxButton.getSource().equals(Inbox)) {
-                            HomePageState homePageState = homeInViewModel.getState();
-                            openInboxController.execute(homePageState.getUserName());
-                        }
+
+                    public void actionPerformed(ActionEvent e) {
+                        HomePageState state = homePageViewModel.getState();
+                        openInboxController.execute(state.getUserID());
                     }
                 }
         );
 
-        this.add(username);
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         this.add(title);
+        this.add(friends);
         this.add(buttons);
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
     }
-
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-
+    public void propertyChange(PropertyChangeEvent evt){
+        HomePageState state = (HomePageState) evt.getNewValue();
     }
 }
