@@ -37,7 +37,7 @@ public class SpotifyApiCallArtistGenresDataAccessObject implements SpotifyApiCal
      * "href":"https://api.spotify.com/v1/artists/6l3HvQ5sa6mXTsMTB19rO5","type":"ARTIST","uri":"spotify:artist:6l3HvQ5sa6mXTsMTB19rO5"}
      * */
     public JSONObject getArtistGenres(String accessToken, String artistId)
-            throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException, ParseException {
+            throws IOException, SpotifyWebApiException, ParseException {
 
         // Initialize the Spotify API object
         SpotifyApi spotifyApi = new SpotifyApi.Builder()

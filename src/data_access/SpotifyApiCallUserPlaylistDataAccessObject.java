@@ -33,7 +33,7 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
      * @return A JSONObject containing the response data for the user's playlist.
      * */
     public JSONObject getUserPlaylists(String accessToken, String userId)
-            throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException {
+            throws InterruptedException, ExecutionException {
 
         // Initialize the Spotify API object
         SpotifyApi spotifyApi = new SpotifyApi.Builder()

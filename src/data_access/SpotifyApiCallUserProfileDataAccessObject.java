@@ -5,10 +5,19 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import java.net.URL;
+import java.net.URI;
 import java.net.HttpURLConnection;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
 
+import org.apache.hc.core5.http.ParseException;
 import org.json.JSONObject;
+
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.User;
+import se.michaelthelin.spotify.requests.data.users_profile.GetUsersProfileRequest;
+
 
 /*
  * SpotifyApiCallArtistGenresDataAccessObject contains the function to retrieve the "get user's profile" response.
@@ -22,6 +31,31 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
     private final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
 
 
+    /**
+    * Check if a Spotify user ID exists.
+    *
+    * @param accessToken A string containing the temporary access token.
+    * @param userId     A string containing the Spotify artist ID.
+    * @return true if the user ID exists, false or error otherwise.
+    */
+    public boolean checkUserExists(String accessToken, String userId) throws IOException, ParseException, SpotifyWebApiException {
+
+        // Initialize the Spotify API object
+        SpotifyApi spotifyApi = new SpotifyApi.Builder()
+                .setClientId(CLIENT_ID)
+                .setClientSecret(CLIENT_SECRET)
+                .setRedirectUri(URI.create(REDIRECT_URI))
+                .setAccessToken(accessToken)
+                .build();
+
+        // Use a request
+        GetUsersProfileRequest request = spotifyApi
+                .getUsersProfile(userId)
+                .build();
+
+        User userProfile = request.execute();
+        return userProfile != null;
+    }
 
 
     /**
