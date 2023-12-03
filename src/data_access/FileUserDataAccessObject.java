@@ -29,7 +29,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     private final Map<String, HashSet<String>> friend_data_saved = new HashMap<>();
     private final Map<String, HashSet<String>> inbox_data_saved = new HashMap<>();
 
-    private final HashMap<String, Map<String, Integer>> genre_data_saved = new HashMap<>();
+    private final HashMap<String, HashMap<String, Integer>> genre_data_saved = new HashMap<>();
 
     private final Map<String, User> accounts = new HashMap<>();
 
@@ -62,19 +62,20 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         }
     }
 
-    private HashMap<String, Map<String, Integer>> read_user_genre(){
+    private HashMap<String, HashMap<String, Integer>> read_user_genre(){
         // TODO: MAKE THIS WORK, and TEST IT
         String mystring;
-        HashMap<String, HashSet<String>> ans = new HashMap<>();
+        HashMap<String, HashMap<String, Integer>> ans = new HashMap<>();
         try
         {
             BufferedReader brdrd = new BufferedReader(new FileReader(this.genre_csvFile_path));
             while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
             {
                 String[] users = mystring.split(sample);
-                HashSet<String> new_arr = new HashSet<>();
+                HashMap<String, Integer> new_arr = new HashMap<>();
                 for(int i = 1; i < users.length; i++){
-                    new_arr.add(users[i]);
+                    //TODO: PLZ FIX THIS
+                    new_arr.put("hello",Integer.parseInt(users[i]));
                 }
                 ans.put(users[0], new_arr);
             }
