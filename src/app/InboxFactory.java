@@ -40,6 +40,7 @@ public class InboxFactory {
         DeclineInteractor declineInteractor = new DeclineInteractor(declineUserDataAccessInterface, declinePresenter);
         DeclineController declineController = new DeclineController(declineInteractor);
         return new InboxView(inboxViewModel, declineController, acceptController);
+
     }
 
 }
