@@ -15,8 +15,8 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
-import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.match.MatchSpotifyAccessInterface;
+import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
 public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface{
 
@@ -148,8 +148,7 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     }
 
     @Override
-
-    public boolean userExists(String userId) throws IOException, ParseException, SpotifyWebApiException {
+    public boolean userExists(String userId) {
         SpotifyApiCallAccessTokenDataAccessObject accessTokenDataAccessObject = new SpotifyApiCallAccessTokenDataAccessObject();
         SpotifyApiCallUserProfileDataAccessObject dataAccessObject = new SpotifyApiCallUserProfileDataAccessObject();
         if (dataAccessObject.checkUserExists(accessTokenDataAccessObject.getAccessToken(),userId)) {
@@ -163,7 +162,6 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     public String getName(String userID) throws IOException {
         return getUsername(userID);
     }
-
 
     @Override
     public String getProfilePicture(String userID) {
