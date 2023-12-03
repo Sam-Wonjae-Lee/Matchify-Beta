@@ -5,8 +5,8 @@ import entity.CommonUser;
 public class MatchInputData {
     private final String userID;
 
-    public MatchInputData(String user) {
-        this.userID = user;
+    public MatchInputData(String userID) {
+        this.userID = userID;
     }
 
     public String getUserID() {
