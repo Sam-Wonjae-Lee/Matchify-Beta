@@ -66,7 +66,7 @@ public class Main {
         SpotifyApiCallGetInfoDataAccessObject spotifyAPIDataAccessInterface;
         spotifyAPIDataAccessInterface = new SpotifyApiCallGetInfoDataAccessObject();
 
-        HomePageView homePageView = HomePageFactory.create(viewManagerModel, );
+        HomePageView homePageView = HomePageFactory.create(viewManagerModel, homePageViewModel, matchViewModel, inboxViewModel, userDataAccessObject, userDataAccessObject, spotifyAPIDataAccessInterface);
         views.add(homePageView, homePageView.viewName);
 
         InboxView inboxView = InboxFactory.create();
