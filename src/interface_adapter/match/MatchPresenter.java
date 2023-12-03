@@ -19,9 +19,9 @@ public class MatchPresenter implements MatchOutputBoundary {
     @Override
     public void prepareSuccessView(MatchOutPutData userList) {
         MatchState matchState = matchViewModel.getState();
-        matchState.setMATCHED_USERS(userList.getuserArrayList());
+        matchState.setMATCHED_USERSID(userList.getuserIDArrayList());
         matchState.setMATCHED_USERSNAMES(userList.getUserNames());
-        matchState.setCLIENT_USERID(userList.getClientUser().getUserID());
+        matchState.setCLIENT_USERID(userList.getClientUserID());
         this.matchViewModel.setState(matchState);
         matchViewModel.firePropertyChanged();
         this.viewManagerModel.setActiveView(matchViewModel.getViewName());
