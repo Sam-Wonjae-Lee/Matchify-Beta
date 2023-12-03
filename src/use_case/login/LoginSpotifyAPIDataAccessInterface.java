@@ -10,4 +10,5 @@ public interface LoginSpotifyAPIDataAccessInterface {
 
     String getProfilePicture(String userID);
 
+    boolean userExists(String user_id);
 }
