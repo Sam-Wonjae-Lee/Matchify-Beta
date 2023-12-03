@@ -8,6 +8,7 @@ import java.util.List;
 
 public class MatchState {
     private List<User> MATCHED_USERS;
+    private List<String> MATCHED_USERSNAMES;
     private String MATCHED_USERS_ERROR = null;
 
     public MatchState(MatchState copy) {
@@ -23,6 +24,8 @@ public class MatchState {
         return MATCHED_USERS;
     }
 
+    public List<String> getUSERNAMES() { return MATCHED_USERSNAMES; }
+
     public String getMatchedUsersError() {
         return MATCHED_USERS_ERROR;
     }
@@ -35,5 +38,7 @@ public class MatchState {
     public void setMATCHED_USERS_ERROR(String matchedUsersError) {
         MATCHED_USERS_ERROR = matchedUsersError;
     }
+
+    public void setMATCHED_USERSNAMES(List<String> matchedUsersNames) { MATCHED_USERSNAMES = matchedUsersNames; }
 
 }
