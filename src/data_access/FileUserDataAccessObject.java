@@ -1,6 +1,7 @@
 package data_access;
 
 import entity.*;
+import jdk.jshell.spi.ExecutionControl;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
@@ -12,6 +13,7 @@ import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
 
 import java.io.*;
+import java.lang.reflect.InaccessibleObjectException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -22,8 +24,12 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     private final String friends_csvFile_path = "src/csv_files/user_friends.csv";
     private final String inbox_csvFile_path = "src/csv_files/user_inbox.csv";
 
+    private final String genre_csvFile_path = "src/csv_files/user_genre.csv";
+
     private final Map<String, HashSet<String>> friend_data_saved = new HashMap<>();
     private final Map<String, HashSet<String>> inbox_data_saved = new HashMap<>();
+
+    private final HashMap<String, HashMap<String, Integer>> genre_data_saved = new HashMap<>();
 
     private final Map<String, User> accounts = new HashMap<>();
 
@@ -55,6 +61,56 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             System.out.println(this.friend_data_saved);
         }
     }
+
+    private HashMap<String, HashMap<String, Integer>> read_user_genre(){
+        // TODO: MAKE THIS WORK, and TEST IT
+        String mystring;
+        HashMap<String, HashMap<String, Integer>> ans = new HashMap<>();
+        try
+        {
+            BufferedReader brdrd = new BufferedReader(new FileReader(this.genre_csvFile_path));
+            while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
+            {
+                String[] users = mystring.split(sample);
+                HashMap<String, Integer> new_arr = new HashMap<>();
+                for(int i = 1; i < users.length; i++){
+                    //TODO: PLZ FIX THIS
+                    new_arr.put("hello",Integer.parseInt(users[i]));
+                }
+                ans.put(users[0], new_arr);
+            }
+            return ans;
+        }
+        catch (IOException e)//catches exception in the try block
+        {
+            e.printStackTrace();//Prints this throwable and its backtrace
+        }
+        return ans;
+    }
+
+    public void add_user_genre(String user_id, HashMap<String, Map<String, Integer>> genres){
+        // adds a user's genre into the database, if the user already have previous entries inside of the genre, then update it
+        // TODO: implement this function
+        int a = 0;
+    }
+
+    private void write_genre(){
+        // TODO: implement this function properly
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.genre_csvFile_path))) {
+            for (String key : this.friend_data_saved.keySet()) {
+                String new_str = key;
+                for(String val : this.friend_data_saved.get(key)){
+                    new_str = new_str.concat(","+val);
+                }
+                writer.write(new_str);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     // read method is used for initializing the database
     private HashMap<String, HashSet<String>> read_friend(){
