@@ -49,7 +49,11 @@ public class InboxFactory {
         return null;
     }
 
-    private static OpenInboxController createOpenInboxUseCase(ViewManagerModel viewManagerModel,InboxViewModel inboxViewModel, AcceptUserDataAccessInterface acceptUserDataAccessInterface, DeclineUserDataAccessInterface declineUserDataAccessInterface) throws IOException {
+    private static OpenInboxController createOpenInboxUseCase(
+            ViewManagerModel viewManagerModel,
+            InboxViewModel inboxViewModel,
+            AcceptUserDataAccessInterface acceptUserDataAccessInterface,
+            DeclineUserDataAccessInterface declineUserDataAccessInterface) throws IOException {
         OpenInboxOutputBoundary openInboxOutputBoundary = new OpenInboxPresenter(inboxViewModel, viewManagerModel);
 
         OpenInboxInputBoundary openInboxInputBoundary = new OpenInboxInteractor(

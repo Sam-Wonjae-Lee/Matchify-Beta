@@ -164,7 +164,8 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                     public void actionPerformed(ActionEvent backButton) {
                         if (backButton.getSource().equals(Back)) {
 //                          USE OTHER CONTROLLER TO BRING BACK TO LoggedInView
-                            homePageController.execute();
+                            MatchState state = matchViewModel.getState();
+                            homePageController.execute(state.getCLIENT_USERID());
                         }
                     }
                 }
