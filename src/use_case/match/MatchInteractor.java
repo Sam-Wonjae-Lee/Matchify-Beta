@@ -72,7 +72,7 @@ public class MatchInteractor implements MatchInputboundary{
         List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
         Collections.sort(sorted_keys);
 
-        List<User> matchedUsers = new ArrayList<>();
+        List<String> matchedUsers = new ArrayList<>();
 
 //      This for loop adds users to List from Hashmap
         for (int keys : sorted_keys) {
@@ -80,7 +80,7 @@ public class MatchInteractor implements MatchInputboundary{
             if (!client_user.equals(ans.get(keys))) {
 //              adds to list until length is 3
                 if (matchedUsers.size() != 3) {
-                    matchedUsers.add(ans.get(keys));
+                    matchedUsers.add(ans.get(keys).getUserID());
                 }
                 else {
                     break;
@@ -92,7 +92,7 @@ public class MatchInteractor implements MatchInputboundary{
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }
         else {
-            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers, client_user);
+            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers, client_user.getUserID());
             matchPresenter.prepareSuccessView(matchOutPutData);
         }
 

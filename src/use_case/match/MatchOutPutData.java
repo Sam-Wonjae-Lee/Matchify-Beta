@@ -9,29 +9,27 @@ import java.util.List;
 
 public class MatchOutPutData {
     boolean useCaseFailed;
-    final List<User> userArrayList;
-    User clientUser;
+    final List<String> userIDArrayList;
+    String clientUserID;
     private SpotifyApiCallGetInfoDataAccessObject spotifyAPI;
 
-    public MatchOutPutData(boolean useCaseFailed, List<User> userArrayList, User clientUser) {
+    public MatchOutPutData(boolean useCaseFailed, List<String> userIDArrayList, String clientUserID) {
         this.useCaseFailed = useCaseFailed;
-        this.userArrayList = userArrayList;
-        this.clientUser = clientUser;
+        this.userIDArrayList = userIDArrayList;
+        this.clientUserID = clientUserID;
         this.spotifyAPI = new SpotifyApiCallGetInfoDataAccessObject();
     }
-    public List<User> getuserArrayList() {
-        return userArrayList;
+    public List<String> getuserIDArrayList() {
+        return userIDArrayList;
     }
     public List<String> getUserNames() {
-        ArrayList<String> UserNameList = new ArrayList<>();
-        for (User i : userArrayList) {
-            String name = spotifyAPI.getName(i.getUserID());
-            UserNameList.add(name);
-        }
-        return UserNameList;
+        ArrayList<String> userNamesList = new ArrayList<>();
+        for (String ID : userIDArrayList)
+            userNamesList.add(spotifyAPI.getName(ID));
+        return userNamesList;
     }
 
-    public User getClientUser() {
-        return clientUser;
+    public String getClientUserID() {
+        return clientUserID;
     }
 }

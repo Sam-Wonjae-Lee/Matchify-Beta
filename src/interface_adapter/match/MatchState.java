@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MatchState {
-    private List<User> MATCHED_USERS;
     private List<String> MATCHED_USERSNAMES;
     private String MATCHED_USERS_ERROR = null;
     private String CLIENT_USERID;
+    private List<String> MATCHED_USERSID;
 
     public MatchState(MatchState copy) {
-        MATCHED_USERS = copy.MATCHED_USERS;
+        MATCHED_USERSID = copy.MATCHED_USERSID;
         MATCHED_USERS_ERROR = copy.MATCHED_USERS_ERROR;
     }
 
@@ -21,11 +21,9 @@ public class MatchState {
     }
 
 //  Getters
-    public List<User> getMatchedUsers() {
-        return MATCHED_USERS;
-    }
-
     public List<String> getUSERNAMES() { return MATCHED_USERSNAMES; }
+
+    public List<String> getMATCHED_USERSID() { return MATCHED_USERSID; }
 
     public String getMatchedUsersError() {
         return MATCHED_USERS_ERROR;
@@ -36,13 +34,12 @@ public class MatchState {
     }
 
 //  Setters
-    public void setMATCHED_USERS(List<User> matchedUsers) {
-        MATCHED_USERS = matchedUsers;
-    }
 
     public void setCLIENT_USERID(String clientUserid) {
         CLIENT_USERID = clientUserid;
     }
+
+    public void setMATCHED_USERSID(List<String> matchedUsersID) { MATCHED_USERSID = matchedUsersID; }
 
     public void setMATCHED_USERS_ERROR(String matchedUsersError) {
         MATCHED_USERS_ERROR = matchedUsersError;
