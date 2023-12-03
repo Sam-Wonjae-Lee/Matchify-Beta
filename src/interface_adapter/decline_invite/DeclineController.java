@@ -1,7 +1,9 @@
 package interface_adapter.decline_invite;
 
+import use_case.decline_invite.DeclineInputBoundary;
 import use_case.decline_invite.DeclineInteractor;
 import use_case.decline_invite.DeclineInputData;
+
 
 public class DeclineController {
 
