@@ -11,8 +11,8 @@ public class OpenInboxController {
         this.openInboxUseCaseInteractor = openInboxUseCaseInteractor;
     }
 
-    public void execute(String username){
-        OpenInboxInputData openInboxInputData= new OpenInboxInputData(username);
+    public void execute(String user_id, String username){
+        OpenInboxInputData openInboxInputData= new OpenInboxInputData(user_id, username);
 
         openInboxUseCaseInteractor.execute(openInboxInputData);
     }

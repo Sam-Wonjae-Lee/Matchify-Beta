@@ -6,8 +6,6 @@ import interface_adapter.inbox.InboxViewModel;
 import interface_adapter.open_inbox.OpenInboxPresenter;
 import use_case.open_inbox.*;
 
-import java.io.IOException;
-
 import static org.junit.Assert.*;
 
 public class OpenInboxTest {
@@ -17,7 +15,7 @@ public class OpenInboxTest {
     @org.junit.Test
     public void testSuccess(){
         String username = "testUser";
-        OpenInboxInputData inputData = new OpenInboxInputData(username);
+        OpenInboxInputData inputData = new OpenInboxInputData(username, username);
         OpenInboxUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
 
 
