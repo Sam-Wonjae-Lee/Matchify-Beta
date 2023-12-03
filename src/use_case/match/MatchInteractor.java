@@ -89,7 +89,7 @@ public class MatchInteractor implements MatchInputboundary{
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }
         else {
-            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers);
+            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers, client_user);
             matchPresenter.prepareSuccessView(matchOutPutData);
         }
 

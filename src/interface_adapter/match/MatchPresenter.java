@@ -21,6 +21,7 @@ public class MatchPresenter implements MatchOutputBoundary {
         MatchState matchState = matchViewModel.getState();
         matchState.setMATCHED_USERS(userList.getuserArrayList());
         matchState.setMATCHED_USERSNAMES(userList.getUserNames());
+        matchState.setCLIENT_USERID(userList.getClientUser().getUserID());
         this.matchViewModel.setState(matchState);
         matchViewModel.firePropertyChanged();
         this.viewManagerModel.setActiveView(matchViewModel.getViewName());

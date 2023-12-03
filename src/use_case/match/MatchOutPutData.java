@@ -10,11 +10,13 @@ import java.util.List;
 public class MatchOutPutData {
     boolean useCaseFailed;
     final List<User> userArrayList;
+    User clientUser;
     private SpotifyApiCallGetInfoDataAccessObject spotifyAPI;
 
-    public MatchOutPutData(boolean useCaseFailed, List<User> userArrayList) {
+    public MatchOutPutData(boolean useCaseFailed, List<User> userArrayList, User clientUser) {
         this.useCaseFailed = useCaseFailed;
         this.userArrayList = userArrayList;
+        this.clientUser = clientUser;
         this.spotifyAPI = new SpotifyApiCallGetInfoDataAccessObject();
     }
     public List<User> getuserArrayList() {
@@ -27,5 +29,9 @@ public class MatchOutPutData {
             UserNameList.add(name);
         }
         return UserNameList;
+    }
+
+    public User getClientUser() {
+        return clientUser;
     }
 }

@@ -69,17 +69,11 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
         buttons.add(Back);
 
 //      Matched Users
-//        List<User> listUsers = matchViewModel.getState().getMatchedUsers();
-//        User matched_user1 = listUsers.get(0);
-//        User matched_user2 = listUsers.get(1);
-//        User matched_user3 = listUsers.get(2);
-
-//        String matched_user1_name = spotifyAPI.getName(matched_user1.getUserID());
-//        String matched_user2_name = spotifyAPI.getName(matched_user2.getUserID());
-//        String matched_user3_name = spotifyAPI.getName(matched_user3.getUserID());
 
 //      JLabels
-//        UserName_1 = JLabel(MatchViewModel);
+        UserName_1 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_1);
+        UserName_2 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_2);
+        UserName_3 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_3);
 
 
         Invite_1.addActionListener(
@@ -89,7 +83,8 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_1)) {
 //                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user1
-
+                            MatchState matchState = matchViewModel.getState();
+                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMatchedUsers().get(0).getUserID());
                         }
                     }
                 }
@@ -102,6 +97,8 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_2)) {
 //                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user2
+                            MatchState matchState = matchViewModel.getState();
+                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMatchedUsers().get(1).getUserID());
                         }
                     }
                 }
@@ -114,6 +111,8 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_3)) {
 //                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user3
+                            MatchState matchState = matchViewModel.getState();
+                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMatchedUsers().get(2).getUserID());
                         }
                     }
                 }
