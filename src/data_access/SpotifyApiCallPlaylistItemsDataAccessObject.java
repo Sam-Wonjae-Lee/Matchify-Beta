@@ -46,7 +46,7 @@ public class SpotifyApiCallPlaylistItemsDataAccessObject implements SpotifyApiCa
 
         // Create a request to get playlist items
         GetPlaylistsItemsRequest request = spotifyApi.getPlaylistsItems(playlistId)
-                .limit(50) // You can adjust the limit as needed (50 is the max limit)
+                .limit(10) // You can adjust the limit as needed (50 is the max limit)
                 .offset(0)  // You can adjust the offset as needed (offset should be 0)
                 .build();
 
