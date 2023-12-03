@@ -15,6 +15,7 @@ import org.json.JSONObject;
 import org.json.JSONArray;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
+import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.match.MatchSpotifyAccessInterface;
 
 public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface{
