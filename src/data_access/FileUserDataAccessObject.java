@@ -164,10 +164,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         this.write_inbox();
     }
 
-    public Collection<User> get_all_users(){
-        return this.accounts.values();
-    }
-
     @Override
     public void add_friend(String user_id, String friend_id) {
         User user = this.accounts.get(user_id);

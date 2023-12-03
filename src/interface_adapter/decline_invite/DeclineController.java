@@ -5,11 +5,12 @@ import use_case.decline_invite.DeclineInputData;
 
 public class DeclineController {
 
-    private final DeclineInteractor declineInteractor;
+    private final DeclineInputBoundary declineInteractor;
 
-    public DeclineController(DeclineInteractor declineInteractor) { this.declineInteractor= declineInteractor; }
-    public void execute(String username, String friend_id) {
-        DeclineInputData declineInputData = new DeclineInputData(username, friend_id);
+    public DeclineController(DeclineInputBoundary declineInteractor) { this.declineInteractor= declineInteractor; }
+  
+    public void execute(String user_id, String inviter_id) {
+        DeclineInputData declineInputData = new DeclineInputData(user_id, inviter_id);
         declineInteractor.execute(declineInputData);
     }
 }
