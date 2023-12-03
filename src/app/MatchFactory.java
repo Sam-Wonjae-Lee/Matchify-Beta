@@ -11,7 +11,7 @@ import use_case.home_page.*;
 import interface_adapter.send_invite.SendInviteController;
 import interface_adapter.send_invite.SendInvitePresenter;
 import use_case.home_page.HomePageInputBoundary;
-import use_case.home_page.HomePageInteracter;
+import use_case.home_page.HomePageInteractor;
 import use_case.home_page.HomePageOutPutBoundary;
 import use_case.match.*;
 import use_case.send_invite.SendInviteInputBoundary;
@@ -31,13 +31,15 @@ public class MatchFactory {
                                    MatchUserAccessInterface matchUserAccessInterface,
                                    MatchSpotifyAccessInterface matchSpotifyAccessInterface,
                                    HomePageUserDataAccessInterface homePageUserDataAccessInterface,
-                                   HomePageSpotifyAPIDataAccessInterface homePageSpotifyAPIDataAccessObject) {
+                                   HomePageSpotifyAPIDataAccessInterface homePageSpotifyAPIDataAccessObject,
+                                   SendInviteUserDataAccessInterface sendInviteUserDataAccessInterface) {
         try {
             HomePageController homePageController = createHomePageController(viewManagerModel, homePageViewModel,
                     homePageUserDataAccessInterface, homePageSpotifyAPIDataAccessObject);
             MatchController matchController = createMatchController(viewManagerModel, matchViewModel,
                     matchUserAccessInterface, matchSpotifyAccessInterface);
-            return new MatchView(matchViewModel, matchController, homePageViewModel, homePageController);
+            SendInviteController sendInviteController = createSendInviteController(viewManagerModel, sendInviteUserDataAccessInterface);
+            return new MatchView(matchViewModel, matchController, homePageViewModel, homePageController, sendInviteController);
         }
         catch(IOException e){
             JOptionPane.showMessageDialog(null, "Could not open user data file.");
