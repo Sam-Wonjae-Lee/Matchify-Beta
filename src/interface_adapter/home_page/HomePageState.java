@@ -20,8 +20,8 @@ public class HomePageState {
         this.error = copy.error;
     }
 
+    // Because of the previous copy constructor, the default constructor must be explicit.
     public HomePageState() {
-
     }
 
     public String getUserID() {
@@ -52,7 +52,7 @@ public class HomePageState {
         return friendlist;
     }
 
-    public void setFriendlist(List<String> lst){
+    public void setFriendsList(List<String> lst){
         this.friendlist = lst;
     }
 
