@@ -1,13 +1,11 @@
 package interface_adapter.match;
 
-import entity.CommonUser;
-import entity.User;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Arrays;
 
 public class MatchState {
-    private List<String> MATCHED_USERSNAMES = new ArrayList<>();
+    private List<String> MATCHED_USERSNAMES = new ArrayList<>(Arrays.asList("user1", "user2", "user3"));
     private String MATCHED_USERS_ERROR = null;
     private String CLIENT_USERID;
     private List<String> MATCHED_USERSID;

@@ -41,8 +41,11 @@ public class LoginInteractor implements LoginInputBoundary{
                 userDataAccessObject.save(user);
             }
             User user = userDataAccessObject.getUser(userId);
-            LoginOutputData outputData = new LoginOutputData(userId, name, pfp, user.getFriendList(), false);
-            System.out.println("hidsdfdsf");
+            LoginOutputData outputData = new LoginOutputData(
+                    userId, name, pfp, user.getFriendList().get_friends(), false);
+            System.out.println("userid: " + userId);
+            System.out.println("name: " + name);
+            System.out.println("friends: " + user.getFriendList().get_friends());
             loginPresenter.prepareSuccessView(outputData);
         }
     }
