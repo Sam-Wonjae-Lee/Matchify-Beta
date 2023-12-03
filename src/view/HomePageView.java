@@ -17,7 +17,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class HomePageView extends JPanel implements ActionListener, PropertyChangeListener {
-    public final String viewName = "main page";
+    public final String viewName = "home page";
     private final HomePageViewModel homePageViewModel;
     private MatchController matchController;
     private OpenInboxController openInboxController;
