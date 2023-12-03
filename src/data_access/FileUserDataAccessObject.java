@@ -85,7 +85,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         }
     }
 
-    private void add_to_friendList(String user_id, String friend_id){
+    public void add_to_friendList(String user_id, String friend_id){
         // adds the friend into user_id's friend within the database.
         if(this.friend_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.friend_data_saved.get(user_id);
@@ -137,7 +137,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         }
     }
 
-    private void add_friend_request(String user_id, String friend_id){
+    public void add_friend_request(String user_id, String friend_id){
         // adds the user into the database, if user_id already exists in the database, update it's values instead
         if(this.inbox_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.inbox_data_saved.get(user_id);
@@ -153,7 +153,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         this.write_inbox();
     }
 
-    private void remove_friend_request(String user_id, String friend_id){
+    public void remove_friend_request(String user_id, String friend_id){
         // removes the friend from the database, if user_id already exists in the database.
         if(this.inbox_data_saved.containsKey(user_id)){
             HashSet<String> new_arr = this.inbox_data_saved.get(user_id);

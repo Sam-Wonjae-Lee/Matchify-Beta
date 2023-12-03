@@ -32,7 +32,9 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
         this.openInboxController = openInboxController;
         homePageViewModel.addPropertyChangeListener(this);
 
+
         JLabel title = new JLabel(HomePageViewModel.TITLE_LABEL + homePageViewModel.getState().getUserName());
+
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         List<String> friendsList = homePageViewModel.getState().getFriendlist();
 
