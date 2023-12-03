@@ -26,6 +26,8 @@ public class HomePageInteractor implements HomePageInputBoundary{
         String pfp = spotifyAPIDataAccessObject.getProfilePicture(user_id);
         System.out.println(userDataAccessObject.getUser(user_id));
         User user = userDataAccessObject.getUser(user_id);
+        System.out.println(user_id);
+        System.out.println(user);
         HomePageOutputData outputData = new HomePageOutputData(user_id, name, pfp, user.getFriendList().get_friends());
         presenter.prepareSuccessView(outputData);
     }
