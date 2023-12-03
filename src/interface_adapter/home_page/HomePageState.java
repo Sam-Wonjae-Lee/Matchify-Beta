@@ -8,6 +8,8 @@ public class HomePageState {
     private String username;
     private String pfp;
 
+    private String error = null;
+
     private List<String> friendlist;
 
     public HomePageState(HomePageState copy) {
@@ -15,6 +17,7 @@ public class HomePageState {
         this.username = copy.username;
         this.pfp = copy.pfp;
         this.friendlist = copy.friendlist;
+        this.error = copy.error;
     }
 
     public HomePageState() {
@@ -51,5 +54,12 @@ public class HomePageState {
 
     public void setFriendlist(List<String> lst){
         this.friendlist = lst;
+    }
+
+    public void setError(String error){
+        this.error = error;
+    }
+    public String getError(){
+        return error;
     }
 }

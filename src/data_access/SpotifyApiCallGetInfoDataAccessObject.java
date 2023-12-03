@@ -14,11 +14,13 @@ import org.apache.hc.core5.http.ParseException;
 import org.json.JSONObject;
 import org.json.JSONArray;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import use_case.home_page.HomePageSpotifyAPIDataAccessInterface;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
 import use_case.match.MatchSpotifyAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 
-public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface{
+public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface,
+        LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface, HomePageSpotifyAPIDataAccessInterface {
 
     // ========== User Profile DAO ==========
 
@@ -69,8 +71,9 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     /**
      * Returns list of playlist IDs from Spotify user ID.
      * @param userId A String containing the Spotify user ID.
+
      * @return A list containing the ID of each playlist that belongs to the Spotify user. */
-    public List<String> getPlaylistIds(String userId) throws ExecutionException, InterruptedException {
+    public List<String> getPlaylistId(String userId) throws ExecutionException, InterruptedException {
         SpotifyApiCallAccessTokenDataAccessObject accessTokenDataAccessObject = new SpotifyApiCallAccessTokenDataAccessObject();
         SpotifyApiCallUserPlaylistDataAccessObject userPlaylistDataAccessObject = new SpotifyApiCallUserPlaylistDataAccessObject();
 
@@ -97,11 +100,13 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
      * @return A list containing the ID of each artist that features in the Spotify playlist.
      * @throws IOException
      * */
-    public List<String> getArtistsIds(String playlistId) throws ExecutionException, InterruptedException {
+
+    public List<String> getArtistsId(String playlistId) throws ExecutionException, InterruptedException {
         SpotifyApiCallAccessTokenDataAccessObject accessTokenDataAccessObject = new SpotifyApiCallAccessTokenDataAccessObject();
         SpotifyApiCallPlaylistItemsDataAccessObject playlistItemsDataAccessObject = new SpotifyApiCallPlaylistItemsDataAccessObject();
 
         String accessToken = accessTokenDataAccessObject.getAccessToken();
+
         List<String> artistIds = new ArrayList<>();
 
         JSONObject response = playlistItemsDataAccessObject.getPlaylistItems(accessToken, playlistId);
@@ -129,12 +134,14 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     /**
      * Returns list of artist IDs from Spotify playlist ID.
      * @param artistId A String containing the Spotify artist ID.
+
      * @return A list containing all the genres from the Spotify artist. */
-    public List<String> getGenres(String artistId) throws IOException, ParseException, SpotifyWebApiException {
+    public List<String> getGenre(String artistId) throws IOException, ParseException, SpotifyWebApiException {
         SpotifyApiCallAccessTokenDataAccessObject accessTokenDataAccessObject = new SpotifyApiCallAccessTokenDataAccessObject();
         SpotifyApiCallArtistGenresDataAccessObject artistGenresDataAccessObject = new SpotifyApiCallArtistGenresDataAccessObject();
 
         String accessToken = accessTokenDataAccessObject.getAccessToken();
+
         List<String> genres = new ArrayList<>();
 
         JSONObject response = artistGenresDataAccessObject.getArtistGenres(accessToken, artistId);
@@ -148,6 +155,36 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     }
 
     @Override
+    public String getName(String userID) {
+        try{
+            return getUsername(userID);
+        }
+        catch(IOException e){
+            return null;
+        }
+    }
+
+    @Override
+    public String getProfilePicture(String userID){
+        try{
+            return getUserProfilePicture(userID);
+        }
+        catch(IOException e){
+            return null;
+
+        }
+    }
+
+    @Override
+    public List<String> getGenres(String artistId) {
+        try{
+            return getGenre(artistId);
+        }
+        catch(IOException | ParseException | SpotifyWebApiException e){
+            return null;
+        }
+    }
+    @Override
     public boolean userExists(String userId) {
         SpotifyApiCallAccessTokenDataAccessObject accessTokenDataAccessObject = new SpotifyApiCallAccessTokenDataAccessObject();
         SpotifyApiCallUserProfileDataAccessObject dataAccessObject = new SpotifyApiCallUserProfileDataAccessObject();
@@ -159,14 +196,23 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     }
 
     @Override
-    public String getName(String userID) throws IOException {
-        return getUsername(userID);
+    public List<String> getPlaylistIds(String s) {
+        try{
+            return getPlaylistId(s);
+        }
+        catch(ExecutionException | InterruptedException e){
+            return null;
+        }
     }
 
     @Override
-    public String getProfilePicture(String userID) {
-        return getProfilePicture(userID);
-    }
+    public List<String> getArtistsIds(String playlistId) {
+        try{
+            return getArtistsId(playlistId);
+        }
+        catch(ExecutionException | InterruptedException e){
+            return null;
+        }
 
 
 }
