@@ -6,6 +6,7 @@ import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchState;
 import interface_adapter.match.MatchViewModel;
+import interface_adapter.send_invite.SendInviteController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +23,7 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
     private final HomePageController homePageController;
     private final MatchViewModel matchViewModel;
     private final MatchController matchController;
+    private final SendInviteController sendInviteController;
 
 //  Buttons
     private final JButton Back;
@@ -30,11 +32,12 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
     private final JButton Invite_3;
 
 
-    public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController) {
+    public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController, SendInviteController sendInviteController) {
         this.matchViewModel = matchViewModel;
         this.matchController = matchController;
         this.homePageViewModel = homePageViewModel;
         this.homePageController = homePageController;
+        this.sendInviteController = sendInviteController;
 
 //      Makes matchViewModel a listener
         matchViewModel.addPropertyChangeListener(this);
@@ -50,8 +53,9 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
         Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL1);
         Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL2);
         Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL3);
-
         buttons.add(Invite_1);
+        buttons.add(Invite_2);
+        buttons.add(Invite_3);
 
 //      Back Button
         Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
@@ -71,8 +75,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_1)) {
 //                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user1
-//                            UPDATE MATCH VIEW
-
                         }
                     }
                 }
@@ -85,7 +87,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_2)) {
 //                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user2
-//                            UPDATE MATCH VIEW
                         }
                     }
                 }
@@ -98,7 +99,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_3)) {
 //                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user3
-//                            UPDATE MATCH VIEW
                         }
                     }
                 }

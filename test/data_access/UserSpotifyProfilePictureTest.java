@@ -10,10 +10,12 @@ public class UserSpotifyProfilePictureTest {
 
     @Test
     public void testUserProfilePictureNotEmptyString() throws IOException {
+        SpotifyApiCallGetInfoDataAccessObject dataAccessObject = new SpotifyApiCallGetInfoDataAccessObject();
+
         // Spotify User ID for team member Wonjae Lee
         String userId = "ayimkorean";
 
-        String profilePictureUrl = SpotifyApiCallGetInfoDataAccessObject.getUserProfilePicture(userId);
+        String profilePictureUrl = dataAccessObject.getUserProfilePicture(userId);
 
         System.out.println("Profile Picture: " + profilePictureUrl);
 

@@ -14,10 +14,12 @@ public class ArtistIdsTest {
 
     // This test checks if the retrieved list of playlist Ids is the correct type (List<String>).
     @Test
-    public void testArtistIdsType() throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+    public void testArtistIdsType() throws IOException, ExecutionException, InterruptedException {
+        
         // Playlist Id from https://open.spotify.com/playlist/16triPxo855oYUXNyNQHxR?si=f0785503f8a54e75
         String playlistId = "16triPxo855oYUXNyNQHxR";
         MatchSpotifyAccessInterface dataAccessObject = new SpotifyApiCallGetInfoDataAccessObject();
+
         List<String> artistIds = dataAccessObject.getArtistsIds(playlistId);
 
         for (String artistId : artistIds) {

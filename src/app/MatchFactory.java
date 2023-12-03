@@ -8,7 +8,16 @@ import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchPresenter;
 import interface_adapter.match.MatchViewModel;
 import use_case.home_page.*;
+import interface_adapter.send_invite.SendInviteController;
+import interface_adapter.send_invite.SendInvitePresenter;
+import use_case.home_page.HomePageInputBoundary;
+import use_case.home_page.HomePageInteracter;
+import use_case.home_page.HomePageOutPutBoundary;
 import use_case.match.*;
+import use_case.send_invite.SendInviteInputBoundary;
+import use_case.send_invite.SendInviteInteractor;
+import use_case.send_invite.SendInviteOutputBoundary;
+import use_case.send_invite.SendInviteUserDataAccessInterface;
 import view.MatchView;
 
 import javax.swing.*;
@@ -59,6 +68,14 @@ public class MatchFactory {
                 homePagePresenter, spotifyAPIDataAccessObject, userDataAccessInterface);
 
         return new HomePageController(homePageInteractor);
+    }
+
+    private static SendInviteController createSendInviteController(ViewManagerModel viewManagerModel, SendInviteUserDataAccessInterface sendInviteUserDataAccessInterface) {
+        SendInviteOutputBoundary sendInvitePresenter = new SendInvitePresenter();
+
+        SendInviteInputBoundary sendInviteInteracter = new SendInviteInteractor(sendInviteUserDataAccessInterface, sendInvitePresenter);
+
+        return new SendInviteController(sendInviteInteracter);
     }
 }
 

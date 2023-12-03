@@ -14,7 +14,8 @@ public class PlaylistIdsTest {
 
     // This test checks if the retrieved list of playlist Ids is the correct type (List<String>).
     @Test
-    public void testPlaylistIdsType() throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+    public void testPlaylistIdsType() throws ExecutionException, InterruptedException {
+
         // User ID that is used as an example in documentation: https://developer.spotify.com/documentation/web-api/reference/get-list-users-playlists
         String userId = "smedjan";
         MatchSpotifyAccessInterface spotifyDataAccessObject = new SpotifyApiCallGetInfoDataAccessObject();

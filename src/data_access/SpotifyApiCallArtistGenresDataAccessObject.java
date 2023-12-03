@@ -18,9 +18,9 @@ import java.util.concurrent.ExecutionException;
 
 public class SpotifyApiCallArtistGenresDataAccessObject implements SpotifyApiCallInterface{
 
-    private static final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
-    private static final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
-    private static final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
+    private final String CLIENT_ID = SpotifyApiCallInterface.CLIENT_ID;
+    private final String CLIENT_SECRET = SpotifyApiCallInterface.CLIENT_SECRET;
+    private final String REDIRECT_URI = SpotifyApiCallInterface.REDIRECT_URI;
 
 
     /**
@@ -36,8 +36,8 @@ public class SpotifyApiCallArtistGenresDataAccessObject implements SpotifyApiCal
      * "popularity":84,"name":"J. Cole","id":"6l3HvQ5sa6mXTsMTB19rO5","externalUrls":{"externalUrls":{"spotify":"https://open.spotify.com/artist/6l3HvQ5sa6mXTsMTB19rO5"}},
      * "href":"https://api.spotify.com/v1/artists/6l3HvQ5sa6mXTsMTB19rO5","type":"ARTIST","uri":"spotify:artist:6l3HvQ5sa6mXTsMTB19rO5"}
      * */
-    public static JSONObject getArtistGenres(String accessToken, String artistId)
-            throws IOException, SpotifyWebApiException, InterruptedException, ExecutionException, ParseException {
+    public JSONObject getArtistGenres(String accessToken, String artistId)
+            throws IOException, SpotifyWebApiException, ParseException {
 
         // Initialize the Spotify API object
         SpotifyApi spotifyApi = new SpotifyApi.Builder()
