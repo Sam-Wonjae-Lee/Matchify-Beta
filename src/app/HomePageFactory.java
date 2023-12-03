@@ -12,9 +12,7 @@ import interface_adapter.match.MatchPresenter;
 import interface_adapter.match.MatchViewModel;
 import interface_adapter.open_inbox.OpenInboxController;
 import interface_adapter.open_inbox.OpenInboxPresenter;
-import use_case.home_page.HomePageInputBoundary;
-import use_case.home_page.HomePageInteracter;
-import use_case.home_page.HomePageOutPutBoundary;
+import use_case.home_page.*;
 import use_case.match.MatchInteractor;
 import use_case.match.MatchOutputBoundary;
 import use_case.match.MatchSpotifyAccessInterface;
@@ -37,12 +35,14 @@ public class HomePageFactory {
             HomePageViewModel homePageViewModel,
             MatchViewModel matchViewModel,
             InboxViewModel inboxViewModel,
+            HomePageUserDataAccessInterface userDataAccessInterface,
+            HomePageSpotifyAPIDataAccessInterface homePageSpotifyAPIDataAccessInterface,
             MatchUserAccessInterface matchUserAccessInterface,
             OpenInboxUserDataAccessInterface openInboxUserDataAccessInterface,
             MatchSpotifyAccessInterface matchSpotifyAccessInterface) {
 
         try {
-            HomePageController homePageController = createHomePageUseCase(viewManagerModel, homePageViewModel);
+            HomePageController homePageController = createHomePageUseCase(viewManagerModel, homePageViewModel, homePageSpotifyAPIDataAccessInterface, homePageUserDataAccessInterface);
             MatchPresenter matchPresenter = new MatchPresenter(matchViewModel, viewManagerModel);
             MatchInteractor matchInteractor = new MatchInteractor(matchPresenter, matchUserAccessInterface, matchSpotifyAccessInterface);
             MatchController matchController = new MatchController(matchInteractor);
@@ -59,14 +59,17 @@ public class HomePageFactory {
 
     private static HomePageController createHomePageUseCase (
             ViewManagerModel viewManagerModel,
-            HomePageViewModel homePageViewModel) throws IOException {
+            HomePageViewModel homePageViewModel,
+            HomePageSpotifyAPIDataAccessInterface homePageSpotifyAPIDataAccessInterface,
+            HomePageUserDataAccessInterface userDataAccessInterface) throws IOException {
 
         HomePageOutPutBoundary homePageOutPutBoundary = new HomePagePresenter(homePageViewModel, viewManagerModel);
 
         UserFactory userFactory = new CommonUserFactory();
 
-        HomePageInputBoundary homepageInteractor = new HomePageInteracter(
-                homePageOutPutBoundary);
+        HomePageInputBoundary homepageInteractor = new HomePageInteractor(
+                homePageOutPutBoundary, homePageSpotifyAPIDataAccessInterface, userDataAccessInterface
+        );
 
         return new HomePageController(homepageInteractor);
 
