@@ -76,7 +76,8 @@ public class Main {
 
         views.add(homePageView, homePageView.viewName);
 
-        InboxView inboxView = InboxFactory.create(viewManagerModel, inboxViewModel, userDataAccessObject, userDataAccessObject);
+        InboxView inboxView = InboxFactory.create(viewManagerModel, inboxViewModel, userDataAccessObject,
+                userDataAccessObject, homePageViewModel, userDataAccessObject, spotifyAPIDataAccessInterface);
         views.add(inboxView, inboxView.viewName);
 
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homePageViewModel, userDataAccessObject, spotifyAPIDataAccessInterface);

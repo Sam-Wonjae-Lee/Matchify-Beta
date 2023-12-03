@@ -1,6 +1,6 @@
 package use_case.home_page;
 
-import entity.FriendsList;
+import java.util.List;
 
 public class HomePageOutputData {
     private final String userID;
@@ -8,13 +8,13 @@ public class HomePageOutputData {
 
     private final String pfp;
 
-    private final FriendsList friendsList;
+    private final List<String> friends;
 
-    public HomePageOutputData(String userID, String username, String pfp, FriendsList friendsList) {
+    public HomePageOutputData(String userID, String username, String pfp, List<String> friendsList) {
         this.userID = userID;
         this.username = username;
         this.pfp = pfp;
-        this.friendsList = friendsList;
+        this.friends = friendsList;
     }
 
     public String getUsername() {
@@ -29,7 +29,7 @@ public class HomePageOutputData {
         return pfp;
     }
 
-    public FriendsList getFriendsList(){
-        return friendsList;
+    public List<String> getFriendsList(){
+        return friends;
     }
 }

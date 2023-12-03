@@ -62,7 +62,7 @@ public class MatchFactory {
             ViewManagerModel viewManagerModel,
             HomePageViewModel homePageViewModel,
             HomePageUserDataAccessInterface userDataAccessInterface,
-            HomePageSpotifyAPIDataAccessInterface spotifyAPIDataAccessObject) {
+            HomePageSpotifyAPIDataAccessInterface spotifyAPIDataAccessObject) throws IOException{
 
         HomePageOutPutBoundary homePagePresenter = new HomePagePresenter(homePageViewModel, viewManagerModel);
 
@@ -72,7 +72,9 @@ public class MatchFactory {
         return new HomePageController(homePageInteractor);
     }
 
-    private static SendInviteController createSendInviteController(ViewManagerModel viewManagerModel, SendInviteUserDataAccessInterface sendInviteUserDataAccessInterface) {
+    private static SendInviteController createSendInviteController(
+            ViewManagerModel viewManagerModel,
+            SendInviteUserDataAccessInterface sendInviteUserDataAccessInterface) throws IOException{
         SendInviteOutputBoundary sendInvitePresenter = new SendInvitePresenter();
 
         SendInviteInputBoundary sendInviteInteracter = new SendInviteInteractor(sendInviteUserDataAccessInterface, sendInvitePresenter);

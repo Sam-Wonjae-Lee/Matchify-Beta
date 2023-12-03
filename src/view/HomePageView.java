@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 import entity.Playlist;
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.inbox.InboxState;
@@ -24,6 +25,8 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
     private final JButton match;
     private final JButton inbox;
 
+    JLabel username;
+
     public HomePageView(HomePageViewModel homePageViewModel,
                         MatchController matchController,
                         OpenInboxController openInboxController) {
@@ -32,10 +35,13 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
         this.openInboxController = openInboxController;
         homePageViewModel.addPropertyChangeListener(this);
 
-
-        JLabel title = new JLabel(HomePageViewModel.TITLE_LABEL + homePageViewModel.getState().getUserName());
-
+        JPanel title = new JPanel();
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel usernameInfo = new JLabel("Logged in: ");
+        username = new JLabel();
+        title.add(usernameInfo);
+        title.add(username);
+
         List<String> friendsList = homePageViewModel.getState().getFriendlist();
 
         JPanel buttons = new JPanel();
@@ -60,10 +66,10 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
 
         inbox.addActionListener(
                 new ActionListener() {
-
+                    @Override
                     public void actionPerformed(ActionEvent e) {
                         HomePageState state = homePageViewModel.getState();
-                        openInboxController.execute(state.getUserID());
+                        openInboxController.execute(state.getUserID(), state.getUserName());
                     }
                 }
         );
@@ -78,7 +84,10 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
     public void actionPerformed(ActionEvent evt) {
         System.out.println("Click " + evt.getActionCommand());
     }
+
+    @Override
     public void propertyChange(PropertyChangeEvent evt){
         HomePageState state = (HomePageState) evt.getNewValue();
+        username.setText(state.getUserName());
     }
 }

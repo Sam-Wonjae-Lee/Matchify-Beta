@@ -2,6 +2,7 @@ package view;
 
 import interface_adapter.decline_invite.DeclineController;
 import interface_adapter.accept_invite.AcceptController;
+import interface_adapter.home_page.HomePageController;
 import interface_adapter.inbox.InboxState;
 import interface_adapter.inbox.InboxViewModel;
 
@@ -20,21 +21,33 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
     private final JButton[] accept;
 
     private final JButton[] decline;
+
+    private final JButton back;
     private final DeclineController declineController;
     private final AcceptController acceptController;
 
-    public InboxView(InboxViewModel inboxViewModel, DeclineController declineController, AcceptController acceptController) {
+    private final HomePageController homePageController;
+
+    JLabel username;
+
+    public InboxView(InboxViewModel inboxViewModel, DeclineController declineController, AcceptController acceptController, HomePageController homePageController) {
 
         this.declineController = declineController;
         this.acceptController = acceptController;
         this.inboxViewModel = inboxViewModel;
+        this.homePageController = homePageController;
         this.inboxViewModel.addPropertyChangeListener(this);
 
-        JLabel title = new JLabel(inboxViewModel.getState().getUsername() + " 's Inbox");
+        JPanel title = new JPanel();
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JLabel usernameInfo = new JLabel("'s inbox");
+        username = new JLabel();
+        title.add(username);
+        title.add(usernameInfo);
         List<String> inbox = inboxViewModel.getState().getInbox();
         accept = new JButton[inbox.size()];
         decline = new JButton[inbox.size()];
+        back = new JButton("Back");
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.add(title);
@@ -66,6 +79,17 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
             );
             this.add(invite);
         }
+        back.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        InboxState state = inboxViewModel.getState();
+                        homePageController.execute(state.getUser_id());
+                    }
+                }
+        );
+        JPanel buttons = new JPanel();
+        buttons.add(back);
+        this.add(buttons);
     }
 
     @Override
@@ -76,5 +100,6 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         InboxState state = (InboxState) evt.getNewValue();
+        username.setText(state.getUsername());
     }
 }
