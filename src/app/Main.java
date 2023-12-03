@@ -13,6 +13,7 @@ import interface_adapter.ViewManagerModel;
 // Import all user data access interface
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
+import use_case.home_page.HomePageUserDataAccessInterface;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.match.MatchUserAccessInterface;
@@ -66,10 +67,11 @@ public class Main {
         SpotifyApiCallGetInfoDataAccessObject spotifyAPIDataAccessInterface;
         spotifyAPIDataAccessInterface = new SpotifyApiCallGetInfoDataAccessObject();
 
-        HomePageView homePageView = HomePageFactory.create(viewManagerModel, homePageViewModel, matchViewModel, inboxViewModel, userDataAccessObject, userDataAccessObject, spotifyAPIDataAccessInterface);
+
+        HomePageView homePageView = HomePageFactory.create(viewManagerModel, homePageViewModel, matchViewModel, inboxViewModel, userDataAccessObject, spotifyAPIDataAccessInterface, userDataAccessObject, userDataAccessObject, spotifyAPIDataAccessInterface);
         views.add(homePageView, homePageView.viewName);
 
-        InboxView inboxView = InboxFactory.create();
+        InboxView inboxView = InboxFactory.create(viewManagerModel, inboxViewModel, userDataAccessObject, userDataAccessObject);
         views.add(inboxView, inboxView.viewName);
 
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homePageViewModel, userDataAccessObject, spotifyAPIDataAccessInterface);
