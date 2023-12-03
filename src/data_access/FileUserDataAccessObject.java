@@ -41,8 +41,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
         HashMap<String, HashSet<String>> inbox_data = this.read_inbox();
-        System.out.println("friend: " + friend_data.keySet());
-        System.out.println("inbox: " + inbox_data.keySet());
         for(String key : friend_data.keySet()){
             FriendsList friendsList = new FriendsList();
             for(String user_id : friend_data.get(key)){
@@ -56,10 +54,11 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             this.accounts.put(key, user);
             this.inbox_data_saved.put(key,inbox_data.get(key));
             this.friend_data_saved.put(key,friend_data.get(key));
-            System.out.println("key:" + key);
-            System.out.println(this.inbox_data_saved);
-            System.out.println(this.friend_data_saved);
         }
+        //checks that the DAO is storing users in hashmap
+        System.out.println("friend: " + friend_data.keySet());
+        System.out.println("inbox: " + inbox_data.keySet());
+        System.out.println("accounts: " + accounts.keySet());
     }
 
     private HashMap<String, HashMap<String, Integer>> read_user_genre(){
@@ -256,9 +255,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
 
     @Override
     public void save(User user) {
-        System.out.println("friend keyset: " + friend_data_saved.keySet());
-        System.out.println("inbox keyset: " + inbox_data_saved.keySet());
-        System.out.println("accounts keyset: " + accounts.keySet());
         String user_id = user.getUserID();
         this.accounts.put(user_id,user);
         HashSet<String> empty = new HashSet<>();

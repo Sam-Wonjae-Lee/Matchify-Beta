@@ -8,7 +8,7 @@ public class InboxState {
     public List<String> inbox = new ArrayList<>();
     private String username = "";
 
-    private String user_id = null;
+    private String user_id = "";
 
     public InboxState(InboxState copy) {
         username = copy.username;
