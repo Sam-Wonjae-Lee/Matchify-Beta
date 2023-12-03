@@ -21,7 +21,7 @@ public class HomePagePresenter implements HomePageOutPutBoundary{
         state.setUserID(response.getUserID());
         state.setUserName(response.getUsername());
         state.setPfp(response.getPfp());
-        state.setFriendlist(response.getFriendsList().get_friends());
+        state.setFriendsList(response.getFriendsList().get_friends());
         this.homePageViewModel.setState(state);
         this.homePageViewModel.firePropertyChanged();
 

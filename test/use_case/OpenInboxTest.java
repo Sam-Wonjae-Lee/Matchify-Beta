@@ -26,7 +26,7 @@ public class OpenInboxTest {
         OpenInboxOutputBoundary successPresenter = new OpenInboxPresenter(inboxViewModel, viewManagerModel){
             @Override
             public void prepareSuccessView(OpenInboxOutputData user){
-                assertEquals(userRepository.get("testUser").getInbox(), user.getInbox());
+                assertEquals(userRepository.getUser("testUser").getInbox().get_invites(), user.getInbox());
                 assertEquals("testUser", user.getUsername());
             }
 
