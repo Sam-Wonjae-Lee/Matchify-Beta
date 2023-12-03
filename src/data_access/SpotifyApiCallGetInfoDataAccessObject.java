@@ -148,7 +148,7 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
     }
 
     @Override
-    public boolean userExists(String userId) throws IOException, ParseException, SpotifyWebApiException {
+    public boolean userExists(String userId) {
         SpotifyApiCallAccessTokenDataAccessObject accessTokenDataAccessObject = new SpotifyApiCallAccessTokenDataAccessObject();
         SpotifyApiCallUserProfileDataAccessObject dataAccessObject = new SpotifyApiCallUserProfileDataAccessObject();
         if (dataAccessObject.checkUserExists(accessTokenDataAccessObject.getAccessToken(),userId)) {

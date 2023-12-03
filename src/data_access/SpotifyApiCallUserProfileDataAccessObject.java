@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 import se.michaelthelin.spotify.SpotifyApi;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.exceptions.detailed.InternalServerErrorException;
 import se.michaelthelin.spotify.model_objects.specification.User;
 import se.michaelthelin.spotify.requests.data.users_profile.GetUsersProfileRequest;
 
@@ -38,23 +39,31 @@ public class SpotifyApiCallUserProfileDataAccessObject implements SpotifyApiCall
     * @param userId     A string containing the Spotify artist ID.
     * @return true if the user ID exists, false or error otherwise.
     */
-    public boolean checkUserExists(String accessToken, String userId) throws IOException, ParseException, SpotifyWebApiException {
+    public boolean checkUserExists(String accessToken, String userId){
+        try {
+            // Initialize the Spotify API object
+            SpotifyApi spotifyApi = new SpotifyApi.Builder()
+                    .setClientId(CLIENT_ID)
+                    .setClientSecret(CLIENT_SECRET)
+                    .setRedirectUri(URI.create(REDIRECT_URI))
+                    .setAccessToken(accessToken)
+                    .build();
 
-        // Initialize the Spotify API object
-        SpotifyApi spotifyApi = new SpotifyApi.Builder()
-                .setClientId(CLIENT_ID)
-                .setClientSecret(CLIENT_SECRET)
-                .setRedirectUri(URI.create(REDIRECT_URI))
-                .setAccessToken(accessToken)
-                .build();
+            // Use a request
+            GetUsersProfileRequest request = spotifyApi
+                    .getUsersProfile(userId)
+                    .build();
 
-        // Use a request
-        GetUsersProfileRequest request = spotifyApi
-                .getUsersProfile(userId)
-                .build();
+            User userProfile = request.execute();
+            return userProfile != null;
+        } catch (InternalServerErrorException e) {
+//            e.printStackTrace();
+            return false;
+        } catch (IOException | ParseException | SpotifyWebApiException e) {
+//            e.printStackTrace();
+            return false;
+        }
 
-        User userProfile = request.execute();
-        return userProfile != null;
     }
 
 
