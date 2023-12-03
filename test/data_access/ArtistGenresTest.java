@@ -5,6 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import use_case.match.MatchSpotifyAccessInterface;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +19,9 @@ public class ArtistGenresTest {
         // Artist ID for J.Cole
         String artistId = "6l3HvQ5sa6mXTsMTB19rO5";
 
-        List<String> genres = SpotifyApiCallGetInfoDataAccessObject.getGenres(artistId);
+        MatchSpotifyAccessInterface dataAccessObject = new SpotifyApiCallGetInfoDataAccessObject();
+
+        List<String> genres = dataAccessObject.getGenres(artistId);
 
         for (String genre : genres) {
             System.out.println("Genre: " + genre);

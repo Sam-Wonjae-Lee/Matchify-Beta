@@ -196,6 +196,11 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     }
 
     @Override
+    public Collection<User> get_all_users() {
+        return accounts.values();
+    }
+
+    @Override
     public User getUser(String userID) {
         return this.accounts.get(userID);
     }

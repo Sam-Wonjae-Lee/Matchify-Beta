@@ -2,6 +2,7 @@ package data_access;
 
 import org.junit.Test;
 import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import use_case.match.MatchSpotifyAccessInterface;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +17,8 @@ public class ArtistIdsTest {
     public void testArtistIdsType() throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
         // Playlist Id from https://open.spotify.com/playlist/16triPxo855oYUXNyNQHxR?si=f0785503f8a54e75
         String playlistId = "16triPxo855oYUXNyNQHxR";
-        List<String> artistIds = SpotifyApiCallGetInfoDataAccessObject.getArtistsIds(playlistId);
+        MatchSpotifyAccessInterface dataAccessObject = new SpotifyApiCallGetInfoDataAccessObject();
+        List<String> artistIds = dataAccessObject.getArtistsIds(playlistId);
 
         for (String artistId : artistIds) {
             System.out.println("Artist Id: " + artistId);

@@ -1,7 +1,10 @@
 package use_case.match;
 import entity.User;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 public class MatchInteractor implements MatchInputboundary{
     public MatchOutputBoundary matchPresenter;

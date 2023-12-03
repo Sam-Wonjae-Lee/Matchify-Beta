@@ -27,12 +27,11 @@ public class LoginInteractor implements LoginInputBoundary{
     @Override
     public void execute(LoginInputData loginInputData) {
         String userId = loginInputData.getUserID();
-
-        if(!spotifyAPIDataAccessObject.userExists(userId)){
+        String name = spotifyAPIDataAccessObject.getName(userId);
+        if(name == null){
             loginPresenter.prepareFailView("There is no account associated with "  + userId);
         }
         else {
-            String name = spotifyAPIDataAccessObject.getName(userId);
             String pfp = spotifyAPIDataAccessObject.getProfilePicture(userId);
             if (!userDataAccessObject.userExists(userId)) {
                 FriendsList lst = new FriendsList();

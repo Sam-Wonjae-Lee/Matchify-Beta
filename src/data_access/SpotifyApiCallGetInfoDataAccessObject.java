@@ -18,7 +18,8 @@ import use_case.login.LoginSpotifyAPIDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.match.MatchSpotifyAccessInterface;
 
-public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface, LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface{
+public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInterface,
+        LoginSpotifyAPIDataAccessInterface, MatchSpotifyAccessInterface{
 
     // ========== User Profile DAO ==========
 
@@ -66,7 +67,8 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
      * @return A list containing the ID of each playlist that belongs to the Spotify user.
      * @throws IOException
      * */
-    public static List<String> getPlaylistIds(String userId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+    public static List<String> getPlaylistId(String userId) throws
+            IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         List<String> playlistIds = new ArrayList<>();
 
@@ -90,7 +92,7 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
      * @return A list containing the ID of each artist that features in the Spotify playlist.
      * @throws IOException
      * */
-    public static List<String> getArtistsIds(String playlistId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
+    public static List<String> getArtistsId(String playlistId) throws IOException, ExecutionException, InterruptedException, SpotifyWebApiException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         List<String> artistIds = new ArrayList<>();
 
@@ -122,7 +124,7 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
      * @return A list containing all the genres from the Spotify artist.
      * @throws IOException
      * */
-    public static List<String> getGenres(String artistId) throws IOException, ParseException, ExecutionException, InterruptedException, SpotifyWebApiException {
+    public static List<String> getGenre(String artistId) throws IOException, ParseException, ExecutionException, InterruptedException, SpotifyWebApiException {
         String accessToken = SpotifyApiCallAccessTokenDataAccessObject.getAccessToken();
         List<String> genres = new ArrayList<>();
 
@@ -136,17 +138,54 @@ public class SpotifyApiCallGetInfoDataAccessObject implements SpotifyApiCallInte
         return genres;
     }
 
-
     @Override
-    public boolean userExists(String userId) {
-        return this.
+    public String getName(String userID) {
+        try{
+            return getUsername(userID);
+        }
+        catch(IOException e){
+            return null;
+        }
     }
 
     @Override
-    public String getName(String userID) { return this.getName(userID)};
+    public String getProfilePicture(String userID){
+        try{
+            return getUserProfilePicture(userID);
+        }
+        catch(IOException e){
+            return null;
+
+        }
+    }
 
     @Override
-    public String getProfilePicture(String userID) {
-        return null;
+    public List<String> getGenres(String artistId) {
+        try{
+            return getGenre(artistId);
+        }
+        catch(IOException | ParseException | ExecutionException | InterruptedException | SpotifyWebApiException e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<String> getPlaylistIds(String s) {
+        try{
+            return getPlaylistId(s);
+        }
+        catch(IOException | ExecutionException | InterruptedException | SpotifyWebApiException e){
+            return null;
+        }
+    }
+
+    @Override
+    public List<String> getArtistsIds(String playlistId) {
+        try{
+            return getArtistsId(playlistId);
+        }
+        catch(IOException | ExecutionException | InterruptedException | SpotifyWebApiException e){
+            return null;
+        }
     }
 }
