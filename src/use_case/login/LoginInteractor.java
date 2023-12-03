@@ -27,6 +27,7 @@ public class LoginInteractor implements LoginInputBoundary{
     @Override
     public void execute(LoginInputData loginInputData) {
         String userId = loginInputData.getUserID();
+        System.out.println(spotifyAPIDataAccessObject.userExists(userId));
         if(!spotifyAPIDataAccessObject.userExists(userId)){
             loginPresenter.prepareFailView("There is no account associated with "  + userId);
         }
@@ -36,11 +37,12 @@ public class LoginInteractor implements LoginInputBoundary{
             if (!userDataAccessObject.userExists(userId)) {
                 FriendsList lst = new FriendsList();
                 Inbox inbox = new Inbox();
-                User user = userFactory.create(name, lst, inbox);
+                User user = userFactory.create(userId, lst, inbox);
                 userDataAccessObject.save(user);
             }
             User user = userDataAccessObject.getUser(userId);
             LoginOutputData outputData = new LoginOutputData(userId, name, pfp, user.getFriendList(), false);
+            System.out.println("hidsdfdsf");
             loginPresenter.prepareSuccessView(outputData);
         }
     }

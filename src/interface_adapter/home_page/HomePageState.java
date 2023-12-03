@@ -1,5 +1,6 @@
 package interface_adapter.home_page;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomePageState {
@@ -10,7 +11,7 @@ public class HomePageState {
 
     private String error = null;
 
-    private List<String> friendlist;
+    private List<String> friendlist = new ArrayList<>();
 
     public HomePageState(HomePageState copy) {
         this.userID = copy.userID;

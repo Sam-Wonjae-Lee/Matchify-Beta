@@ -69,15 +69,11 @@ public class Main {
 
 
         HomePageView homePageView = HomePageFactory.create(
-                viewManagerModel,
-                homePageViewModel,
-                matchViewModel,
-                inboxViewModel,
-                userDataAccessObject,
-                spotifyAPIDataAccessInterface,
-                userDataAccessObject,
-                userDataAccessObject,
+                viewManagerModel, homePageViewModel,
+                matchViewModel, inboxViewModel,
+                userDataAccessObject, userDataAccessObject,
                 spotifyAPIDataAccessInterface);
+
         views.add(homePageView, homePageView.viewName);
 
         InboxView inboxView = InboxFactory.create(viewManagerModel, inboxViewModel, userDataAccessObject, userDataAccessObject);
@@ -88,8 +84,6 @@ public class Main {
 
         MatchView matchView = MatchFactory.create(viewManagerModel, matchViewModel,homePageViewModel, userDataAccessObject, spotifyAPIDataAccessInterface, userDataAccessObject, spotifyAPIDataAccessInterface, userDataAccessObject);
         views.add(matchView, matchView.viewName);
-
-        ProfilePic profilePic = new ProfilePic();
 
         viewManagerModel.setActiveView(loginView.viewName);
         viewManagerModel.firePropertyChanged();

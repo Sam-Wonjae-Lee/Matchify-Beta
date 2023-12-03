@@ -28,9 +28,10 @@ public class InboxFactory {
     private InboxFactory() {}
 
     public static InboxView create(
-            InboxViewModel inboxViewModel,
-            AcceptUserDataAccessInterface acceptUserDataAccessInterface,
-            DeclineUserDataAccessInterface declineUserDataAccessInterface) {
+        ViewManagerModel viewManagerModel,
+        InboxViewModel inboxViewModel,
+        AcceptUserDataAccessInterface acceptUserDataAccessInterface,
+        DeclineUserDataAccessInterface declineUserDataAccessInterface) {
 
         AcceptPresenter acceptPresenter = new AcceptPresenter();
         AcceptInteractor acceptInteractor = new AcceptInteractor(acceptUserDataAccessInterface, acceptPresenter);
@@ -39,22 +40,6 @@ public class InboxFactory {
         DeclineInteractor declineInteractor = new DeclineInteractor(declineUserDataAccessInterface, declinePresenter);
         DeclineController declineController = new DeclineController(declineInteractor);
         return new InboxView(inboxViewModel, declineController, acceptController);
-        try {
-            OpenInboxController openInboxController = createOpenInboxUseCase(viewManagerModel, inboxViewModel, acceptUserDataAccessInterface, declineUserDataAccessInterface);
-            AcceptPresenter acceptPresenter = new AcceptPresenter();
-            AcceptInteractor acceptInteractor = new AcceptInteractor(acceptUserDataAccessInterface, acceptPresenter);
-            AcceptController acceptController = new AcceptController(acceptInteractor);
-            DeclinePresenter declinePresenter = new DeclinePresenter();
-            DeclineInteractor declineInteractor = new DeclineInteractor(declineUserDataAccessInterface, declinePresenter);
-            DeclineController declineController = new DeclineController(declineInteractor);
-            return new InboxView(inboxViewModel, declineController, acceptController);
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Could not open user data file.");
-        }
-
-        return null;
-    }
-
 
     }
 
