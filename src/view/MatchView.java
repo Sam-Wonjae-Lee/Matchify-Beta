@@ -49,31 +49,73 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //      Makes matchViewModel a listener
         matchViewModel.addPropertyChangeListener(this);
 
-        //      Title
-        JLabel title = new JLabel(MatchViewModel.TITLE_LABEL);
-        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // This is a collection of buttons and labels with GridLayout
+        JPanel buttonsPanel = new JPanel(new GridLayout(0, 2));
 
-//      This is a collection of buttons
-        JPanel buttons = new JPanel();
-
-//      Invite Buttons
+// Invite Buttons
         Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_1);
         Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
         Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
-        buttons.add(Invite_1);
-        buttons.add(Invite_2);
-        buttons.add(Invite_3);
 
-//      Back Button
-        Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
-        buttons.add(Back);
-
-//      Matched Users
-
-//      JLabels
+// UserNames
         UserName_1 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_1);
         UserName_2 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_2);
         UserName_3 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_3);
+
+// Add UserNames and Invite buttons to the buttons panel
+        buttonsPanel.add(UserName_1);
+        buttonsPanel.add(Invite_1);
+        buttonsPanel.add(UserName_2);
+        buttonsPanel.add(Invite_2);
+        buttonsPanel.add(UserName_3);
+        buttonsPanel.add(Invite_3);
+
+// Create a panel for the title
+        JPanel titlePanel = new JPanel();
+        JLabel title = new JLabel(MatchViewModel.TITLE_LABEL);
+        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+        titlePanel.add(title);
+
+// Create a panel for the back button
+        JPanel backButtonPanel = new JPanel();
+        Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
+        backButtonPanel.add(Back);
+
+// Add components to the MatchView
+        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.add(titlePanel);
+        this.add(buttonsPanel);
+        this.add(backButtonPanel);
+
+
+//        //      Title
+//        JLabel title = new JLabel(MatchViewModel.TITLE_LABEL);
+//
+////      Might need to switch to title.setAlignmentY(Component.TOP_ALIGNMENT);
+//        title.setAlignmentX(Component.CENTER_ALIGNMENT);
+//
+////      This is a collection of buttons
+//        JPanel buttons = new JPanel();
+//
+//
+////      Invite Buttons
+//        Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_1);
+//        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
+//        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
+//        buttons.add(Invite_1);
+//        buttons.add(Invite_2);
+//        buttons.add(Invite_3);
+//
+////      Back Button
+//        Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
+//        buttons.add(Back);
+//
+////      Matched Users
+//
+////      JLabels
+//        UserName_1 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_1);
+//        UserName_2 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_2);
+//        UserName_3 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_3);
 
 
         Invite_1.addActionListener(
@@ -82,7 +124,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                     public void actionPerformed(ActionEvent followButton) {
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_1)) {
-//                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user1
                             MatchState matchState = matchViewModel.getState();
                             sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMatchedUsers().get(0).getUserID());
                         }
@@ -96,7 +137,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                     public void actionPerformed(ActionEvent followButton) {
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_2)) {
-//                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user2
                             MatchState matchState = matchViewModel.getState();
                             sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMatchedUsers().get(1).getUserID());
                         }
@@ -110,7 +150,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                     public void actionPerformed(ActionEvent followButton) {
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_3)) {
-//                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user3
                             MatchState matchState = matchViewModel.getState();
                             sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMatchedUsers().get(2).getUserID());
                         }
@@ -130,10 +169,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                     }
                 }
         );
-
-        // Add components to the panel
-        this.add(buttons);
-        this.add(title);
 
     }
     @Override
