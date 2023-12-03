@@ -35,7 +35,7 @@ public class HomePageFactory {
             HomePageViewModel homePageViewModel,
             MatchViewModel matchViewModel,
             InboxViewModel inboxViewModel,
-            HomePageUserDataAccessInterface userDataAccessInterface,
+            HomePageUserDataAccessInterface homePageUserDataAccessInterface,
             HomePageSpotifyAPIDataAccessInterface homePageSpotifyAPIDataAccessInterface,
             MatchUserAccessInterface matchUserAccessInterface,
             OpenInboxUserDataAccessInterface openInboxUserDataAccessInterface,

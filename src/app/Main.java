@@ -77,7 +77,7 @@ public class Main {
         LoginView loginView = LoginUseCaseFactory.create(viewManagerModel, loginViewModel, homePageViewModel, userDataAccessObject, spotifyAPIDataAccessInterface);
         views.add(loginView, loginView.viewName);
 
-        MatchView matchView = MatchFactory.create();
+        MatchView matchView = MatchFactory.create(viewManagerModel, matchViewModel,homePageViewModel, userDataAccessObject, spotifyAPIDataAccessInterface, userDataAccessObject, spotifyAPIDataAccessInterface, userDataAccessObject);
         views.add(matchView, matchView.viewName);
 
         ProfilePic profilePic = new ProfilePic();
