@@ -1,5 +1,6 @@
 package view;
 
+import data_access.SpotifyApiCallGetInfoDataAccessObject;
 import entity.User;
 import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePageViewModel;
@@ -24,12 +25,18 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
     private final MatchViewModel matchViewModel;
     private final MatchController matchController;
     private final SendInviteController sendInviteController;
+    private SpotifyApiCallGetInfoDataAccessObject spotifyAPI;
 
 //  Buttons
     private final JButton Back;
     private final JButton Invite_1;
     private final JButton Invite_2;
     private final JButton Invite_3;
+
+//  Labels
+    private final JLabel UserName_1;
+    private final JLabel UserName_2;
+    private final JLabel UserName_3;
 
 
     public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController, SendInviteController sendInviteController) {
@@ -50,9 +57,9 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
         JPanel buttons = new JPanel();
 
 //      Invite Buttons
-        Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL1);
-        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL2);
-        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL3);
+        Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_1);
+        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
+        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
         buttons.add(Invite_1);
         buttons.add(Invite_2);
         buttons.add(Invite_3);
@@ -62,10 +69,17 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
         buttons.add(Back);
 
 //      Matched Users
-        List<User> listUsers = matchViewModel.getState().getMatchedUsers();
-        User matched_user1 = listUsers.get(0);
-        User matched_user2 = listUsers.get(1);
-        User matched_user3 = listUsers.get(2);
+//        List<User> listUsers = matchViewModel.getState().getMatchedUsers();
+//        User matched_user1 = listUsers.get(0);
+//        User matched_user2 = listUsers.get(1);
+//        User matched_user3 = listUsers.get(2);
+
+//        String matched_user1_name = spotifyAPI.getName(matched_user1.getUserID());
+//        String matched_user2_name = spotifyAPI.getName(matched_user2.getUserID());
+//        String matched_user3_name = spotifyAPI.getName(matched_user3.getUserID());
+
+//      JLabels
+//        UserName_1 = JLabel(MatchViewModel);
 
 
         Invite_1.addActionListener(
@@ -75,6 +89,7 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //                        check if the button was pushed
                         if (followButton.getSource().equals(Invite_1)) {
 //                            TODO: ADD SEND INVITE CONTROLLER HERE FOR matched_user1
+
                         }
                     }
                 }
