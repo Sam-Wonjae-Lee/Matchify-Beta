@@ -30,13 +30,13 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //  Buttons
     private final JButton Back;
     private final JButton Invite_1;
-    private final JButton Invite_2;
-    private final JButton Invite_3;
+//    private final JButton Invite_2;
+//    private final JButton Invite_3;
 
 //  Labels
     private final JLabel UserName_1;
-    private final JLabel UserName_2;
-    private final JLabel UserName_3;
+//    private final JLabel UserName_2;
+//    private final JLabel UserName_3;
 
 
     public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController, SendInviteController sendInviteController) {
@@ -54,28 +54,59 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 
 // Invite Buttons
         Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_1);
-        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
-        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
+//        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
+//        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
 
 // UserNames
         List<String> usernameList = matchViewModel.getState().getUSERNAMES();
         UserName_1 = new JLabel(usernameList.get(0));
-        if (usernameList.size() == 2) {
-            UserName_2 = new JLabel(matchViewModel.getState().getUSERNAMES().get(1));
+        buttonsPanel.add(UserName_1);
+        buttonsPanel.add(Invite_1);
+
+        if (usernameList.size() != 1) {
+            JLabel UserName_2 = new JLabel(usernameList.get(1));
             buttonsPanel.add(UserName_2);
+            JButton Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
+            buttonsPanel.add(Invite_2);
+
+            Invite_2.addActionListener(
+                    // This creates an anonymous subclass of ActionListener and instantiates it.
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent followButton) {
+//                        check if the button was pushed
+                            if (followButton.getSource().equals(Invite_2)) {
+                                MatchState matchState = matchViewModel.getState();
+                                sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(1));
+                            }
+                        }
+                    }
+            );
         }
-        else {
-            UserName_3 = new JLabel(matchViewModel.getState().getUSERNAMES().get(2));
+        if (usernameList.size() == 3) {
+            JLabel UserName_3 = new JLabel(usernameList.get(2));
             buttonsPanel.add(UserName_3);
+            JButton Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
+            buttonsPanel.add(Invite_3);
+
+            Invite_3.addActionListener(
+                    // This creates an anonymous subclass of ActionListener and instantiates it.
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent followButton) {
+//                        check if the button was pushed
+                            if (followButton.getSource().equals(Invite_3)) {
+                                MatchState matchState = matchViewModel.getState();
+                                sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(2));
+                            }
+                        }
+                    }
+            );
+
         }
 
 // Add UserNames and Invite buttons to the buttons panel
-        buttonsPanel.add(UserName_1);
-        buttonsPanel.add(Invite_1);
+//        buttonsPanel.add(Invite_1);
 //        buttonsPanel.add(UserName_2);
-        buttonsPanel.add(Invite_2);
 //        buttonsPanel.add(UserName_3);
-        buttonsPanel.add(Invite_3);
 
 // Create a panel for the title
         JPanel titlePanel = new JPanel();
@@ -138,31 +169,31 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                 }
         );
 
-        Invite_2.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent followButton) {
-//                        check if the button was pushed
-                        if (followButton.getSource().equals(Invite_2)) {
-                            MatchState matchState = matchViewModel.getState();
-                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(1));
-                        }
-                    }
-                }
-        );
+//        Invite_2.addActionListener(
+//                // This creates an anonymous subclass of ActionListener and instantiates it.
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent followButton) {
+////                        check if the button was pushed
+//                        if (followButton.getSource().equals(Invite_2)) {
+//                            MatchState matchState = matchViewModel.getState();
+//                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(1));
+//                        }
+//                    }
+//                }
+//        );
 
-        Invite_3.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent followButton) {
-//                        check if the button was pushed
-                        if (followButton.getSource().equals(Invite_3)) {
-                            MatchState matchState = matchViewModel.getState();
-                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(2));
-                        }
-                    }
-                }
-        );
+//        Invite_3.addActionListener(
+//                // This creates an anonymous subclass of ActionListener and instantiates it.
+//                new ActionListener() {
+//                    public void actionPerformed(ActionEvent followButton) {
+////                        check if the button was pushed
+//                        if (followButton.getSource().equals(Invite_3)) {
+//                            MatchState matchState = matchViewModel.getState();
+//                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(2));
+//                        }
+//                    }
+//                }
+//        );
 
         Back.addActionListener(
 
