@@ -27,7 +27,6 @@ public class MatchInteractor implements MatchInputboundary{
         for(String key: map2.keySet()){
             hashSet.add(key);
         }
-        System.out.println(hashSet);
         for(String key: hashSet){
             if(map1.containsKey(key) && map2.containsKey(key)){
                 ans += Math.max(map1.get(key),map2.get(key)) - Math.min(map1.get(key),map2.get(key));
@@ -72,8 +71,6 @@ public class MatchInteractor implements MatchInputboundary{
             int score = this.compare_other_playlist(client_map, user_map);
             ans.put(score, user);
         }
-        // ans = {0: sam, 4: frank, }
-        // sorted_key = [0,4]
         List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
         Collections.sort(sorted_keys);
 
@@ -96,6 +93,7 @@ public class MatchInteractor implements MatchInputboundary{
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }
         else {
+            System.out.println("interactor triggered");
             MatchOutPutData matchOutPutData = new MatchOutPutData(matchedUsers, client_user_id);
             matchPresenter.prepareSuccessView(matchOutPutData);
         }
