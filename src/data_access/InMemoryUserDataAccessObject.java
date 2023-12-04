@@ -1,13 +1,15 @@
 package data_access;
 
 import entity.User;
+import use_case.login.LoginUserDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface {
+public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, LoginUserDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
 
@@ -16,6 +18,16 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
     public void add_friend(String inviteID, String userID) {
         // TODO: PLZ CHECK NAMING CONVENTION
         users.get(inviteID).getFriendList().add_friend(userID);
+    }
+
+    @Override
+    public boolean userExists(String userId) {
+        return false;
+    }
+
+    @Override
+    public void save(User user) {
+
     }
 
     @Override
