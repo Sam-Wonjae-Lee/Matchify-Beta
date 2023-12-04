@@ -52,8 +52,9 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
         friends = new JPanel();
         friends.setLayout(new BoxLayout(friends, BoxLayout.Y_AXIS));
         friends.setBorder(BorderFactory.createLoweredBevelBorder());
-        friends.setAlignmentX(Component.CENTER_ALIGNMENT);
-        friends.add(new JLabel("Friends:"));
+        JLabel x = new JLabel(" Friends:");
+        x.setAlignmentX(Component.CENTER_ALIGNMENT);
+        friends.add(x);
         friends.setAutoscrolls(true);
 
         match.addActionListener(
