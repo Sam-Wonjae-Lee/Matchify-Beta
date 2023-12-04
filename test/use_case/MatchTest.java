@@ -6,13 +6,18 @@ import entity.User;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.match.MatchPresenter;
 import interface_adapter.match.MatchViewModel;
+import org.junit.Test;
 import use_case.match.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 
 public class MatchTest {
 
-
+    @Test
     void successTest() {
         String userID = "123";
         MatchUserAccessInterface userRepository = new InMemoryUserDataAccessObject();
@@ -21,8 +26,18 @@ public class MatchTest {
         MatchOutputBoundary successPresenter = new MatchOutputBoundary() {
             @Override
             public void prepareSuccessView(MatchOutPutData userList) {
+                System.out.println(userList.getClientUserID());
+                List<String> listMatchedID = new ArrayList<>();
+                List<String> listMatchedUsernames = new ArrayList<>();
+                listMatchedID.add("abc123");
+                listMatchedID.add("ghd555");
+                listMatchedID.add("jjas123");
+                listMatchedUsernames.add("Sam1");
+                listMatchedUsernames.add("Frank21342");
+                listMatchedUsernames.add("Andy12");
                 assertEquals(userID, userList.getClientUserID());
-                assertEquals(, userList.);
+                assertEquals(listMatchedID, listMatchedID);
+                assertEquals(listMatchedUsernames, listMatchedUsernames);
             }
 
             @Override
