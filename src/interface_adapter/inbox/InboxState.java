@@ -1,22 +1,19 @@
 package interface_adapter.inbox;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class InboxState {
 
     public List<String> inbox = new ArrayList<>();
     private String username = "";
-    private String user_id = "";
-    private HashMap<String, String> idToName = new HashMap<>();
 
+    private String user_id = "";
 
     public InboxState(InboxState copy) {
         username = copy.username;
         inbox = copy.inbox;
         user_id = copy.user_id;
-        idToName = copy.idToName;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -41,13 +38,5 @@ public class InboxState {
 
     public void setInbox(List<String> lst){
         this.inbox = lst;
-    }
-
-    public HashMap<String, String> getIdToName(){
-        return idToName;
-    }
-
-    public void setIdToName(HashMap<String, String> idMap){
-        this.idToName = idMap;
     }
 }
