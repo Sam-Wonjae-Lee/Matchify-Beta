@@ -64,14 +64,15 @@ public class MatchInteractor implements MatchInputboundary{
     @Override
     public void execute(MatchInputData matchInputData) {
         User client_user = matchUserAccessInterface.getUser(matchInputData.getUserID());
-        Map<String, Integer> client_map = this.map_playlist(client_user);
+        Map<String, Integer> client_map = client_user.getGenres().getGenreMap();
         HashMap<Integer, User> ans = new HashMap<>();
         for(User user: this.matchUserAccessInterface.get_all_users()){
-            Map<String, Integer> user_map = this.map_playlist(user);
+            Map<String, Integer> user_map = user.getGenres().getGenreMap();
             int score = this.compare_other_playlist(client_map, user_map);
             ans.put(score,user);
         }
-
+        // ans = {0: sam, 4: frank, }
+        // sorted_key = [0,4]
         List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
         Collections.sort(sorted_keys);
 
