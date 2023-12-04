@@ -36,7 +36,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     private final String sample = ",";
 
     private UserFactory userFactory;
-
+// TODO: ADD GENRE
     public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
@@ -50,7 +50,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             for(String user_id : inbox_data.get(key)){
                 inbox.add_invite(user_id);
             }
-            User user = this.userFactory.create(key, friendsList, inbox);
+            User user = this.userFactory.create(key, friendsList, inbox,);
             this.accounts.put(key, user);
             this.inbox_data_saved.put(key,inbox_data.get(key));
             this.friend_data_saved.put(key,friend_data.get(key));
@@ -87,7 +87,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         return ans;
     }
 
-    public void add_user_genre(String user_id, HashMap<String, Map<String, Integer>> genres){
+    public void add_user_genre(String user_id, HashMap<String, Integer> genres){
         // adds a user's genre into the database, if the user already have previous entries inside of the genre, then update it
         // TODO: implement this function
         int a = 0;

@@ -41,20 +41,22 @@ public class MatchInteractor implements MatchInputboundary{
         }
         return ans;
     }
-    public Map<String, Integer> map_playlist(User user){
+    public HashMap<String, Integer> map_playlist(User user){
         List<String> playlistIds = this.matchSpotifyAccessInterface.getPlaylistIds(user.getUserID());
-        Map<String, Integer> allGenresFrequencyMap = new HashMap<>();
+        HashMap<String, Integer> allGenresFrequencyMap = new HashMap<>();
         for (String playlistId : playlistIds) {
             List<String> artistIds = this.matchSpotifyAccessInterface.getArtistsIds(playlistId);
 
             for (String artistId : artistIds) {
+//                System.out.println(artistId);
                 List<String> genres = this.matchSpotifyAccessInterface.getGenres(artistId);
-
+//                System.out.println(genres);
                 for (String genre : genres) {
                     allGenresFrequencyMap.put(genre, allGenresFrequencyMap.getOrDefault(genre, 0) + 1);
                 }
             }
         }
+//        System.out.println(allGenresFrequencyMap);
         return allGenresFrequencyMap;
     }
 
@@ -87,7 +89,7 @@ public class MatchInteractor implements MatchInputboundary{
                 }
             }
         }
-
+        System.out.println("interactor works");
         if (matchedUsers.isEmpty()) {
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }
