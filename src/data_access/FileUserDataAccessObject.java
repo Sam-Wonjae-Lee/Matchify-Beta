@@ -37,6 +37,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
         HashMap<String, HashSet<String>> inbox_data = this.read_inbox();
+        HashMap<String, HashMap<String, Integer>> genre_data = this.read_user_genre();
         for(String key : friend_data.keySet()){
             FriendsList friendsList = new FriendsList();
             for(String user_id : friend_data.get(key)){
@@ -46,10 +47,13 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             for(String user_id : inbox_data.get(key)){
                 inbox.add_invite(user_id);
             }
-            User user = this.userFactory.create(key, friendsList, inbox,);
+            Genre obj = new Genre();
+            obj.setGenreMap(genre_data.get(key));
+            User user = this.userFactory.create(key, friendsList, inbox, obj);
             this.accounts.put(key, user);
             this.inbox_data_saved.put(key,inbox_data.get(key));
             this.friend_data_saved.put(key,friend_data.get(key));
+            this.genre_data_saved.put(key,genre_data.get(key));
         }
         //checks that the DAO is storing users in hashmap
         System.out.println("friend: " + friend_data.keySet());
