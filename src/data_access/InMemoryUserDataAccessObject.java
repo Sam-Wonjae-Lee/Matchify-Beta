@@ -4,7 +4,6 @@ import entity.User;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
-import use_case.login.LoginUserDataAccessInterface;
 
 import java.util.HashMap;
 import java.util.Map;
