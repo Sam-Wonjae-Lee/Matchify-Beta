@@ -237,8 +237,11 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     @Override
     public void add_friend(String user_id, String friend_id) {
         User user = this.accounts.get(user_id);
+        User friend = this.accounts.get(friend_id);
         user.getFriendList().add_friend(friend_id);
+        friend.getFriendList().add_friend(user_id);
         this.add_to_friendList(user_id, friend_id);
+        this.add_to_friendList(friend_id, user_id);
     }
 
     @Override
@@ -260,6 +263,24 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         HashSet<String> empty = new HashSet<>();
         empty.add("user1");
         empty.add("user2");
+        empty.add("user3");
+        empty.add("user4");
+        empty.add("user5");
+        empty.add("user6");
+        empty.add("user7");
+        empty.add("user8");
+        empty.add("user9");
+        empty.add("user10");
+        empty.add("user11");
+        empty.add("user12");
+        empty.add("user13");
+        empty.add("user14");
+        empty.add("user15");
+        empty.add("user16");
+        empty.add("user17");
+        empty.add("user18");
+        empty.add("user19");
+        empty.add("user20");
         this.friend_data_saved.put(user_id, empty);
         this.inbox_data_saved.put(user_id, empty);
         this.write_inbox();

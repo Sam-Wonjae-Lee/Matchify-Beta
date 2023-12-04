@@ -1,6 +1,6 @@
 package use_case.accept_invite;
 
-public class AcceptInteractor {
+public class AcceptInteractor implements AcceptInputBoundary{
 
     private final AcceptUserDataAccessInterface userDataAccessObject;
     private final AcceptOutputBoundary acceptPresenter;
