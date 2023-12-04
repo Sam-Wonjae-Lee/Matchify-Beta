@@ -86,7 +86,7 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
         accept = new JButton[userInbox.size()];
         decline = new JButton[userInbox.size()];
         for(int i = 0; i < accept.length; i++){
-            String inviter_id = state.getIdToName().get(userInbox.get(i));
+            String inviter_id = userInbox.get(i);
             accept[i] = new JButton(InboxViewModel.ACCEPT_BUTTON_LABEL);
             decline[i] = new JButton(InboxViewModel.DECLINE_BUTTON_LABEL);
             JPanel invite = new JPanel();

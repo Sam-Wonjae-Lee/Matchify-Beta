@@ -44,15 +44,6 @@ public class InMemoryUserDataAccessObject implements AcceptUserDataAccessInterfa
     }
 
     @Override
-    public HashMap<String, String> getUsernameMap() {
-        HashMap<String, String> ans = new HashMap<>();
-        for (String key: users.keySet()){
-            ans.put(key, users.get(key).getUsername());
-        }
-        return ans;
-    }
-
-    @Override
     public void add_user_genre(String userID, HashMap<String, Integer> genre) {
 
     }

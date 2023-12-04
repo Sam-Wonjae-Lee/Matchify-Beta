@@ -3,6 +3,11 @@ package entity;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import static org.junit.Before.*;
+import static org.junit.Test.*;
 import static org.junit.Assert.*;
 
 public class CommonUserTest {
@@ -17,7 +22,7 @@ public class CommonUserTest {
         friendsList = new FriendsList() ;
         inbox = new Inbox() ;
         genre = new Genre();
-        user = new CommonUser("123", friendsList, inbox, genre, username);
+        user = new CommonUser("123", friendsList, inbox, genre);
     }
 //    HashMap<String, Map<String, Integer>> genres
     @Test

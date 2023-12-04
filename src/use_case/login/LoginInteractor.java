@@ -55,6 +55,7 @@ public class LoginInteractor implements LoginInputBoundary{
             String name = spotifyAPIDataAccessObject.getName(userId);
             String pfp = spotifyAPIDataAccessObject.getProfilePicture(userId);
             if (!userDataAccessObject.userExists(userId)) {
+// TODO: ASK FRANK ABOUT HashMap<String, Map<String, Integer>>
                 // Save genre
                 Genre genre = new Genre();
 
@@ -64,13 +65,18 @@ public class LoginInteractor implements LoginInputBoundary{
 
                 FriendsList lst = new FriendsList();
                 Inbox inbox = new Inbox();
-                User user = userFactory.create(userId, lst, inbox, genre, name);
+                User user = userFactory.create(userId, lst, inbox, genre);
                 userDataAccessObject.save(user);
             }
             User user = userDataAccessObject.getUser(userId);
-            HashMap<String, String> idMap = userDataAccessObject.getUsernameMap();
             LoginOutputData outputData = new LoginOutputData(
-                    userId, name, pfp, user.getFriendList().get_friends(), idMap);
+                    userId, name, pfp, user.getFriendList().get_friends(), false);
+            System.out.println("in login interactor");
+            System.out.println("===");
+            System.out.println("userid: " + userId);
+            System.out.println("name: " + name);
+            System.out.println("friends: " + user.getFriendList().get_friends());
+            System.out.println("===");
             loginPresenter.prepareSuccessView(outputData);
         }
     }

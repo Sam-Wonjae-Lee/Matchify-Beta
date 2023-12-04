@@ -2,9 +2,6 @@ package use_case.open_inbox;
 
 import entity.User;
 
-import java.util.HashMap;
-import java.util.List;
-
 public class OpenInboxInteractor implements OpenInboxInputBoundary{
     final OpenInboxUserDataAccessInterface userDataAccessObject;
 
@@ -19,13 +16,11 @@ public class OpenInboxInteractor implements OpenInboxInputBoundary{
     public void execute(OpenInboxInputData openInboxInputData) {
         String user_id = openInboxInputData.getUser_id();
         User user = userDataAccessObject.getUser(user_id);
-        HashMap<String, String> userToName = userDataAccessObject.getUsernameMap();
-
 
         OpenInboxOutputData openInboxOutputData = new OpenInboxOutputData(
                 user_id,
                 openInboxInputData.getUsername(),
-                user.getInbox().get_invites(), userToName);
+                user.getInbox().get_invites());
         openInboxPresenter.prepareSuccessView(openInboxOutputData);
     }
 }

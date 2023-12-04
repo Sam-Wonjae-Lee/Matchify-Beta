@@ -23,7 +23,6 @@ public class OpenInboxPresenter implements OpenInboxOutputBoundary {
         inboxState.setUser_id(response.getUser_id());
         inboxState.setUsername(response.getUsername());
         inboxState.setInbox(response.getInbox());
-        inboxState.setIdToName(response.getUser_to_name());
         this.inboxViewModel.setState(inboxState);
         this.inboxViewModel.firePropertyChanged();
 

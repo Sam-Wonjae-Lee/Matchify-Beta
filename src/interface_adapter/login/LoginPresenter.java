@@ -33,7 +33,6 @@ public class LoginPresenter implements LoginOutputBoundary{
         state.setUserName(response.getUsername());
         state.setPfp(response.getPfp());
         state.setFriendsList(response.getFriendsList());
-        state.setIdMap(response.getIdMap());
         this.homePageViewModel.setState(state);
         this.homePageViewModel.firePropertyChanged();
 
