@@ -15,6 +15,4 @@ public interface LoginUserDataAccessInterface {
     User getUser(String userID);
 
     void add_user_genre(String userID, HashMap<String, Integer> genre);
-
-    HashMap<String, String> getUsernameMap();
 }

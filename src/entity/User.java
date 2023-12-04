@@ -1,5 +1,7 @@
 package entity;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public interface User {
 
@@ -10,6 +12,4 @@ public interface User {
     Inbox getInbox();
 
     Genre getGenres();
-
-    String getUsername();
 }

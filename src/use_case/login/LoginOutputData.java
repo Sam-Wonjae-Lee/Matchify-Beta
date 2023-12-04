@@ -1,6 +1,9 @@
 package use_case.login;
 
-import java.util.HashMap;
+import entity.FriendsList;
+import entity.Inbox;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class LoginOutputData {
@@ -12,14 +15,14 @@ public class LoginOutputData {
 
     private final List<String> friends;
 
-    private final HashMap<String, String> idMap;
+    private boolean useCaseFailed;
 
-    public LoginOutputData(String userId, String username, String pfp, List<String> friendsList, HashMap<String, String> idMap) {
+    public LoginOutputData(String userId, String username, String pfp, List<String> friendsList, boolean useCaseFailed) {
         this.userID = userId;
         this.username = username;
         this.pfp = pfp;
         this.friends = friendsList;
-        this.idMap = idMap;
+        this.useCaseFailed = useCaseFailed;
     }
 
     public String getUsername() {
@@ -36,9 +39,5 @@ public class LoginOutputData {
 
     public List<String> getFriendsList(){
         return friends;
-    }
-
-    public HashMap<String, String> getIdMap(){
-        return idMap;
     }
 }
