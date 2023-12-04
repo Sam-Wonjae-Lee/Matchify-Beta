@@ -66,6 +66,7 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         HomePageState state = homePageViewModel.getState();
+                        System.out.println("in home page: " + state.getUserID());
                         matchController.execute(state.getUserID());
                     }
                 }
