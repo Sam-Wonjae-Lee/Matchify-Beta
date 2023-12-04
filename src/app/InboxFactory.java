@@ -35,7 +35,7 @@ public class InboxFactory {
         try {
             HomePageController homePageController = createHomePageController(viewManagerModel, homePageViewModel,
                     homePageUserDataAccessInterface, homePageSpotifyAPIDataAccessObject);
-            AcceptPresenter acceptPresenter = new AcceptPresenter();
+            AcceptPresenter acceptPresenter = new AcceptPresenter(inboxViewModel);
             AcceptInteractor acceptInteractor = new AcceptInteractor(acceptUserDataAccessInterface, acceptPresenter);
             AcceptController acceptController = new AcceptController(acceptInteractor);
             DeclinePresenter declinePresenter = new DeclinePresenter(inboxViewModel);

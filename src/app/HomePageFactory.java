@@ -3,6 +3,7 @@ package app;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.inbox.InboxViewModel;
+import interface_adapter.login.LoginViewModel;
 import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchPresenter;
 import interface_adapter.match.MatchViewModel;
@@ -29,7 +30,8 @@ public class HomePageFactory {
             InboxViewModel inboxViewModel,
             MatchUserAccessInterface matchUserAccessInterface,
             OpenInboxUserDataAccessInterface openInboxUserDataAccessInterface,
-            MatchSpotifyAccessInterface matchSpotifyAccessInterface) {
+            MatchSpotifyAccessInterface matchSpotifyAccessInterface,
+            LoginViewModel loginViewModel) {
 
         try {
             MatchController matchController = createMatchUseCase(
@@ -41,7 +43,7 @@ public class HomePageFactory {
                     viewManagerModel,
                     inboxViewModel,
                     openInboxUserDataAccessInterface);
-            return new HomePageView(homePageViewModel, matchController, openInboxController);
+            return new HomePageView(homePageViewModel, loginViewModel, matchController, openInboxController, viewManagerModel);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Could not open user data file. ");
         }

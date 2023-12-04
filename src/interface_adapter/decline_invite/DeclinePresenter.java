@@ -22,7 +22,6 @@ public class DeclinePresenter implements DeclineOutputBoundary {
         List<String> inbox = inboxState.getInbox();
         inbox.remove(declineOutputData.getDeletedInvite());
         inboxState.setInbox(inbox);
-        System.out.println("in presenter inbox: " + inboxState.getInbox());
 
         this.inboxViewModel.setState(inboxState);
         inboxViewModel.firePropertyChanged();

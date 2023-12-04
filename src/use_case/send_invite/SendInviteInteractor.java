@@ -16,7 +16,7 @@ public class SendInviteInteractor implements SendInviteInputBoundary{
     public void execute(SendInviteInputData sendInviteInputData) {
         userDataAccessObject.addToInbox(sendInviteInputData.getUserID(),
                                         sendInviteInputData.getInvitedUserID());
-        SendInviteOutputData sendInviteOutputData = new SendInviteOutputData(true);
+        SendInviteOutputData sendInviteOutputData = new SendInviteOutputData(sendInviteInputData.getInvitedUserID());
         userPresenter.prepareSuccessView(sendInviteOutputData);
     }
 }

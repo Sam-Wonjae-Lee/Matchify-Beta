@@ -38,7 +38,7 @@ public class MatchFactory {
                     homePageUserDataAccessInterface, homePageSpotifyAPIDataAccessObject);
             MatchController matchController = createMatchController(viewManagerModel, matchViewModel,
                     matchUserAccessInterface, matchSpotifyAccessInterface);
-            SendInviteController sendInviteController = createSendInviteController(viewManagerModel, sendInviteUserDataAccessInterface);
+            SendInviteController sendInviteController = createSendInviteController(matchViewModel, sendInviteUserDataAccessInterface);
             return new MatchView(matchViewModel, matchController, homePageViewModel, homePageController, sendInviteController);
         }
         catch(IOException e){
@@ -73,9 +73,9 @@ public class MatchFactory {
     }
 
     private static SendInviteController createSendInviteController(
-            ViewManagerModel viewManagerModel,
+            MatchViewModel matchViewModel,
             SendInviteUserDataAccessInterface sendInviteUserDataAccessInterface) throws IOException{
-        SendInviteOutputBoundary sendInvitePresenter = new SendInvitePresenter();
+        SendInviteOutputBoundary sendInvitePresenter = new SendInvitePresenter(matchViewModel);
 
         SendInviteInputBoundary sendInviteInteracter = new SendInviteInteractor(sendInviteUserDataAccessInterface, sendInvitePresenter);
 

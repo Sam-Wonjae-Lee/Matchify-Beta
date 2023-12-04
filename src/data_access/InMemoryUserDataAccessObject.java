@@ -42,6 +42,7 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
     @Override
     public void addToInbox(String userID, String invitedUserID) {
         // TODO: PLZ CHECK NAMING CONVENTION
+        System.out.println("in memory dao add to inbox was called");
         users.get(userID).getInbox().add_invite(invitedUserID);
     }
 }

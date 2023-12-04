@@ -10,6 +10,7 @@ public class HomePageViewModel extends ViewModel {
     public static final String MATCH_BUTTON_LABEL = "Match";
     public static final String INBOX_BUTTON_LABEL = "Inbox";
     public static final String FRIENDS_LIST_LABEL = "Friends";
+    public static final String LOGUOUT_BUTTON_LABEL = "Log Out";
     private HomePageState state = new HomePageState();
     public HomePageViewModel() {
         super("home page");

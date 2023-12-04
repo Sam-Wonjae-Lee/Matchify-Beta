@@ -104,7 +104,7 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
                             System.out.println("id 1: " + currState.getUser_id());
                             System.out.println("id 2: " + inviter_id);
                             System.out.println("===");
-                            //acceptController.execute(currState.getUser_id(), inviter_id);
+                            acceptController.execute(currState.getUser_id(), inviter_id);
                             updatePanel();
                         }
                     }

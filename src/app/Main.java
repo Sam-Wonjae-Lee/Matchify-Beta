@@ -58,7 +58,8 @@ public class Main {
                 viewManagerModel, homePageViewModel,
                 matchViewModel, inboxViewModel,
                 userDataAccessObject, userDataAccessObject,
-                spotifyAPIDataAccessInterface);
+                spotifyAPIDataAccessInterface,
+                loginViewModel);
 
         views.add(homePageView, homePageView.viewName);
 

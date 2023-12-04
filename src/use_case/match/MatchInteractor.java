@@ -90,7 +90,6 @@ public class MatchInteractor implements MatchInputboundary{
                 matchedUsers.add(ans.get(keys).getUserID());
             }
         }
-        System.out.println("interactor works");
         if (matchedUsers.isEmpty()) {
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }

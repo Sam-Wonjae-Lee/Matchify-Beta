@@ -93,7 +93,7 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
 //          Display Error Screen
             JOptionPane.showMessageDialog(this, state.getMatchError());
         }
-        match.removeAll();
+        matches.removeAll();
         List<String> matched_users = state.getMatched_users();
         send_invite = new JButton[matched_users.size()];
         for(int i = 0; i < send_invite.length; i++) {
@@ -118,6 +118,7 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                         }
                     }
             );
+            matches.add(add_friend);
         }
     }
     private void updatePanel(){
