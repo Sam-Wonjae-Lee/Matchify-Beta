@@ -6,11 +6,25 @@ import interface_adapter.inbox.InboxViewModel;
 import use_case.decline_invite.DeclineOutputBoundary;
 import use_case.decline_invite.DeclineOutputData;
 
-import javax.swing.text.View;
+import java.util.List;
 
 public class DeclinePresenter implements DeclineOutputBoundary {
 
+    private final InboxViewModel inboxViewModel;
+
+    public DeclinePresenter(InboxViewModel inboxViewModel) {
+        this.inboxViewModel = inboxViewModel;
+    }
+
     @Override
     public void prepareView(DeclineOutputData declineOutputData) {
+        InboxState inboxState = inboxViewModel.getState();
+        List<String> inbox = inboxState.getInbox();
+        inbox.remove(declineOutputData.getDeletedInvite());
+        inboxState.setInbox(inbox);
+        System.out.println("in presenter inbox: " + inboxState.getInbox());
+
+        this.inboxViewModel.setState(inboxState);
+        inboxViewModel.firePropertyChanged();
     }
 }
