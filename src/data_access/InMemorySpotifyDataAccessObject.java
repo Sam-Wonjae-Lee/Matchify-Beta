@@ -3,6 +3,7 @@ package data_access;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InMemorySpotifyDataAccessObject implements LoginSpotifyAPIDataAccessInterface {
@@ -24,5 +25,20 @@ public class InMemorySpotifyDataAccessObject implements LoginSpotifyAPIDataAcces
     @Override
     public boolean userExists(String user_id) {
         return userExists.getOrDefault(user_id, false);
+    }
+
+    @Override
+    public List<String> getGenres(String artistId) {
+        return null;
+    }
+
+    @Override
+    public List<String> getPlaylistIds(String s) {
+        return null;
+    }
+
+    @Override
+    public List<String> getArtistsIds(String playlistId) {
+        return null;
     }
 }
