@@ -16,10 +16,6 @@ public class InMemorySpotifyDataAccessObject implements LoginSpotifyAPIDataAcces
     private final Map<String, String> profilePictures = new HashMap<>();
     private final Map<String, Boolean> userExists = new HashMap<>();
 
-    FriendsList friendslst = new FriendsList();
-    Inbox inbox = new Inbox();
-    Genre genre = new Genre();
-    CommonUser user = new CommonUser("David_loves_dogs",friendslst,inbox,genre);
 
     @Override
     public String getName(String userID) {
