@@ -26,7 +26,6 @@ public class MatchTest {
         MatchOutputBoundary successPresenter = new MatchOutputBoundary() {
             @Override
             public void prepareSuccessView(MatchOutPutData userList) {
-                System.out.println(userList.getClientUserID());
                 List<String> listMatchedID = new ArrayList<>();
                 List<String> listMatchedUsernames = new ArrayList<>();
                 listMatchedID.add("abc123");
@@ -35,7 +34,7 @@ public class MatchTest {
                 listMatchedUsernames.add("Sam1");
                 listMatchedUsernames.add("Frank21342");
                 listMatchedUsernames.add("Andy12");
-                assertEquals(userID, userList.getClientUserID());
+                assertEquals(userID, userList.getUser_id());
                 assertEquals(listMatchedID, listMatchedID);
                 assertEquals(listMatchedUsernames, listMatchedUsernames);
             }

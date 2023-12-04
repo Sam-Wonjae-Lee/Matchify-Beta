@@ -1,5 +1,9 @@
 package data_access;
 
+import entity.CommonUser;
+import entity.FriendsList;
+import entity.Genre;
+import entity.Inbox;
 import use_case.login.LoginSpotifyAPIDataAccessInterface;
 
 import java.util.HashMap;
@@ -11,6 +15,11 @@ public class InMemorySpotifyDataAccessObject implements LoginSpotifyAPIDataAcces
     private final Map<String, String> userNames = new HashMap<>();
     private final Map<String, String> profilePictures = new HashMap<>();
     private final Map<String, Boolean> userExists = new HashMap<>();
+
+    FriendsList friendslst = new FriendsList();
+    Inbox inbox = new Inbox();
+    Genre genre = new Genre();
+    CommonUser user = new CommonUser("David_loves_dogs",friendslst,inbox,genre);
 
     @Override
     public String getName(String userID) {
