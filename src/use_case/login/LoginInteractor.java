@@ -71,7 +71,7 @@ public class LoginInteractor implements LoginInputBoundary{
             User user = userDataAccessObject.getUser(userId);
             LoginOutputData outputData = new LoginOutputData(
                     userId, name, pfp, user.getFriendList().get_friends(), false);
-            System.out.println("in login presenter");
+            System.out.println("in login interactor");
             System.out.println("===");
             System.out.println("userid: " + userId);
             System.out.println("name: " + name);
