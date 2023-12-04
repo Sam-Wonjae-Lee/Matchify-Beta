@@ -68,14 +68,9 @@ public class LoginInteractor implements LoginInputBoundary{
                 userDataAccessObject.save(user);
             }
             User user = userDataAccessObject.getUser(userId);
+            HashMap<String, String> idMap = userDataAccessObject.getUsernameMap();
             LoginOutputData outputData = new LoginOutputData(
-                    userId, name, pfp, user.getFriendList().get_friends(), false);
-            System.out.println("in login interactor");
-            System.out.println("===");
-            System.out.println("userid: " + userId);
-            System.out.println("name: " + name);
-            System.out.println("friends: " + user.getFriendList().get_friends());
-            System.out.println("===");
+                    userId, name, pfp, user.getFriendList().get_friends(), idMap);
             loginPresenter.prepareSuccessView(outputData);
         }
     }

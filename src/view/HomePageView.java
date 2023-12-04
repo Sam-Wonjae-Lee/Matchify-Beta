@@ -115,7 +115,7 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
         for (String friend_id : state.getFriendlist()) {
             JPanel friend = new JPanel();
             friend.setAlignmentX(Component.CENTER_ALIGNMENT);
-            friend.add(new JLabel(friend_id));
+            friend.add(new JLabel(state.getIdMap().get(friend_id)));
             friends.add(friend);
         }
     }

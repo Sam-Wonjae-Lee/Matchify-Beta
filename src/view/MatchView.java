@@ -102,7 +102,7 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
             JPanel add_friend = new JPanel();
             add_friend.setBorder(BorderFactory.createRaisedBevelBorder());
             add_friend.setAlignmentX(Component.CENTER_ALIGNMENT);
-            add_friend.add(new JLabel(matched_users.get(i)));
+            add_friend.add(new JLabel(state.getIdMap().get(matched_users.get(i))));
             add_friend.add(send_invite[i]);
             send_invite[i].addActionListener(
                     new ActionListener() {

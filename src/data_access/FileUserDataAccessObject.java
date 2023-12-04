@@ -332,6 +332,10 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         return this.accounts.get(userID);
     }
 
+    @Override
+    public HashMap<String, String> getUsernameMap() {
+        return username_data_saved;
+    }
     public void clear_all_files(){
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(inbox_csvFile_path))) {
             writer.write("");
