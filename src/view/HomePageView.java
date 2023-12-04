@@ -25,6 +25,8 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
     private final JButton match;
     private final JButton inbox;
 
+    JPanel friends;
+
     JLabel username;
 
     public HomePageView(HomePageViewModel homePageViewModel,
@@ -42,18 +44,18 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
         title.add(usernameInfo);
         title.add(username);
 
-        List<String> friendsList = homePageViewModel.getState().getFriendlist();
-
         JPanel buttons = new JPanel();
         match = new JButton(HomePageViewModel.MATCH_BUTTON_LABEL);
         buttons.add(match);
         inbox = new JButton(HomePageViewModel.INBOX_BUTTON_LABEL);
         buttons.add(inbox);
-
-        JPanel friends = new JPanel();
-        for (String friend_id: friendsList){
-            friends.add(new JLabel(friend_id));
-        }
+        friends = new JPanel();
+        friends.setLayout(new BoxLayout(friends, BoxLayout.Y_AXIS));
+        friends.setBorder(BorderFactory.createLoweredBevelBorder());
+        JLabel x = new JLabel(" Friends:");
+        x.setAlignmentX(Component.CENTER_ALIGNMENT);
+        friends.add(x);
+        friends.setAutoscrolls(true);
 
         match.addActionListener(
                 new ActionListener() {
@@ -77,7 +79,7 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(friends);
+        this.add(new JScrollPane(friends));
         this.add(buttons);
     }
 
@@ -86,8 +88,14 @@ public class HomePageView extends JPanel implements ActionListener, PropertyChan
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt){
+    public void propertyChange(PropertyChangeEvent evt) {
         HomePageState state = (HomePageState) evt.getNewValue();
         username.setText(state.getUserName());
+        for (String friend_id : state.getFriendlist()) {
+            JPanel friend = new JPanel();
+            friend.setAlignmentX(Component.CENTER_ALIGNMENT);
+            friend.add(new JLabel(friend_id));
+            friends.add(friend);
+        }
     }
 }
