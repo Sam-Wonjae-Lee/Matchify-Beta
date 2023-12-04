@@ -48,6 +48,7 @@ public class LoginInteractor implements LoginInputBoundary{
     public void execute(LoginInputData loginInputData) {
         String userId = loginInputData.getUserID();
         System.out.println(spotifyAPIDataAccessObject.userExists(userId));
+        System.out.println("We are here");
         if(!spotifyAPIDataAccessObject.userExists(userId)){
             loginPresenter.prepareFailView("There is no account associated with "  + userId);
         }
