@@ -19,9 +19,10 @@ public class AcceptTest {
         String userID = "123";
         String friendID = "345";
         AcceptInputData inputData = new AcceptInputData(userID, friendID);
+        InboxViewModel inboxViewModel = new InboxViewModel();
         AcceptUserDataAccessInterface acceptUserDataAccessInterface = new InMemoryUserDataAccessObject();
 
-        AcceptOutputBoundary successPresenter = new AcceptPresenter();
+        AcceptOutputBoundary successPresenter = new AcceptPresenter(inboxViewModel);
         AcceptInteractor interactor = new AcceptInteractor(acceptUserDataAccessInterface, successPresenter);
 
         interactor.execute(inputData);
