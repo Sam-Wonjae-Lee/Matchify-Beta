@@ -80,7 +80,7 @@ public class MatchInteractor implements MatchInputboundary{
         String client_user_id = client_user.getUserID();
 //      This for loop adds users to List from Hashmap
         for (int keys : sorted_keys) {
-            if (matchedUsers.size() == 5) {
+            if (matchedUsers.size() == 3) {
                 break;
             }
 //          does not add user to list if the user is the Client or if the client is already friends with the user

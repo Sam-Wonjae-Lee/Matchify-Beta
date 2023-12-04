@@ -237,8 +237,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     public void add_friend(String user_id, String friend_id) {
         User user = this.accounts.get(user_id);
         User friend = this.accounts.get(friend_id);
-        user.getFriendList().add_friend(friend_id);
-        friend.getFriendList().add_friend(user_id);
         this.add_to_friendList(user_id, friend_id);
         this.add_to_friendList(friend_id, user_id);
     }
