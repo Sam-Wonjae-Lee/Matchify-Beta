@@ -1,6 +1,7 @@
 package interface_adapter.home_page;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class HomePageState {
@@ -9,7 +10,7 @@ public class HomePageState {
     private String username;
     private String pfp;
 
-    private String error = null;
+    private HashMap<String, String> idMap;
 
     private List<String> friendlist = new ArrayList<>();
 
@@ -18,7 +19,7 @@ public class HomePageState {
         this.username = copy.username;
         this.pfp = copy.pfp;
         this.friendlist = copy.friendlist;
-        this.error = copy.error;
+        this.idMap = copy.idMap;
     }
 
     // Because of the previous copy constructor, the default constructor must be explicit.
@@ -57,10 +58,11 @@ public class HomePageState {
         this.friendlist = lst;
     }
 
-    public void setError(String error){
-        this.error = error;
+    public void setIdMap(HashMap<String, String> idMap){
+        this.idMap = idMap;
     }
-    public String getError(){
-        return error;
+
+    public HashMap<String, String> getIdMap(){
+        return idMap;
     }
 }
