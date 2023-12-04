@@ -18,6 +18,7 @@ public class MatchController {
 
     public void execute(String user) {
         MatchInputData matchInputData = new MatchInputData(user);
+        System.out.println("works");
         this.matchUseCaseInteractor.execute(matchInputData);
     }
 

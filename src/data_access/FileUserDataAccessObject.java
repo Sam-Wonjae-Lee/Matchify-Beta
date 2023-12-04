@@ -31,8 +31,8 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
 
     private final String sample = ",";
 
-    private final UserFactory userFactory;
-
+    private UserFactory userFactory;
+// TODO: ADD GENRE
     public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
@@ -46,7 +46,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             for(String user_id : inbox_data.get(key)){
                 inbox.add_invite(user_id);
             }
-            User user = this.userFactory.create(key, friendsList, inbox);
+            User user = this.userFactory.create(key, friendsList, inbox,);
             this.accounts.put(key, user);
             this.inbox_data_saved.put(key,inbox_data.get(key));
             this.friend_data_saved.put(key,friend_data.get(key));

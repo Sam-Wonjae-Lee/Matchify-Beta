@@ -3,6 +3,9 @@ package entity;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Before.*;
 import static org.junit.Test.*;
 import static org.junit.Assert.*;
@@ -12,14 +15,16 @@ public class CommonUserTest {
     private CommonUser user;
     private FriendsList friendsList;
     private Inbox inbox;
+    private Genre genre;
 
     @Before
     public void init() {
         friendsList = new FriendsList() ;
         inbox = new Inbox() ;
-        user = new CommonUser("123", friendsList, inbox);
+        genre = new Genre();
+        user = new CommonUser("123", friendsList, inbox, genre);
     }
-
+//    HashMap<String, Map<String, Integer>> genres
     @Test
     public void getUserID() {
         assertEquals("123", user.getUserID());
@@ -34,4 +39,7 @@ public class CommonUserTest {
     public void getInbox() {
         assertEquals(inbox, user.getInbox());
     }
+
+    @Test
+    public void getGenre() { assertEquals(genre, user.getGenres()); }
 }
