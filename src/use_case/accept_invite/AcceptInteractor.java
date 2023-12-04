@@ -15,7 +15,7 @@ public class AcceptInteractor implements AcceptInputBoundary{
          String friend_id = inputData.getFriendId();
         userDataAccessObject.add_friend(user_id, friend_id);
 
-        AcceptOutputData outputData = new AcceptOutputData();
+        AcceptOutputData outputData = new AcceptOutputData(friend_id);
         acceptPresenter.prepareView(outputData);
     }
 }
