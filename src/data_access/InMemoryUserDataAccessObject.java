@@ -1,14 +1,16 @@
 package data_access;
 
 import entity.User;
-import use_case.login.LoginUserDataAccessInterface;
+import use_case.match.MatchUserAccessInterface;
+
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, LoginUserDataAccessInterface {
+public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, LoginUserDataAccessInterface, MatchUserAccessInterface{
 
     private final Map<String, User> users = new HashMap<>();
 
@@ -20,6 +22,9 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
     }
 
     @Override
+    public Collection<User> get_all_users() {
+        return users.values();
+      
     public boolean userExists(String userId) {
         return false;
     }
@@ -33,7 +38,6 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
     public User getUser(String userID) {
         return users.get(userID);
     }
-
     @Override
     public void add_user_genre(String userID, HashMap<String, Integer> genre) {
         users.get(userID).getGenres().setGenreMap(genre);
