@@ -9,15 +9,12 @@ import interface_adapter.home_page.HomePageController;
 import interface_adapter.home_page.HomePagePresenter;
 import interface_adapter.home_page.HomePageViewModel;
 import interface_adapter.inbox.InboxViewModel;
-import interface_adapter.match.MatchController;
-import interface_adapter.send_invite.SendInviteController;
 import use_case.accept_invite.AcceptInteractor;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineInteractor;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.home_page.*;
 import view.InboxView;
-import view.MatchView;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -41,7 +38,7 @@ public class InboxFactory {
             AcceptPresenter acceptPresenter = new AcceptPresenter();
             AcceptInteractor acceptInteractor = new AcceptInteractor(acceptUserDataAccessInterface, acceptPresenter);
             AcceptController acceptController = new AcceptController(acceptInteractor);
-            DeclinePresenter declinePresenter = new DeclinePresenter();
+            DeclinePresenter declinePresenter = new DeclinePresenter(inboxViewModel);
             DeclineInteractor declineInteractor = new DeclineInteractor(declineUserDataAccessInterface, declinePresenter);
             DeclineController declineController = new DeclineController(declineInteractor);
             return new InboxView(inboxViewModel, declineController, acceptController, homePageController);

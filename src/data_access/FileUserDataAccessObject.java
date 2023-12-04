@@ -247,6 +247,8 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         User user = this.accounts.get(user_id);
         user.getInbox().remove_invite(friend_id);
         this.remove_friend_request(user_id,friend_id);
+        System.out.println("delete invite DAO ran");
+        System.out.println("succesfully deleted = " + !user.getInbox().get_invites().contains(friend_id));
     }
 
     @Override

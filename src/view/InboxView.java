@@ -79,6 +79,7 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
         InboxState state = (InboxState) evt.getNewValue();
         username.setText(state.getUsername());
         List<String> userInbox = state.getInbox();
+        inbox.removeAll();
         accept = new JButton[userInbox.size()];
         decline = new JButton[userInbox.size()];
         for(int i = 0; i < accept.length; i++){
@@ -95,12 +96,13 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
                     new ActionListener() {
                         public void actionPerformed(ActionEvent evt) {
                             InboxState currState = inboxViewModel.getState();
-                            System.out.println("clicked decline");
+                            System.out.println("clicked accept");
                             System.out.println("===");
                             System.out.println("id 1: " + currState.getUser_id());
                             System.out.println("id 2: " + inviter_id);
                             System.out.println("===");
-                            acceptController.execute(currState.getUser_id(), inviter_id);
+                            //acceptController.execute(currState.getUser_id(), inviter_id);
+                            updatePanel();
                         }
                     }
             );
@@ -113,11 +115,17 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
                             System.out.println("id 1: " + currState.getUser_id());
                             System.out.println("id 2: " + inviter_id);
                             System.out.println("===");
-                            //declineController.execute(currState.getUser_id(), inviter_id);
+                            declineController.execute(currState.getUser_id(), inviter_id);
+                            updatePanel();
                         }
                     }
             );
             inbox.add(invite);
         }
+    }
+
+    private void updatePanel(){
+        inbox.revalidate();
+        inbox.repaint();
     }
 }
