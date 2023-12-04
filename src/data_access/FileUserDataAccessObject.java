@@ -1,8 +1,6 @@
 package data_access;
 
 import entity.*;
-import jdk.jshell.spi.ExecutionControl;
-import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.home_page.HomePageSpotifyAPIDataAccessInterface;
@@ -13,9 +11,7 @@ import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
 
 import java.io.*;
-import java.lang.reflect.InaccessibleObjectException;
 import java.util.*;
-import java.util.concurrent.ExecutionException;
 
 public class FileUserDataAccessObject implements SendInviteUserDataAccessInterface, DeclineUserDataAccessInterface,
         AcceptUserDataAccessInterface, LoginUserDataAccessInterface,
@@ -35,7 +31,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
 
     private final String sample = ",";
 
-    private UserFactory userFactory;
+    private final UserFactory userFactory;
 
     public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
@@ -62,7 +58,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     }
 
     private HashMap<String, HashMap<String, Integer>> read_user_genre(){
-        // TODO: MAKE THIS WORK, and TEST IT
         String mystring;
         HashMap<String, HashMap<String, Integer>> ans = new HashMap<>();
         try
@@ -73,8 +68,8 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
                 String[] users = mystring.split(sample);
                 HashMap<String, Integer> new_arr = new HashMap<>();
                 for(int i = 1; i < users.length; i++){
-                    //TODO: PLZ FIX THIS
-                    new_arr.put("hello",Integer.parseInt(users[i]));
+                    String[] genres = mystring.split("_");
+                    new_arr.put(genres[0],Integer.parseInt(genres[1]));
                 }
                 ans.put(users[0], new_arr);
             }
@@ -87,19 +82,19 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         return ans;
     }
 
-    public void add_user_genre(String user_id, HashMap<String, Map<String, Integer>> genres){
+    public void add_user_genre(String user_id, HashMap<String, Integer> genres){
         // adds a user's genre into the database, if the user already have previous entries inside of the genre, then update it
-        // TODO: implement this function
-        int a = 0;
+        this.genre_data_saved.put(user_id,genres);
+        this.write_genre();
     }
 
     private void write_genre(){
-        // TODO: implement this function properly
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.genre_csvFile_path))) {
-            for (String key : this.friend_data_saved.keySet()) {
+            for (String key : this.genre_data_saved.keySet()) {
                 String new_str = key;
-                for(String val : this.friend_data_saved.get(key)){
-                    new_str = new_str.concat(","+val);
+                HashMap<String, Integer> genre = this.genre_data_saved.get(key);
+                for(String key1 : this.genre_data_saved.get(key).keySet()){
+                    new_str = new_str.concat(","+key1+"_"+ genre.get(key1));
                 }
                 writer.write(new_str);
                 writer.newLine();
@@ -107,7 +102,6 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
