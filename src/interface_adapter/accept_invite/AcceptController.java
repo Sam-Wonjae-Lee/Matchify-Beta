@@ -1,13 +1,14 @@
 package interface_adapter.accept_invite;
 
+import use_case.accept_invite.AcceptInputBoundary;
 import use_case.accept_invite.AcceptInputData;
 import use_case.accept_invite.AcceptInteractor;
 
 public class AcceptController {
 
-    private final AcceptInteractor acceptInteractor;
+    private final AcceptInputBoundary acceptInteractor;
 
-    public AcceptController(AcceptInteractor acceptInteractor) {
+    public AcceptController(AcceptInputBoundary acceptInteractor) {
         this.acceptInteractor = acceptInteractor;
     }
 

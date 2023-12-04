@@ -52,7 +52,7 @@ public class CommonUserFactoryTest {
         assertTrue(userInvites.contains("invite1"));
 
 //      Verify the user has the correct genre
-        HashMap<String, Integer> userGenres = user.getGenres().getGenres();
+        HashMap<String, Integer> userGenres = user.getGenres().getGenreMap();
         assertEquals(2, userGenres.size());
         assertTrue(userGenres.containsKey("PlayList1"));
     }

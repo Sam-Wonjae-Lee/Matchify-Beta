@@ -3,7 +3,6 @@ package data_access;
 import entity.*;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
-import use_case.home_page.HomePageSpotifyAPIDataAccessInterface;
 import use_case.home_page.HomePageUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.match.MatchUserAccessInterface;
@@ -32,7 +31,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     private final String sample = ",";
 
     private UserFactory userFactory;
-// TODO: ADD GENRE
+    // TODO: ADD GENRE
     public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
@@ -72,7 +71,9 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
                 String[] users = mystring.split(sample);
                 HashMap<String, Integer> new_arr = new HashMap<>();
                 for(int i = 1; i < users.length; i++){
-                    String[] genres = mystring.split("_");
+                    String[] genres = users[i].split("_");
+                    System.out.println(genres[0]);
+                    System.out.println(genres[1]);
                     new_arr.put(genres[0],Integer.parseInt(genres[1]));
                 }
                 ans.put(users[0], new_arr);
@@ -235,8 +236,11 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     @Override
     public void add_friend(String user_id, String friend_id) {
         User user = this.accounts.get(user_id);
+        User friend = this.accounts.get(friend_id);
         user.getFriendList().add_friend(friend_id);
+        friend.getFriendList().add_friend(user_id);
         this.add_to_friendList(user_id, friend_id);
+        this.add_to_friendList(friend_id, user_id);
     }
 
     @Override
@@ -244,6 +248,8 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         User user = this.accounts.get(user_id);
         user.getInbox().remove_invite(friend_id);
         this.remove_friend_request(user_id,friend_id);
+        System.out.println("delete invite DAO ran");
+        System.out.println("succesfully deleted = " + !user.getInbox().get_invites().contains(friend_id));
     }
 
     @Override
@@ -258,6 +264,24 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         HashSet<String> empty = new HashSet<>();
         empty.add("user1");
         empty.add("user2");
+        empty.add("user3");
+        empty.add("user4");
+        empty.add("user5");
+        empty.add("user6");
+        empty.add("user7");
+        empty.add("user8");
+        empty.add("user9");
+        empty.add("user10");
+        empty.add("user11");
+        empty.add("user12");
+        empty.add("user13");
+        empty.add("user14");
+        empty.add("user15");
+        empty.add("user16");
+        empty.add("user17");
+        empty.add("user18");
+        empty.add("user19");
+        empty.add("user20");
         this.friend_data_saved.put(user_id, empty);
         this.inbox_data_saved.put(user_id, empty);
         this.write_inbox();
@@ -277,5 +301,23 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     @Override
     public User getUser(String userID) {
         return this.accounts.get(userID);
+    }
+
+    public void clear_all_files(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(inbox_csvFile_path))) {
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(genre_csvFile_path))) {
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(friends_csvFile_path))) {
+            writer.write("");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
