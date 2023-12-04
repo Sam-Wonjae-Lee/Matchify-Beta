@@ -19,7 +19,6 @@ public class InMemorySpotifyDataAccessObject implements LoginSpotifyAPIDataAcces
     FriendsList friendslst = new FriendsList();
     Inbox inbox = new Inbox();
     Genre genre = new Genre();
-    CommonUser user = new CommonUser("David_loves_dogs",friendslst,inbox,genre);
 
     @Override
     public String getName(String userID) {

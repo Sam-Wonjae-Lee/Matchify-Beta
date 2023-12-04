@@ -97,8 +97,6 @@ public class MatchInteractor implements MatchInputboundary{
             MatchOutPutData matchOutPutData = new MatchOutPutData(
                     matchedUsers, client_user_id, matchUserAccessInterface.getUsernameMap());
 
-            MatchOutPutData matchOutPutData = new MatchOutPutData(matchedUsers, client_user_id);
-
             matchPresenter.prepareSuccessView(matchOutPutData);
         }
 
