@@ -21,43 +21,72 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
 
     private final String genre_csvFile_path = "src/csv_files/user_genre.csv";
 
+    private final String username_csvFile_path = "src/csv_files/user_username.csv";
+
     private final Map<String, HashSet<String>> friend_data_saved = new HashMap<>();
     private final Map<String, HashSet<String>> inbox_data_saved = new HashMap<>();
 
     private final HashMap<String, HashMap<String, Integer>> genre_data_saved = new HashMap<>();
+
+    private final HashMap<String, String> username_data_saved = new HashMap<>();
 
     private final Map<String, User> accounts = new HashMap<>();
 
     private final String sample = ",";
 
     private UserFactory userFactory;
-    // TODO: ADD GENRE
     public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
         HashMap<String, HashSet<String>> inbox_data = this.read_inbox();
         HashMap<String, HashMap<String, Integer>> genre_data = this.read_user_genre();
+        HashMap<String, String> username_data = this.read_username();
         for(String key : friend_data.keySet()){
             FriendsList friendsList = new FriendsList();
             for(String user_id : friend_data.get(key)){
                 friendsList.add_friend(user_id);
             }
+
             Inbox inbox = new Inbox();
             for(String user_id : inbox_data.get(key)){
                 inbox.add_invite(user_id);
             }
+
             Genre obj = new Genre();
             obj.setGenreMap(genre_data.get(key));
-            User user = this.userFactory.create(key, friendsList, inbox, obj);
+
+            String username = username_data.get(key);
+
+            User user = this.userFactory.create(key, friendsList, inbox, obj, username);
             this.accounts.put(key, user);
             this.inbox_data_saved.put(key,inbox_data.get(key));
             this.friend_data_saved.put(key,friend_data.get(key));
             this.genre_data_saved.put(key,genre_data.get(key));
+            this.username_data_saved.put(key, username_data.get(key));
         }
         //checks that the DAO is storing users in hashmap
-        System.out.println("friend: " + friend_data.keySet());
-        System.out.println("inbox: " + inbox_data.keySet());
+        System.out.println("friend: " + friend_data_saved.keySet());
+        System.out.println("inbox: " + inbox_data_saved.keySet());
         System.out.println("accounts: " + accounts.keySet());
+        System.out.println("username: " + username_data_saved.keySet());
+    }
+
+    private HashMap<String, String> read_username(){
+        String mystring;
+        HashMap<String, String> ans = new HashMap<>();
+        try {
+            BufferedReader brdrd = new BufferedReader(new FileReader(this.username_csvFile_path));
+            while ((mystring = brdrd.readLine()) != null)  //Reads a line of text
+            {
+                String[] users = mystring.split(sample);
+                ans.put(users[0], users[1]);
+            }
+            return ans;
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        return ans;
     }
 
     private HashMap<String, HashMap<String, Integer>> read_user_genre(){
@@ -85,6 +114,23 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
             e.printStackTrace();//Prints this throwable and its backtrace
         }
         return ans;
+    }
+
+    public void add_username(String user_id, String username){
+        this.username_data_saved.put(user_id, username);
+        this.write_username();
+    }
+
+    private void write_username(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(this.username_csvFile_path))) {
+            for (String key : this.username_data_saved.keySet()) {
+                String str = key + "," + username_data_saved.get(key);
+                writer.write(str);
+                writer.newLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void add_user_genre(String user_id, HashMap<String, Integer> genres){
@@ -262,8 +308,10 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
         HashSet<String> empty = new HashSet<>();
         this.friend_data_saved.put(user_id, empty);
         this.inbox_data_saved.put(user_id, empty);
+        this.username_data_saved.put(user_id, user.getUsername());
         this.write_inbox();
         this.write_friend();
+        this.write_username();
     }
 
     @Override

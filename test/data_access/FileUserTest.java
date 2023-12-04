@@ -24,7 +24,7 @@ public class FileUserTest {
 
         FriendsList lst = new FriendsList();
         Inbox inbox = new Inbox();
-        User user = new CommonUser("frank", lst, inbox, genre);
+        User user = new CommonUser("frank", lst, inbox, genre, username);
         obj.save(user);
 
         assertTrue(obj.userExists("frank"));
@@ -43,8 +43,8 @@ public class FileUserTest {
 
         FriendsList lst = new FriendsList();
         Inbox inbox = new Inbox();
-        User user = new CommonUser("frank", lst, inbox, genre);
-        User user2 = new CommonUser("david", lst, inbox, genre);
+        User user = new CommonUser("frank", lst, inbox, genre, username);
+        User user2 = new CommonUser("david", lst, inbox, genre, username);
         obj.save(user);
         obj.save(user2);
 
