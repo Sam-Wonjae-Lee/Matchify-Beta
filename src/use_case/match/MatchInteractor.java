@@ -44,6 +44,7 @@ public class MatchInteractor implements MatchInputboundary{
     public HashMap<String, Integer> map_playlist(User user){
         List<String> playlistIds = this.matchSpotifyAccessInterface.getPlaylistIds(user.getUserID());
         HashMap<String, Integer> allGenresFrequencyMap = new HashMap<>();
+        System.out.println(playlistIds);
         for (String playlistId : playlistIds) {
             List<String> artistIds = this.matchSpotifyAccessInterface.getArtistsIds(playlistId);
 
