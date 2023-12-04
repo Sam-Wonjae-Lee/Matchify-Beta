@@ -1,17 +1,41 @@
 package use_case;
 
-import use_case.match.MatchInputData;
-import use_case.match.MatchInputboundary;
+import data_access.InMemoryUserDataAccessObject;
+import data_access.SpotifyApiCallGetInfoDataAccessObject;
+import entity.User;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.match.MatchPresenter;
+import interface_adapter.match.MatchViewModel;
+import use_case.match.*;
+import static org.junit.Assert.*;
+
 
 public class MatchTest {
 
-    String userID = "123";
-    MatchInputData matchInputData = new MatchInputData(userID);
 
     void successTest() {
+        String userID = "123";
+        MatchUserAccessInterface userRepository = new InMemoryUserDataAccessObject();
+        MatchSpotifyAccessInterface spotifyAccessInterface = new SpotifyApiCallGetInfoDataAccessObject();
+//TODO: still need some work
+        MatchOutputBoundary successPresenter = new MatchOutputBoundary() {
+            @Override
+            public void prepareSuccessView(MatchOutPutData userList) {
+                assertEquals(userID, userList.getClientUserID());
+                assertEquals(, userList.);
+            }
+
+            @Override
+            public void prepareFailView(String error) {
+                fail("Unable to find Matches, please try again later.");
+            }
+        };
+
+        MatchInputData inputData = new MatchInputData(userID);
+        MatchInputboundary interactor = new MatchInteractor(successPresenter, userRepository, spotifyAccessInterface);
+        interactor.execute(inputData);
 
     }
-
 }
 //void successTest() {
 //SignupUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
