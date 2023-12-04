@@ -24,9 +24,9 @@ public class LoginInteractor implements LoginInputBoundary{
         this.userFactory = userFactory;
     }
 
-    public HashMap<String, Integer> map_playlist(User user){
-        System.out.println(user);
-        List<String> playlistIds = this.spotifyAPIDataAccessObject.getPlaylistIds(user.getUserID());
+    public HashMap<String, Integer> map_playlist(String user_id){
+        System.out.println(user_id);
+        List<String> playlistIds = this.spotifyAPIDataAccessObject.getPlaylistIds(user_id);
         HashMap<String, Integer> allGenresFrequencyMap = new HashMap<>();
         for (String playlistId : playlistIds) {
             List<String> artistIds = this.spotifyAPIDataAccessObject.getArtistsIds(playlistId);
@@ -59,7 +59,7 @@ public class LoginInteractor implements LoginInputBoundary{
                 // Save genre
                 Genre genre = new Genre();
 
-                HashMap<String, Integer> userGenre = map_playlist(userDataAccessObject.getUser(loginInputData.getUserID()));
+                HashMap<String, Integer> userGenre = map_playlist(userId);
                 genre.setGenreMap(userGenre);
                 userDataAccessObject.add_user_genre(loginInputData.getUserID(), genre.getGenreMap());
 

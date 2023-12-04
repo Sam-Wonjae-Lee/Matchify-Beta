@@ -32,7 +32,10 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
 
     JLabel username;
 
-    public InboxView(InboxViewModel inboxViewModel, DeclineController declineController, AcceptController acceptController, HomePageController homePageController) {
+    public InboxView(InboxViewModel inboxViewModel,
+                     DeclineController declineController,
+                     AcceptController acceptController,
+                     HomePageController homePageController) {
 
         this.declineController = declineController;
         this.acceptController = acceptController;

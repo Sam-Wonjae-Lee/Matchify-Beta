@@ -2,7 +2,6 @@ package interface_adapter.match;
 
 import entity.User;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.ViewModel;
 import use_case.match.MatchOutPutData;
 import use_case.match.MatchOutputBoundary;
 
@@ -17,13 +16,16 @@ public class MatchPresenter implements MatchOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(MatchOutPutData userList) {
+    public void prepareSuccessView(MatchOutPutData response) {
         MatchState matchState = matchViewModel.getState();
-        matchState.setMATCHED_USERSID(userList.getuserIDArrayList());
-        matchState.setMATCHED_USERSNAMES(userList.getUserNames());
-        matchState.setCLIENT_USERID(userList.getClientUserID());
+
+        matchState.setUser_id(response.getUser_id());
+        matchState.setMatched_users(response.getMatched_list());
+
         this.matchViewModel.setState(matchState);
         matchViewModel.firePropertyChanged();
+
+
         this.viewManagerModel.setActiveView(matchViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
@@ -31,7 +33,7 @@ public class MatchPresenter implements MatchOutputBoundary {
     @Override
     public void prepareFailView(String error) {
         MatchState matchState = matchViewModel.getState();
-        matchState.setMATCHED_USERS_ERROR(error);
+        matchState.setMatchError(error);
         matchViewModel.firePropertyChanged();
     }
 }

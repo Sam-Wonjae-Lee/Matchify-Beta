@@ -64,12 +64,12 @@ public class MatchInteractor implements MatchInputboundary{
     @Override
     public void execute(MatchInputData matchInputData) {
         User client_user = matchUserAccessInterface.getUser(matchInputData.getUserID());
-        Map<String, Integer> client_map = this.map_playlist(client_user);
+        Map<String, Integer> client_map = client_user.getGenres().getGenreMap();
         HashMap<Integer, User> ans = new HashMap<>();
-        for(User user: this.matchUserAccessInterface.get_all_users()){
-            Map<String, Integer> user_map = this.map_playlist(user);
+        for (User user : this.matchUserAccessInterface.get_all_users()) {
+            Map<String, Integer> user_map = user.getGenres().getGenreMap();
             int score = this.compare_other_playlist(client_map, user_map);
-            ans.put(score,user);
+            ans.put(score, user);
         }
 
         List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
@@ -77,17 +77,17 @@ public class MatchInteractor implements MatchInputboundary{
 
         List<String> matchedUsers = new ArrayList<>();
 
+        String client_user_id = client_user.getUserID();
 //      This for loop adds users to List from Hashmap
         for (int keys : sorted_keys) {
-//          does not add user to list if the user is the Client
-            if (!client_user.equals(ans.get(keys))) {
-//              adds to list until length is 3
-                if (matchedUsers.size() != 3) {
-                    matchedUsers.add(ans.get(keys).getUserID());
-                }
-                else {
-                    break;
-                }
+            if (matchedUsers.size() == 5) {
+                break;
+            }
+//          does not add user to list if the user is the Client or if the client is already friends with the user
+            String user_id = ans.get(keys).getUserID();
+            if (!client_user_id.equals(user_id) &&
+                    !client_user.getFriendList().get_friends().contains(user_id)){
+                matchedUsers.add(ans.get(keys).getUserID());
             }
         }
         System.out.println("interactor works");
@@ -95,7 +95,7 @@ public class MatchInteractor implements MatchInputboundary{
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }
         else {
-            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers, client_user.getUserID());
+            MatchOutPutData matchOutPutData = new MatchOutPutData(matchedUsers, client_user_id);
             matchPresenter.prepareSuccessView(matchOutPutData);
         }
 
