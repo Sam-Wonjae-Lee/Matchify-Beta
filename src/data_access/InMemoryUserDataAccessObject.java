@@ -1,6 +1,8 @@
 package data_access;
 
 import entity.User;
+import use_case.accept_invite.AcceptUserDataAccessInterface;
+import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.match.MatchUserAccessInterface;
 
@@ -11,7 +13,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, MatchUserAccessInterface, LoginUserDataAccessInterface {
+public class InMemoryUserDataAccessObject implements AcceptUserDataAccessInterface ,DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, MatchUserAccessInterface, LoginUserDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
 
@@ -62,5 +64,9 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
         users.get(userID).getInbox().add_invite(invitedUserID);
     }
 
+    @Override
+    public void deleteInvite(String username, String inviter) {
+        this.users.remove(username,inviter);
+    }
 }
 

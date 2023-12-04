@@ -71,7 +71,9 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                 new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         HomePageState state = homePageViewModel.getState();
+                        System.out.println("in match view button: " + state.getUserID());
                         matchController.execute(state.getUserID());
+                        updatePanel();
                     }
                 }
         );
