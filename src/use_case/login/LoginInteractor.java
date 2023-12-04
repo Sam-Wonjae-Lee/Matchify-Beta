@@ -1,12 +1,10 @@
 package use_case.login;
 
 
-import data_access.FileUserDataAccessObject;
 import entity.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LoginInteractor implements LoginInputBoundary{
 

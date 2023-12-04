@@ -208,7 +208,6 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
                     }
                 }
         );
-
     }
     @Override
     public void actionPerformed(ActionEvent e) {

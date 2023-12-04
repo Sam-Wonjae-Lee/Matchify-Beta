@@ -36,6 +36,11 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
     }
 
     @Override
+    public void add_user_genre(String userID, HashMap<String, Integer> genre) {
+        users.get(userID).getGenres().setGenreMap(genre);
+    }
+
+    @Override
     public void addToInbox(String userID, String invitedUserID) {
         // TODO: PLZ CHECK NAMING CONVENTION
         users.get(userID).getInbox().add_invite(invitedUserID);

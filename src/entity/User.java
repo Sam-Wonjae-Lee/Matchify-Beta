@@ -10,4 +10,6 @@ public interface User {
     FriendsList getFriendList();
 
     Inbox getInbox();
+
+    Genre getGenres();
 }

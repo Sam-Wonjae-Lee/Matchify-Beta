@@ -3,7 +3,6 @@ package data_access;
 import entity.*;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
-import use_case.home_page.HomePageSpotifyAPIDataAccessInterface;
 import use_case.home_page.HomePageUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.match.MatchUserAccessInterface;
@@ -32,7 +31,7 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     private final String sample = ",";
 
     private UserFactory userFactory;
-// TODO: ADD GENRE
+    // TODO: ADD GENRE
     public FileUserDataAccessObject(CommonUserFactory userFactory) throws IOException {
         this.userFactory = userFactory;
         HashMap<String, HashSet<String>> friend_data = this.read_friend();
@@ -298,5 +297,23 @@ public class FileUserDataAccessObject implements SendInviteUserDataAccessInterfa
     @Override
     public User getUser(String userID) {
         return this.accounts.get(userID);
+    }
+
+    public void clear_all_files(){
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(inbox_csvFile_path))) {
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(genre_csvFile_path))) {
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(friends_csvFile_path))) {
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
