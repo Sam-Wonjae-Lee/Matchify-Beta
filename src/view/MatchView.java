@@ -58,17 +58,23 @@ public class MatchView extends JPanel implements ActionListener, PropertyChangeL
         Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
 
 // UserNames
-        UserName_1 = new JLabel(matchViewModel.getState().getUSERNAMES().get(0));
-        UserName_2 = new JLabel(matchViewModel.getState().getUSERNAMES().get(1));
-        UserName_3 = new JLabel(matchViewModel.getState().getUSERNAMES().get(0));
-
+        List<String> usernameList = matchViewModel.getState().getUSERNAMES();
+        UserName_1 = new JLabel(usernameList.get(0));
+        if (usernameList.size() == 2) {
+            UserName_2 = new JLabel(matchViewModel.getState().getUSERNAMES().get(1));
+            buttonsPanel.add(UserName_2);
+        }
+        else {
+            UserName_3 = new JLabel(matchViewModel.getState().getUSERNAMES().get(2));
+            buttonsPanel.add(UserName_3);
+        }
 
 // Add UserNames and Invite buttons to the buttons panel
         buttonsPanel.add(UserName_1);
         buttonsPanel.add(Invite_1);
-        buttonsPanel.add(UserName_2);
+//        buttonsPanel.add(UserName_2);
         buttonsPanel.add(Invite_2);
-        buttonsPanel.add(UserName_3);
+//        buttonsPanel.add(UserName_3);
         buttonsPanel.add(Invite_3);
 
 // Create a panel for the title
