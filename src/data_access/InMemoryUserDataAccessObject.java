@@ -1,6 +1,6 @@
 package data_access;
 
-import entity.User;
+import entity.*;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
@@ -35,7 +35,7 @@ public class InMemoryUserDataAccessObject implements AcceptUserDataAccessInterfa
 
     @Override
     public void save(User user) {
-
+        this.users.put(user.getUserID(),user);
     }
 
     @Override

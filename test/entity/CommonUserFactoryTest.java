@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class CommonUserFactoryTest {
 
     @Test
-    public void create() {
+    public void TestCommonUserFactoryCreate() {
         // Create a CommonUserFactory
         CommonUserFactory userFactory = new CommonUserFactory();
 
@@ -54,6 +54,7 @@ public class CommonUserFactoryTest {
 //      Verify the user has the correct genre
         HashMap<String, Integer> userGenres = user.getGenres().getGenreMap();
         assertEquals(2, userGenres.size());
-        assertTrue(userGenres.containsKey("PlayList1"));
+        assertTrue(userGenres.containsKey("Pop"));
+        assertTrue(userGenres.containsKey("Rap"));
     }
 }

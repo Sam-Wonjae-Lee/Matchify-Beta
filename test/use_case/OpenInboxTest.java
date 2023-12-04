@@ -1,6 +1,10 @@
 package use_case;
 
 import data_access.InMemoryUserDataAccessObject;
+import entity.CommonUser;
+import entity.FriendsList;
+import entity.Genre;
+import entity.Inbox;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.inbox.InboxViewModel;
 import interface_adapter.open_inbox.OpenInboxPresenter;
@@ -16,11 +20,15 @@ public class OpenInboxTest {
     public void testSuccess(){
         String username = "testUser";
         OpenInboxInputData inputData = new OpenInboxInputData(username, username);
-        OpenInboxUserDataAccessInterface userRepository = new InMemoryUserDataAccessObject();
+        InMemoryUserDataAccessObject userRepository = new InMemoryUserDataAccessObject();
 
-
-        InboxViewModel inboxViewModel = null;
-        ViewManagerModel viewManagerModel = null;
+        FriendsList friendsList = new FriendsList();
+        Inbox inbox = new Inbox();
+        Genre genre = new Genre();
+        CommonUser user1 = new CommonUser(username, friendsList, inbox, genre);
+        userRepository.save(user1);
+        InboxViewModel inboxViewModel = new InboxViewModel();
+        ViewManagerModel viewManagerModel = new ViewManagerModel();
         OpenInboxOutputBoundary successPresenter = new OpenInboxPresenter(inboxViewModel, viewManagerModel){
             @Override
             public void prepareSuccessView(OpenInboxOutputData user){
