@@ -1,12 +1,10 @@
 package use_case.login;
 
 
-import data_access.FileUserDataAccessObject;
 import entity.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class LoginInteractor implements LoginInputBoundary{
 
@@ -27,6 +25,7 @@ public class LoginInteractor implements LoginInputBoundary{
     }
 
     public HashMap<String, Integer> map_playlist(User user){
+        System.out.println(user);
         List<String> playlistIds = this.spotifyAPIDataAccessObject.getPlaylistIds(user.getUserID());
         HashMap<String, Integer> allGenresFrequencyMap = new HashMap<>();
         for (String playlistId : playlistIds) {
@@ -59,6 +58,7 @@ public class LoginInteractor implements LoginInputBoundary{
 // TODO: ASK FRANK ABOUT HashMap<String, Map<String, Integer>>
                 // Save genre
                 Genre genre = new Genre();
+
                 HashMap<String, Integer> userGenre = map_playlist(userDataAccessObject.getUser(loginInputData.getUserID()));
                 genre.setGenreMap(userGenre);
                 userDataAccessObject.add_user_genre(loginInputData.getUserID(), genre.getGenreMap());

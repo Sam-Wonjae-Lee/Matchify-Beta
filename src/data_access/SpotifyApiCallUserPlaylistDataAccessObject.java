@@ -45,7 +45,7 @@ public class SpotifyApiCallUserPlaylistDataAccessObject implements SpotifyApiCal
 
         // Create a request to get a user's playlists
         GetListOfUsersPlaylistsRequest request = spotifyApi.getListOfUsersPlaylists(userId)
-                .limit(50) // You can adjust the limit as needed (50 is the max limit)
+                .limit(5) // You can adjust the limit as needed (50 is the max limit)
                 .offset(0)  // You can adjust the offset as needed (offset should be 0)
                 .build();
 
