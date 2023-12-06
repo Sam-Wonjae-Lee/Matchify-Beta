@@ -24,6 +24,12 @@ For more information about the Spotify API, please visit [source](https://develo
 
 ---
 
+### **UI Preview** ###
+
+![unnamed (8)](https://github.com/Sam-Wonjae-Lee/CSC207-Project-Matchify/assets/46289416/9055f575-0025-459a-b072-c5a4b5b63215)
+
+
+
 ## **Credits**
 
 ### App
