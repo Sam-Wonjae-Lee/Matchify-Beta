@@ -30,7 +30,7 @@ For more information about the Spotify API, please visit [source](https://develo
 - Strip out the pasted value of the part that says "https://open.spotify.com/user/" leaving only a string of numbers \
 Example:
 https://open.spotify.com/user/{USER_ID}?si=e39f82815e654f82
-- Copy down the string of numbers after user/ and before ? to obtain the use id
+- Copy down the string of numbers after user/ and before ? to obtain the user id
 ---
 
 ## **UI Preview**
