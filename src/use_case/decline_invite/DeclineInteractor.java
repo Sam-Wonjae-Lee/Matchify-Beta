@@ -16,7 +16,7 @@ public class DeclineInteractor implements DeclineInputBoundary{
         String friend_id = inputData.getFriend_id();
         userDataAccessObject.deleteInvite(username, friend_id);
 
-        DeclineOutputData declineOutputData = new DeclineOutputData();
+        DeclineOutputData declineOutputData = new DeclineOutputData(friend_id);
         declinePresenter.prepareView(declineOutputData);
     }
 }

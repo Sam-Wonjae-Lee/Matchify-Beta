@@ -2,6 +2,9 @@ package use_case.login;
 
 import entity.User;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public interface LoginUserDataAccessInterface {
     boolean userExists(String userId);
 
@@ -10,4 +13,6 @@ public interface LoginUserDataAccessInterface {
     void save(User user);
 
     User getUser(String userID);
+
+    void add_user_genre(String userID, HashMap<String, Integer> genre);
 }

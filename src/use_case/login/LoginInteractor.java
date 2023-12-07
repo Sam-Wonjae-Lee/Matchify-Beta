@@ -1,11 +1,10 @@
 package use_case.login;
 
 
-import data_access.FileUserDataAccessObject;
-import entity.FriendsList;
-import entity.Inbox;
-import entity.User;
-import entity.UserFactory;
+import entity.*;
+
+import java.util.HashMap;
+import java.util.List;
 
 public class LoginInteractor implements LoginInputBoundary{
 
@@ -25,10 +24,31 @@ public class LoginInteractor implements LoginInputBoundary{
         this.userFactory = userFactory;
     }
 
+    public HashMap<String, Integer> map_playlist(String user_id){
+        System.out.println(user_id);
+        List<String> playlistIds = this.spotifyAPIDataAccessObject.getPlaylistIds(user_id);
+        HashMap<String, Integer> allGenresFrequencyMap = new HashMap<>();
+        for (String playlistId : playlistIds) {
+            List<String> artistIds = this.spotifyAPIDataAccessObject.getArtistsIds(playlistId);
+
+            for (String artistId : artistIds) {
+//                System.out.println(artistId);
+                List<String> genres = this.spotifyAPIDataAccessObject.getGenres(artistId);
+//                System.out.println(genres);
+                for (String genre : genres) {
+                    allGenresFrequencyMap.put(genre, allGenresFrequencyMap.getOrDefault(genre, 0) + 1);
+                }
+            }
+        }
+//        System.out.println(allGenresFrequencyMap);
+        return allGenresFrequencyMap;
+    }
+
     @Override
     public void execute(LoginInputData loginInputData) {
         String userId = loginInputData.getUserID();
         System.out.println(spotifyAPIDataAccessObject.userExists(userId));
+        System.out.println("We are here");
         if(!spotifyAPIDataAccessObject.userExists(userId)){
             loginPresenter.prepareFailView("There is no account associated with "  + userId);
         }
@@ -36,17 +56,28 @@ public class LoginInteractor implements LoginInputBoundary{
             String name = spotifyAPIDataAccessObject.getName(userId);
             String pfp = spotifyAPIDataAccessObject.getProfilePicture(userId);
             if (!userDataAccessObject.userExists(userId)) {
+// TODO: ASK FRANK ABOUT HashMap<String, Map<String, Integer>>
+                // Save genre
+                Genre genre = new Genre();
+
+                HashMap<String, Integer> userGenre = map_playlist(userId);
+                genre.setGenreMap(userGenre);
+                userDataAccessObject.add_user_genre(loginInputData.getUserID(), genre.getGenreMap());
+
                 FriendsList lst = new FriendsList();
                 Inbox inbox = new Inbox();
-                User user = userFactory.create(userId, lst, inbox);
+                User user = userFactory.create(userId, lst, inbox, genre);
                 userDataAccessObject.save(user);
             }
             User user = userDataAccessObject.getUser(userId);
             LoginOutputData outputData = new LoginOutputData(
                     userId, name, pfp, user.getFriendList().get_friends(), false);
+            System.out.println("in login interactor");
+            System.out.println("===");
             System.out.println("userid: " + userId);
             System.out.println("name: " + name);
             System.out.println("friends: " + user.getFriendList().get_friends());
+            System.out.println("===");
             loginPresenter.prepareSuccessView(outputData);
         }
     }

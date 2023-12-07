@@ -1,13 +1,19 @@
 package data_access;
 
-import entity.User;
+import entity.*;
+import use_case.accept_invite.AcceptUserDataAccessInterface;
+import use_case.decline_invite.DeclineUserDataAccessInterface;
+import use_case.login.LoginUserDataAccessInterface;
+import use_case.match.MatchUserAccessInterface;
+
 import use_case.open_inbox.OpenInboxUserDataAccessInterface;
 import use_case.send_invite.SendInviteUserDataAccessInterface;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface {
+public class InMemoryUserDataAccessObject implements AcceptUserDataAccessInterface ,DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, MatchUserAccessInterface, LoginUserDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
 
@@ -19,13 +25,39 @@ public class InMemoryUserDataAccessObject implements OpenInboxUserDataAccessInte
     }
 
     @Override
-    public User getUser(String userID) {
+    public Collection<User> get_all_users() {
+        return users.values();
+    }
+
+    public boolean userExists (String userId){
+        return false;
+    }
+
+    @Override
+    public void save(User user) {
+        this.users.put(user.getUserID(),user);
+    }
+
+    @Override
+    public User getUser (String userID){
         return users.get(userID);
     }
 
     @Override
-    public void addToInbox(String userID, String invitedUserID) {
+    public void add_user_genre(String userID, HashMap<String, Integer> genre) {
+
+    }
+
+    @Override
+    public void addToInbox (String userID, String invitedUserID){
         // TODO: PLZ CHECK NAMING CONVENTION
+        System.out.println("in memory dao add to inbox was called");
         users.get(userID).getInbox().add_invite(invitedUserID);
     }
+
+    @Override
+    public void deleteInvite(String username, String inviter) {
+        this.users.remove(username,inviter);
+    }
 }
+

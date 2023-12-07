@@ -32,6 +32,27 @@ Example:
 https://open.spotify.com/user/{USER_ID}?si=e39f82815e654f82
 - Copy down the string of numbers after user/ and before ? to obtain the use id
 ---
+
+## **UI Preview**
+
+### User Login
+![login](https://github.com/Sam-Wonjae-Lee/CSC207-Project-Matchify/assets/46289416/009a4431-76c0-497c-91ac-141324687d38)
+
+### Matching For Friends
+![open match](https://github.com/Sam-Wonjae-Lee/CSC207-Project-Matchify/assets/46289416/5d0f7b0a-e52e-4441-bb61-de0b504cece0)
+
+### Adding Friends
+![add friend](https://github.com/Sam-Wonjae-Lee/CSC207-Project-Matchify/assets/46289416/45643466-13e6-4cf5-aa66-66b738b4605a)
+
+### Open Inbox
+![open_inbox](https://github.com/Sam-Wonjae-Lee/CSC207-Project-Matchify/assets/46289416/0f21f63d-dd11-4f51-aaf3-c9dde7c2afa7)
+
+### Accept Friend Request
+![accept friend request](https://github.com/Sam-Wonjae-Lee/CSC207-Project-Matchify/assets/46289416/4be71f7f-e74f-4a75-af40-32805d9b04b0)
+
+### Decline Friend Request
+![decline friend request](https://github.com/Sam-Wonjae-Lee/CSC207-Project-Matchify/assets/46289416/5a1c00a4-0010-4c97-bd08-c4f6f383202c)
+
 ## **Credits**
 
 ### App

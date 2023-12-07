@@ -27,7 +27,6 @@ public class MatchInteractor implements MatchInputboundary{
         for(String key: map2.keySet()){
             hashSet.add(key);
         }
-        System.out.println(hashSet);
         for(String key: hashSet){
             if(map1.containsKey(key) && map2.containsKey(key)){
                 ans += Math.max(map1.get(key),map2.get(key)) - Math.min(map1.get(key),map2.get(key));
@@ -41,58 +40,61 @@ public class MatchInteractor implements MatchInputboundary{
         }
         return ans;
     }
-    public Map<String, Integer> map_playlist(User user){
+    public HashMap<String, Integer> map_playlist(User user){
         List<String> playlistIds = this.matchSpotifyAccessInterface.getPlaylistIds(user.getUserID());
-        Map<String, Integer> allGenresFrequencyMap = new HashMap<>();
+        HashMap<String, Integer> allGenresFrequencyMap = new HashMap<>();
+        System.out.println(playlistIds);
         for (String playlistId : playlistIds) {
             List<String> artistIds = this.matchSpotifyAccessInterface.getArtistsIds(playlistId);
 
             for (String artistId : artistIds) {
+//                System.out.println(artistId);
                 List<String> genres = this.matchSpotifyAccessInterface.getGenres(artistId);
-
+//                System.out.println(genres);
                 for (String genre : genres) {
                     allGenresFrequencyMap.put(genre, allGenresFrequencyMap.getOrDefault(genre, 0) + 1);
                 }
             }
         }
+//        System.out.println(allGenresFrequencyMap);
         return allGenresFrequencyMap;
     }
 
     @Override
     public void execute(MatchInputData matchInputData) {
         User client_user = matchUserAccessInterface.getUser(matchInputData.getUserID());
-        Map<String, Integer> client_map = this.map_playlist(client_user);
+        Map<String, Integer> client_map = client_user.getGenres().getGenreMap();
         HashMap<Integer, User> ans = new HashMap<>();
-        for(User user: this.matchUserAccessInterface.get_all_users()){
-            Map<String, Integer> user_map = this.map_playlist(user);
+      
+        for (User user : this.matchUserAccessInterface.get_all_users()) {
+            Map<String, Integer> user_map = user.getGenres().getGenreMap();
             int score = this.compare_other_playlist(client_map, user_map);
-            ans.put(score,user);
+            ans.put(score, user);
         }
-
         List<Integer> sorted_keys = new ArrayList<>(ans.keySet());
         Collections.sort(sorted_keys);
 
         List<String> matchedUsers = new ArrayList<>();
 
+        String client_user_id = client_user.getUserID();
 //      This for loop adds users to List from Hashmap
         for (int keys : sorted_keys) {
-//          does not add user to list if the user is the Client
-            if (!client_user.equals(ans.get(keys))) {
-//              adds to list until length is 3
-                if (matchedUsers.size() != 3) {
-                    matchedUsers.add(ans.get(keys).getUserID());
-                }
-                else {
-                    break;
-                }
+            if (matchedUsers.size() == 3) {
+                break;
+            }
+//          does not add user to list if the user is the Client or if the client is already friends with the user
+            String user_id = ans.get(keys).getUserID();
+            if (!client_user_id.equals(user_id) &&
+                    !client_user.getFriendList().get_friends().contains(user_id)){
+                matchedUsers.add(ans.get(keys).getUserID());
             }
         }
-
         if (matchedUsers.isEmpty()) {
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }
         else {
-            MatchOutPutData matchOutPutData = new MatchOutPutData(true, matchedUsers, client_user.getUserID());
+            System.out.println("interactor triggered");
+            MatchOutPutData matchOutPutData = new MatchOutPutData(matchedUsers, client_user_id);
             matchPresenter.prepareSuccessView(matchOutPutData);
         }
 

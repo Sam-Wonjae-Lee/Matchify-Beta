@@ -1,8 +1,10 @@
 package data_access;
 
+import entity.*;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -10,20 +12,45 @@ public class FileUserTest {
     // This test checks if the retrieved temporary access token is empty
     @Test
     public void testAccessCreateNewUsers() throws IOException {
-        FileUserDataAccessObject obj = new FileUserDataAccessObject();
-        obj.add_to_friendList("Frank", "David");
-        obj.add_to_friendList("Frank", "Johnny");
-        System.out.println(obj.userExists("frank"));
-        assertTrue(obj.userExists("Frank"));
+
+        CommonUserFactory fact = new CommonUserFactory();
+        FileUserDataAccessObject obj1 = new FileUserDataAccessObject(fact);
+        obj1.clear_all_files();
+        FileUserDataAccessObject obj = new FileUserDataAccessObject(fact);
+        Genre genre = new Genre();
+        HashMap<String, Integer> userGenre = new HashMap<>();
+        genre.setGenreMap(userGenre);
+        obj.add_user_genre("frank",userGenre);
+
+        FriendsList lst = new FriendsList();
+        Inbox inbox = new Inbox();
+        User user = new CommonUser("frank", lst, inbox, genre);
+        obj.save(user);
+
+        assertTrue(obj.userExists("frank"));
     }
 
+    @Test
     public void testAccessCreateTwoUsers() throws IOException {
-        FileUserDataAccessObject obj = new FileUserDataAccessObject();
-        obj.add_to_friendList("Frank", "David");
-        obj.add_to_friendList("Frank", "Johnny");
-        System.out.println(obj.userExists("frank"));
-        assertTrue(obj.userExists("Frank"));
+        CommonUserFactory fact = new CommonUserFactory();
+        FileUserDataAccessObject obj1 = new FileUserDataAccessObject(fact);
+        obj1.clear_all_files();
+        FileUserDataAccessObject obj = new FileUserDataAccessObject(fact);
+        Genre genre = new Genre();
+        HashMap<String, Integer> userGenre = new HashMap<>();
+        genre.setGenreMap(userGenre);
+        obj.add_user_genre("frank",userGenre);
+
+        FriendsList lst = new FriendsList();
+        Inbox inbox = new Inbox();
+        User user = new CommonUser("frank", lst, inbox, genre);
+        User user2 = new CommonUser("david", lst, inbox, genre);
+        obj.save(user);
+        obj.save(user2);
+
+        assertTrue(obj.userExists("frank"));
+        assertTrue(obj.userExists("david"));
+
     }
 
-    public void testAccess
 }

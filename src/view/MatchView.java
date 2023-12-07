@@ -3,7 +3,9 @@ package view;
 import data_access.SpotifyApiCallGetInfoDataAccessObject;
 import entity.User;
 import interface_adapter.home_page.HomePageController;
+import interface_adapter.home_page.HomePageState;
 import interface_adapter.home_page.HomePageViewModel;
+import interface_adapter.inbox.InboxState;
 import interface_adapter.match.MatchController;
 import interface_adapter.match.MatchState;
 import interface_adapter.match.MatchViewModel;
@@ -20,172 +22,109 @@ import java.util.List;
 public class MatchView extends JPanel implements ActionListener, PropertyChangeListener {
     public final String viewName = "matches";
 
-    private final HomePageViewModel homePageViewModel;
-    private final HomePageController homePageController;
     private final MatchViewModel matchViewModel;
+
+    JButton[] send_invite;
+
+    JPanel matches;
+
+    private final JButton back;
+
+    private final JButton match;
+    private final HomePageController homePageController;
     private final MatchController matchController;
     private final SendInviteController sendInviteController;
-    private SpotifyApiCallGetInfoDataAccessObject spotifyAPI;
-
-//  Buttons
-    private final JButton Back;
-    private final JButton Invite_1;
-    private final JButton Invite_2;
-    private final JButton Invite_3;
-
-//  Labels
-    private final JLabel UserName_1;
-    private final JLabel UserName_2;
-    private final JLabel UserName_3;
 
 
     public MatchView(MatchViewModel matchViewModel, MatchController matchController, HomePageViewModel homePageViewModel, HomePageController homePageController, SendInviteController sendInviteController) {
         this.matchViewModel = matchViewModel;
         this.matchController = matchController;
-        this.homePageViewModel = homePageViewModel;
         this.homePageController = homePageController;
         this.sendInviteController = sendInviteController;
 
 //      Makes matchViewModel a listener
         matchViewModel.addPropertyChangeListener(this);
 
-        // This is a collection of buttons and labels with GridLayout
-        JPanel buttonsPanel = new JPanel(new GridLayout(0, 2));
-
-// Invite Buttons
-        Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_1);
-        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
-        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
-
-// UserNames
-        UserName_1 = new JLabel(matchViewModel.getState().getUSERNAMES().get(0));
-        UserName_2 = new JLabel(matchViewModel.getState().getUSERNAMES().get(1));
-        UserName_3 = new JLabel(matchViewModel.getState().getUSERNAMES().get(0));
-
-
-// Add UserNames and Invite buttons to the buttons panel
-        buttonsPanel.add(UserName_1);
-        buttonsPanel.add(Invite_1);
-        buttonsPanel.add(UserName_2);
-        buttonsPanel.add(Invite_2);
-        buttonsPanel.add(UserName_3);
-        buttonsPanel.add(Invite_3);
-
-// Create a panel for the title
-        JPanel titlePanel = new JPanel();
-        JLabel title = new JLabel(MatchViewModel.TITLE_LABEL);
+        JLabel title = new JLabel("Matches for you");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titlePanel.add(title);
 
-// Create a panel for the back button
-        JPanel backButtonPanel = new JPanel();
-        Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
-        backButtonPanel.add(Back);
+        JPanel buttons = new JPanel();
+        match = new JButton("Match");
+        back = new JButton("Back");
+        buttons.add(match);
+        buttons.add(back);
+        matches = new JPanel();
+        matches.setLayout(new BoxLayout(matches, BoxLayout.Y_AXIS));
+        matches.setBorder(BorderFactory.createLoweredBevelBorder());
+        matches.setAutoscrolls(true);
 
-// Add components to the MatchView
+        back.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        MatchState state = matchViewModel.getState();
+                        homePageController.execute(state.getUser_id());
+                    }
+                }
+        );
+
+        match.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        HomePageState state = homePageViewModel.getState();
+                        System.out.println("in match view button: " + state.getUserID());
+                        matchController.execute(state.getUserID());
+                        updatePanel();
+                    }
+                }
+        );
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.add(titlePanel);
-        this.add(buttonsPanel);
-        this.add(backButtonPanel);
-
-
-//        //      Title
-//        JLabel title = new JLabel(MatchViewModel.TITLE_LABEL);
-//
-////      Might need to switch to title.setAlignmentY(Component.TOP_ALIGNMENT);
-//        title.setAlignmentX(Component.CENTER_ALIGNMENT);
-//
-////      This is a collection of buttons
-//        JPanel buttons = new JPanel();
-//
-//
-////      Invite Buttons
-//        Invite_1 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_1);
-//        Invite_2 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_2);
-//        Invite_3 = new JButton(MatchViewModel.INVITE_BUTTON_LABEL_3);
-//        buttons.add(Invite_1);
-//        buttons.add(Invite_2);
-//        buttons.add(Invite_3);
-//
-////      Back Button
-//        Back = new JButton(MatchViewModel.BACK_BUTTON_LABEL);
-//        buttons.add(Back);
-//
-////      Matched Users
-//
-////      JLabels
-//        UserName_1 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_1);
-//        UserName_2 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_2);
-//        UserName_3 = new JLabel(MatchViewModel.INVITE_BUTTON_LABEL_3);
-
-
-        Invite_1.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent followButton) {
-//                        check if the button was pushed
-                        if (followButton.getSource().equals(Invite_1)) {
-                            MatchState matchState = matchViewModel.getState();
-                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(0));
-                        }
-                    }
-                }
-        );
-
-        Invite_2.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent followButton) {
-//                        check if the button was pushed
-                        if (followButton.getSource().equals(Invite_2)) {
-                            MatchState matchState = matchViewModel.getState();
-                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(1));
-                        }
-                    }
-                }
-        );
-
-        Invite_3.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent followButton) {
-//                        check if the button was pushed
-                        if (followButton.getSource().equals(Invite_3)) {
-                            MatchState matchState = matchViewModel.getState();
-                            sendInviteController.execute(matchState.getCLIENT_USERID(), matchState.getMATCHED_USERSID().get(2));
-                        }
-                    }
-                }
-        );
-
-        Back.addActionListener(
-
-                new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent backButton) {
-                        if (backButton.getSource().equals(Back)) {
-//                          USE OTHER CONTROLLER TO BRING BACK TO LoggedInView
-                            MatchState state = matchViewModel.getState();
-                            homePageController.execute(state.getCLIENT_USERID());
-                        }
-                    }
-                }
-        );
-
+        this.add(title);
+        this.add(new JScrollPane(matches));
+        this.add(buttons);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-//      This is for a button that has not been implemented
-        JOptionPane.showConfirmDialog(this, "Not implemented yet.");
+        System.out.println("Click " + e.getActionCommand());
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         MatchState state = (MatchState) evt.getNewValue();
 //      See if there's an error with MatchedUsers
-        if (state.getMatchedUsersError() != null) {
+        if (state.getMatchError() != null) {
 //          Display Error Screen
-            JOptionPane.showMessageDialog(this, state.getMatchedUsersError());
+            JOptionPane.showMessageDialog(this, state.getMatchError());
         }
+        matches.removeAll();
+        List<String> matched_users = state.getMatched_users();
+        send_invite = new JButton[matched_users.size()];
+        for(int i = 0; i < send_invite.length; i++) {
+            String friend_id = matched_users.get(i);
+            send_invite[i] = new JButton(MatchViewModel.SEND_INVITE_BUTTON_LABEL);
+            JPanel add_friend = new JPanel();
+            add_friend.setBorder(BorderFactory.createRaisedBevelBorder());
+            add_friend.setAlignmentX(Component.CENTER_ALIGNMENT);
+            add_friend.add(new JLabel(matched_users.get(i)));
+            add_friend.add(send_invite[i]);
+            send_invite[i].addActionListener(
+                    new ActionListener() {
+                        public void actionPerformed(ActionEvent evt) {
+                            MatchState currState = matchViewModel.getState();
+                            System.out.println("clicked add friend");
+                            System.out.println("===");
+                            System.out.println("id 1: " + currState.getUser_id());
+                            System.out.println("id 2: " + friend_id);
+                            System.out.println("===");
+                            sendInviteController.execute(currState.getUser_id(), friend_id);
+                            updatePanel();
+                        }
+                    }
+            );
+            matches.add(add_friend);
+        }
+    }
+    private void updatePanel(){
+        matches.revalidate();
+        matches.repaint();
     }
 }

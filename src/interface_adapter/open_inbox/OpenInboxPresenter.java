@@ -20,6 +20,7 @@ public class OpenInboxPresenter implements OpenInboxOutputBoundary {
     @Override
     public void prepareSuccessView(OpenInboxOutputData response) {
         InboxState inboxState = inboxViewModel.getState();
+        inboxState.setUser_id(response.getUser_id());
         inboxState.setUsername(response.getUsername());
         inboxState.setInbox(response.getInbox());
         this.inboxViewModel.setState(inboxState);

@@ -5,44 +5,43 @@ import java.util.List;
 import java.util.Arrays;
 
 public class MatchState {
-    private List<String> MATCHED_USERSNAMES = new ArrayList<>(Arrays.asList("user1", "user2", "user3"));
-    private String MATCHED_USERS_ERROR = null;
-    private String CLIENT_USERID;
-    private List<String> MATCHED_USERSID;
+
+    public List<String> matched_users = new ArrayList<>();
+
+    private String user_id = "";
+    private String matchError = null;
 
     public MatchState(MatchState copy) {
-        MATCHED_USERSID = copy.MATCHED_USERSID;
-        MATCHED_USERS_ERROR = copy.MATCHED_USERS_ERROR;
+        user_id = copy.user_id;
+        matchError = copy.matchError;
     }
 
     public MatchState() {
     }
-
-//  Getters
-    public List<String> getUSERNAMES() { return MATCHED_USERSNAMES; }
-
-    public List<String> getMATCHED_USERSID() { return MATCHED_USERSID; }
-
-    public String getMatchedUsersError() {
-        return MATCHED_USERS_ERROR;
+//getters
+    public List<String> getMatched_users(){
+        return matched_users;
     }
 
-    public String getCLIENT_USERID() {
-        return CLIENT_USERID;
+    public String getUser_id(){
+        return user_id;
     }
 
-//  Setters
-
-    public void setCLIENT_USERID(String clientUserid) {
-        CLIENT_USERID = clientUserid;
+    public String getMatchError(){
+        return matchError;
     }
 
-    public void setMATCHED_USERSID(List<String> matchedUsersID) { MATCHED_USERSID = matchedUsersID; }
-
-    public void setMATCHED_USERS_ERROR(String matchedUsersError) {
-        MATCHED_USERS_ERROR = matchedUsersError;
+//setters
+    public void setUser_id(String user_id){
+        this.user_id = user_id;
     }
 
-    public void setMATCHED_USERSNAMES(List<String> matchedUsersNames) { MATCHED_USERSNAMES = matchedUsersNames; }
+    public void setMatched_users(List<String> matched_users){
+        this.matched_users = matched_users;
+    }
+
+    public void setMatchError(String error){
+        this.matchError = error;
+    }
 
 }
