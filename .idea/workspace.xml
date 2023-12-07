@@ -5,14 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e74c07e5-cd1d-49e6-a9ea-586a8c5af5b2" name="Changes" comment="Implemented the basic structure of entity, app, and view.">
+      <change afterPath="$PROJECT_DIR$/src/csv_files/user_username.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/csv_files/user_friends.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/csv_files/user_friends.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/csv_files/user_genre.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/csv_files/user_genre.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/csv_files/user_inbox.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/csv_files/user_inbox.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/FileUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_access/InMemorySpotifyDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/InMemorySpotifyDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data_access/InMemoryUserDataAccessObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data_access/InMemoryUserDataAccessObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/CommonUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/CommonUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/CommonUserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/CommonUserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entity/UserFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/UserFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/home_page/HomePageState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/home_page/HomePageState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/inbox/InboxState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/inbox/InboxState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/login/LoginPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/interface_adapter/match/MatchPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/match/MatchPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/use_case/match/MatchInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/match/MatchInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/match/MatchState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/match/MatchState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/interface_adapter/open_inbox/OpenInboxPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/interface_adapter/open_inbox/OpenInboxPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/login/LoginInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/login/LoginInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/login/LoginOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/login/LoginOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/login/LoginUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/login/LoginUserDataAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/match/MatchOutPutData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/match/MatchOutPutData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/match/MatchUserAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/match/MatchUserAccessInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/open_inbox/OpenInboxInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/open_inbox/OpenInboxInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/open_inbox/OpenInboxOutputData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/open_inbox/OpenInboxOutputData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/use_case/open_inbox/OpenInboxUserDataAccessInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/use_case/open_inbox/OpenInboxUserDataAccessInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/HomePageView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/HomePageView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MatchView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MatchView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/data_access/FileUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/data_access/FileUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/entity/CommonUserFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/entity/CommonUserFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/entity/CommonUserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/entity/CommonUserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/use_case/AcceptTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/use_case/AcceptTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/use_case/HomePageTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/use_case/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/use_case/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/use_case/OpenInboxTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/use_case/OpenInboxTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/use_case/SendInviteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/use_case/SendInviteTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +55,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="final-copy-branch" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -44,25 +77,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Wonjae/Desktop/CSC207-Project-Matchify&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "change-username-display",
+    "jdk.selected.JAVA_MODULE": "corretto-17",
+    "last_opened_file_path": "C:/Users/Wonjae/Desktop/CSC207-Project-Matchify",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
+}]]></component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="CSC207-Project-Matchify" />
@@ -76,8 +109,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in CSC207-Project-Matchify" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CSC207-Project-Matchify" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.All in CSC207-Project-Matchify" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -108,7 +152,23 @@
       <option name="project" value="LOCAL" />
       <updated>1698992021029</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="now shows username instead of user id">
+      <option name="closed" value="true" />
+      <created>1701987917032</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701987917032</updated>
+    </task>
+    <task id="LOCAL-00004" summary="now shows username instead of user id">
+      <option name="closed" value="true" />
+      <created>1701987970884</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701987970884</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,7 +188,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Deleted MySQL file and lib folder" />
     <MESSAGE value="Implemented the basic structure of entity, app, and view." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented the basic structure of entity, app, and view." />
+    <MESSAGE value="now shows username instead of user id" />
+    <option name="LAST_COMMIT_MESSAGE" value="now shows username instead of user id" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/CSC207_Project_Matchify$Main.ic" NAME="Main Coverage Results" MODIFIED="1701685098911" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
