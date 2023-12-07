@@ -1,8 +1,9 @@
 package data_access;
 
-import entity.*;
+import entity.User;
 import use_case.accept_invite.AcceptUserDataAccessInterface;
 import use_case.decline_invite.DeclineUserDataAccessInterface;
+import use_case.home_page.HomePageUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.match.MatchUserAccessInterface;
 
@@ -13,7 +14,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryUserDataAccessObject implements AcceptUserDataAccessInterface ,DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, MatchUserAccessInterface, LoginUserDataAccessInterface {
+public class InMemoryUserDataAccessObject implements AcceptUserDataAccessInterface ,DeclineUserDataAccessInterface, OpenInboxUserDataAccessInterface, SendInviteUserDataAccessInterface, MatchUserAccessInterface, LoginUserDataAccessInterface, HomePageUserDataAccessInterface {
 
     private final Map<String, User> users = new HashMap<>();
 
@@ -35,12 +36,21 @@ public class InMemoryUserDataAccessObject implements AcceptUserDataAccessInterfa
 
     @Override
     public void save(User user) {
-        this.users.put(user.getUserID(),user);
+
     }
 
     @Override
     public User getUser (String userID){
         return users.get(userID);
+    }
+
+    @Override
+    public HashMap<String, String> getUsernameMap() {
+        HashMap<String, String> ans = new HashMap<>();
+        for (String key: users.keySet()){
+            ans.put(key, users.get(key).getUsername());
+        }
+        return ans;
     }
 
     @Override

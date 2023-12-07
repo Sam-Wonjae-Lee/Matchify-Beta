@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class CommonUserFactoryTest {
 
     @Test
-    public void TestCommonUserFactoryCreate() {
+    public void create() {
         // Create a CommonUserFactory
         CommonUserFactory userFactory = new CommonUserFactory();
 
@@ -36,7 +36,7 @@ public class CommonUserFactoryTest {
         inbox.add_invite("invite1");
 
         // Create a CommonUser with friendsList and inbox
-        CommonUser user = userFactory.create("123", friendsList, inbox, genre);
+        CommonUser user = userFactory.create("123", friendsList, inbox, genre, "jinx");
 
         // Verify the user is created is the right ID
         assertEquals("123", user.getUserID());
@@ -54,7 +54,6 @@ public class CommonUserFactoryTest {
 //      Verify the user has the correct genre
         HashMap<String, Integer> userGenres = user.getGenres().getGenreMap();
         assertEquals(2, userGenres.size());
-        assertTrue(userGenres.containsKey("Pop"));
-        assertTrue(userGenres.containsKey("Rap"));
+        assertTrue(userGenres.containsKey("PlayList1"));
     }
 }

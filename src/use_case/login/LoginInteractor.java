@@ -47,14 +47,15 @@ public class LoginInteractor implements LoginInputBoundary{
     @Override
     public void execute(LoginInputData loginInputData) {
         String userId = loginInputData.getUserID();
-        if(!spotifyAPIDataAccessObject.userExists(userId)){
+        Boolean userExists = spotifyAPIDataAccessObject.userExists(userId);
+        System.out.println(userExists);
+        if(!userExists){
             loginPresenter.prepareFailView("There is no account associated with "  + userId);
         }
         else {
             String name = spotifyAPIDataAccessObject.getName(userId);
             String pfp = spotifyAPIDataAccessObject.getProfilePicture(userId);
             if (!userDataAccessObject.userExists(userId)) {
-// TODO: ASK FRANK ABOUT HashMap<String, Map<String, Integer>>
                 // Save genre
                 Genre genre = new Genre();
 
@@ -64,18 +65,13 @@ public class LoginInteractor implements LoginInputBoundary{
 
                 FriendsList lst = new FriendsList();
                 Inbox inbox = new Inbox();
-                User user = userFactory.create(userId, lst, inbox, genre);
+                User user = userFactory.create(userId, lst, inbox, genre, name);
                 userDataAccessObject.save(user);
             }
             User user = userDataAccessObject.getUser(userId);
+            HashMap<String, String> idMap = userDataAccessObject.getUsernameMap();
             LoginOutputData outputData = new LoginOutputData(
-                    userId, name, pfp, user.getFriendList().get_friends(), false);
-            System.out.println("in login interactor");
-            System.out.println("===");
-            System.out.println("userid: " + userId);
-            System.out.println("name: " + name);
-            System.out.println("friends: " + user.getFriendList().get_friends());
-            System.out.println("===");
+                    userId, name, pfp, user.getFriendList().get_friends(), idMap);
             loginPresenter.prepareSuccessView(outputData);
         }
     }
