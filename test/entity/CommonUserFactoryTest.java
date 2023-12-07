@@ -36,7 +36,7 @@ public class CommonUserFactoryTest {
         inbox.add_invite("invite1");
 
         // Create a CommonUser with friendsList and inbox
-        CommonUser user = userFactory.create("123", friendsList, inbox, genre);
+        CommonUser user = userFactory.create("123", friendsList, inbox, genre, "jinx");
 
         // Verify the user is created is the right ID
         assertEquals("123", user.getUserID());

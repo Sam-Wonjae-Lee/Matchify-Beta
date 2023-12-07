@@ -24,6 +24,7 @@ public class FileUserTest {
 
         FriendsList lst = new FriendsList();
         Inbox inbox = new Inbox();
+        String username = "gwen";
         User user = new CommonUser("frank", lst, inbox, genre, username);
         obj.save(user);
 
@@ -43,6 +44,7 @@ public class FileUserTest {
 
         FriendsList lst = new FriendsList();
         Inbox inbox = new Inbox();
+        String username = "gwen";
         User user = new CommonUser("frank", lst, inbox, genre, username);
         User user2 = new CommonUser("david", lst, inbox, genre, username);
         obj.save(user);

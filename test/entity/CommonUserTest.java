@@ -12,11 +12,14 @@ public class CommonUserTest {
     private Inbox inbox;
     private Genre genre;
 
+    private String username;
+
     @Before
     public void init() {
         friendsList = new FriendsList() ;
         inbox = new Inbox() ;
         genre = new Genre();
+        username = "gwen";
         user = new CommonUser("123", friendsList, inbox, genre, username);
     }
 //    HashMap<String, Map<String, Integer>> genres
