@@ -20,7 +20,6 @@ public class HomePageTest {
         Inbox inbox = new Inbox();
         Genre genre = new Genre();
         CommonUser user1 = new CommonUser(username, friendsList, inbox, genre);
-        userRepository.save(user1);
         HomePageOutPutBoundary successPresenter = new HomePageOutPutBoundary() {
             @Override
             public void prepareSuccessView(HomePageOutputData outputData) {
