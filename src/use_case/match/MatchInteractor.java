@@ -93,8 +93,10 @@ public class MatchInteractor implements MatchInputboundary{
             matchPresenter.prepareFailView("Unable to find Matches, please try again later.");
         }
         else {
-            System.out.println("interactor triggered");
-            MatchOutPutData matchOutPutData = new MatchOutPutData(matchedUsers, client_user_id);
+
+            MatchOutPutData matchOutPutData = new MatchOutPutData(
+                    matchedUsers, client_user_id, matchUserAccessInterface.getUsernameMap());
+
             matchPresenter.prepareSuccessView(matchOutPutData);
         }
 

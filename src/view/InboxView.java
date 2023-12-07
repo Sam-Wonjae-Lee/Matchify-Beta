@@ -92,7 +92,7 @@ public class InboxView extends JPanel implements ActionListener, PropertyChangeL
             JPanel invite = new JPanel();
             invite.setBorder(BorderFactory.createRaisedBevelBorder());
             invite.setAlignmentX(Component.CENTER_ALIGNMENT);
-            invite.add(new JLabel(userInbox.get(i)));
+            invite.add(new JLabel(state.getIdToName().get(userInbox.get(i))));
             invite.add(accept[i]);
             invite.add(decline[i]);
             accept[i].addActionListener(
