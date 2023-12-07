@@ -24,6 +24,15 @@ For more information about the Spotify API, please visit [source](https://develo
 
 ---
 
+## **How To Get Spotify User ID**
+- Go to Spotify and click on your profile
+- Click on three dots then click copy link option
+- Strip out the pasted value of the part that says "https://open.spotify.com/user/" leaving only a string of numbers \
+Example:
+https://open.spotify.com/user/{USER_ID}?si=e39f82815e654f82
+- Copy down the string of numbers after user/ and before ? to obtain the use id
+---
+
 ## **UI Preview**
 
 ### User Login
